@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> 174de055887ae97e164dc4b690d552b00643cdcf
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.1.
 
 ## Development server
