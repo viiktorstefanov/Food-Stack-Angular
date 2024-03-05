@@ -1,0 +1,86 @@
+.hero {
+    margin-top: 4%;
+    margin-right: 0%;
+    margin-bottom: 0%;
+    padding-right: 2%;
+    padding-bottom: 4%;
+    padding-left: 2%;
+    background-image: url('/assets/images/dots.png');
+    background-position: 100% 100%;
+    background-size: 35%;
+    background-repeat: no-repeat;
+  }
+  
+  .container-welcome{
+    max-width: 1280px;
+  }
+  
+  .w-container {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .w-layout-flex{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+  .w-layout-flex-left, .w-layout-flex-right{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .w-layout-flex-left h1{
+    font-size: 3.43em;
+    line-height: 1.1em;
+    text-align: left;
+  }
+  
+  .w-layout-flex-left h5{
+    font-family: 'Lato';
+    font-size: 1.41em;
+    line-height: 1.5em;
+    font-weight: 400;
+    text-align: left;
+    letter-spacing: normal;
+    text-transform: none;
+    margin-top: 9%;
+    margin-bottom: 5%;
+  }
+  
+  .w-layout-flex-left .sign-up-btn{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .w-layout-flex-left .sign-up-btn a:hover {
+    box-shadow: 0 2px 8px 0 rgba(119, 121, 133, 0.76);
+    color: #462b3c;
+  }
+  
+  
+  .w-layout-flex-left .sign-up-btn a {
+    display: flex;
+    margin-top: 4%;
+    margin-bottom: 0%;
+    padding: 5% 15%;
+    border-radius: 10px;
+    background-color: #ff6c3b;
+    font-family: Lato;
+    color: #462b3c;
+    font-size: 1.25em;
+    line-height: 1.25em;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  
+  .w-layout-flex-right{
+  
+  }
+  
+  .w-layout-flex-right iframe {
+    border-radius: 1rem;
+    border: 2px solid #462b3c;
+  }
