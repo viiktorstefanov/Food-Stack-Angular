@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@font-face {
+  font-family: "Anta";
+  src: "assets/fonts/Anta-Regular.ttf";
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #462b3c;
+}
+
+body {
+  font-family: "Anta";
+  line-height: 1em;
+  color: #462b3c;
+}
+/* f26a07 orange*/
+/* 462b3c dark purple*/
