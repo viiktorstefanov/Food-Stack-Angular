@@ -1,0 +1,43 @@
+.features-item {
+  display: flex;
+  padding: 0%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.features-item img {
+  max-width: 100%;
+}
+
+.features-item-hero-text {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  padding-right: 15%;
+  padding-left: 15%;
+}
+
+.features-item-hero-text h5 {
+  display: block;
+  text-align: center;
+  font-weight: 700;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 1.41em;
+  line-height: 1.5em;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.features-item-subhero-text {
+  padding-right: 6%;
+  padding-left: 6%;
+}
+
+.features-item-subhero-text p {
+  font-family: Lato;
+  text-align: center;
+  margin-bottom: 0px;
+  font-size: 1.1rem;
+  line-height: 1.5em;
+}

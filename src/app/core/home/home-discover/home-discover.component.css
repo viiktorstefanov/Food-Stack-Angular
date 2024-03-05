@@ -1,0 +1,114 @@
+.discover {
+  padding: 6% 2% 8%;
+  background-color: #fb8057;
+}
+
+.w-container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1280px;
+}
+
+.container-discover h2 {
+  font-size: 2.74em;
+  line-height: 1.1em;
+  font-weight: 800;
+  text-align: center;
+}
+
+.container-discover .discover-sub-text {
+  margin-top: 1%;
+  margin-bottom: 4%;
+  padding-right: 25%;
+  padding-left: 25%;
+}
+
+.container-discover .discover-sub-text h6 {
+  font-size: 1.25em;
+  line-height: 1.5em;
+  font-weight: 400;
+  text-align: center;
+  font-family: Lato;
+}
+
+.container-discover-info {
+  margin-top: 7%;
+}
+
+.layout-grid {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  grid-row-gap: 16px;
+  grid-column-gap: 16px;
+  grid-template-columns: 1fr 1.25fr;
+  grid-template-rows: auto;
+}
+
+.grid-left {
+  position: relative;
+}
+
+.grid-left .meal {
+  max-width: 100%;
+  vertical-align: middle;
+  width: 500px;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.grid-left .macronutrients {
+  position: absolute;
+  right: -93px;
+  bottom: -84px;
+  width: 350px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #462b3c;
+}
+
+.grid-right {
+  grid-column-gap: 24px;
+  grid-template-columns: 0.25fr 1fr;
+  grid-template-rows: auto auto auto;
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  grid-row-gap: 16px;
+  margin-top: 10%;
+}
+
+.grid-right .checkmark {
+  display: flex;
+  padding-top: 2%;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+.grid-right .checkmark img {
+  max-width: 100%;
+  width: 13%;
+}
+
+.grid-right .checkmark-text {
+  width: 90%;
+}
+
+.grid-right .checkmark-text h5 {
+  font-size: 1.41em;
+  line-height: 1.5em;
+  font-weight: 400;
+  text-align: left;
+  letter-spacing: normal;
+  text-transform: none;
+  font-weight: 700;
+}
+
+.grid-right .checkmark-text p {
+  font-size: 1.1rem;
+  line-height: 1.5em;
+  font-family: Lato;
+}
