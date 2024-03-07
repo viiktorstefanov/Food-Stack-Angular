@@ -9,6 +9,10 @@ import { HomeDiscoverComponent } from './home/home-discover/home-discover.compon
 import { HomeFooterComponent } from './home/home-footer/home-footer.component';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { CalculatorComponent } from './calculator/calculator.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
+import { BlogComponent } from './blog/blog.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,11 @@ import { RouterModule } from '@angular/router';
     HomeFeaturesComponent,
     FeaturesItemComponent,
     HomeDiscoverComponent,
-    HomeFooterComponent
+    HomeFooterComponent,
+    CalculatorComponent,
+    AboutComponent,
+    ContactComponent,
+    BlogComponent
   ],
   imports: [
     CommonModule,

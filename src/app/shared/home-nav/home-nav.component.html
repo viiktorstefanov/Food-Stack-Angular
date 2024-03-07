@@ -6,9 +6,10 @@
     </div>
     <div class="nav-right-container">
         <nav [ngClass]="hideNav ? 'hide' : 'nav'">
-          <a class="nav-item blog" href="">blog</a>
-          <a class="nav-item contact" href="">contact</a>
-          <a class="nav-item about" href="">about</a>
+          <a class="nav-item blog" [routerLink]="'/blog'">blog</a>
+          <a class="nav-item about" [routerLink]="'/calculator'">calculator</a>
+          <a class="nav-item contact" [routerLink]="'/contact'">contact</a>
+          <a class="nav-item about" [routerLink]="'/about'">about</a>
         </nav>
         <div [ngClass]="hideNav ? 'hide' : 'div-login-btn'">
           <a class="login-btn" [routerLink]="'/auth/login'">log in</a>
