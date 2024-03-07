@@ -1,0 +1,93 @@
+.contact-view {
+  width: 100%;
+  text-align: center;
+  background-image: url(/assets/images/dots.png);
+  background-position: right bottom;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero {
+  margin-top: 5%;
+  margin-right: 0%;
+  margin-bottom: 0%;
+  padding-right: 2%;
+  padding-bottom: 4%;
+  padding-left: 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.container-contact {
+  max-width: 1280px;
+}
+
+.container-contact h2 {
+  padding-bottom: 20px;
+}
+
+.w-container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-box {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 800px;
+  min-width: 800px;
+  min-height: 500px;
+  padding: 90px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: #7779861a 0 3px 20px;
+}
+
+.contact-media {
+  display: flex;
+  gap: 30px;
+}
+
+.apps {
+  display: flex;
+  gap: 3rem;
+}
+
+.googleplay-icon img,
+.apple-icon a img {
+  max-width: 100%;
+  border-radius: 8px;
+  height: 50px;
+}
+
+.googleplay-icon:hover,
+.apple-icon:hover {
+  cursor: pointer;
+}
+
+.contact-icons:focus,
+.contact-icons:hover {
+  color: #462b3c;
+  cursor: pointer;
+}
+
+.contact-icons {
+  font-size: 4rem;
+  color: #fb8057;
+}
+
+.layout-border {
+  border-top: 5px solid #fb8057;
+  border-radius: 6px;
+  width: 100%;
+}
+

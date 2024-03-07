@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './core/home/home.component';
 import { CalculatorComponent } from './core/calculator/calculator.component';
-import { AboutComponent } from './core/about/about.component';
 import { ContactComponent } from './core/contact/contact.component';
 import { BlogComponent } from './core/blog/blog.component';
 
@@ -24,12 +23,7 @@ const routes: Routes = [
     title: `Foodstack: Calculator`,
   },
   {
-    path: 'about',
-    component: AboutComponent, 
-    title: `Foodstack: About`,
-  },
-  {
-    path: 'contact',
+    path: 'contacts',
     component: ContactComponent, 
     title: `Foodstack: Contact`,
   },

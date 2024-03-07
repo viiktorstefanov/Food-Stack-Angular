@@ -10,7 +10,6 @@ import { HomeFooterComponent } from './home/home-footer/home-footer.component';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { CalculatorComponent } from './calculator/calculator.component';
-import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { BlogComponent } from './blog/blog.component';
 
@@ -24,7 +23,6 @@ import { BlogComponent } from './blog/blog.component';
     HomeDiscoverComponent,
     HomeFooterComponent,
     CalculatorComponent,
-    AboutComponent,
     ContactComponent,
     BlogComponent
   ],
