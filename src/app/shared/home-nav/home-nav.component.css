@@ -28,6 +28,10 @@
     font-size: 1.6rem;
     margin-top: 20px;
   }
+
+  .hide{
+    visibility: hidden;
+  }
   
   .nav {
     display: flex;

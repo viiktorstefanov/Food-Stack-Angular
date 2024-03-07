@@ -21,5 +21,12 @@ body {
   line-height: 1em;
   color: #462b3c;
 }
+
+input:focus {
+  outline: none;
+  border-color: none;
+  box-shadow: 0 0 0 .25rem #ff6c3b;
+}
+
 /* f26a07 orange*/
 /* 462b3c dark purple*/

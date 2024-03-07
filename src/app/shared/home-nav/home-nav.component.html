@@ -1,0 +1,18 @@
+<section class="nav-container">
+    <div class="nav-left-container">
+      <a [routerLink]="'/home'">
+        <img class="logo-img" src="assets/icon/foodstack-logo.png" alt="logo" />
+      </a>
+    </div>
+    <div class="nav-right-container">
+        <nav [ngClass]="hideNav ? 'hide' : 'nav'">
+          <a class="nav-item support" href="">support</a>
+          <a class="nav-item blog" href="">blog</a>
+          <a class="nav-item contact" href="">contact</a>
+          <a class="nav-item about" href="">about</a>
+        </nav>
+        <div [ngClass]="hideNav ? 'hide' : 'div-login-btn'">
+          <a class="login-btn" [routerLink]="'/auth/login'">log in</a>
+        </div>
+    </div>
+  </section>

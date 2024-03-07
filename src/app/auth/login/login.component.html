@@ -1,0 +1,29 @@
+<div class="login-view">
+  <app-home-nav [hideNav]="true"></app-home-nav>
+  <div class="hero">
+    <div class="container-register w-container">
+      <div class="login-form">
+        <div class="login">
+          <div class="login-box" style="text-align: left">
+            <form>
+              <div class="flex-column">
+                <label for="email">Email</label>
+                <input id="email" name="email" placeholder="Email Adress" type="email" />
+                <label for="password">Password</label>
+                <input id="password" name="password" placeholder="Password" type="password" />
+              </div>
+              <button type="submit" class="submit-btn">log in</button>
+            </form>
+          </div>
+          <div class="forgot-password-box">
+            <a [routerLink]="'/auth/forgot-password'">Forgot your password?</a>
+          </div>
+          <div class="not-member-box">
+            <span>Not a member?</span>
+            <a [routerLink]="'/auth/register'">Sign Up</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

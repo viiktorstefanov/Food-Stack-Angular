@@ -6,10 +6,18 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    component: HomeComponent,
+    redirectTo: 'home'
+  },
+  {
+    path: 'home',
+    component: HomeComponent, 
     title: `Foodstack: Eat smarter.
     Live better.`,
   },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule)
+  }
 
 ];
 

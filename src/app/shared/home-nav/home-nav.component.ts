@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-home-nav',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './home-nav.component.css'
 })
 export class HomeNavComponent {
-
+  @Input() hideNav: boolean = false;
 }
