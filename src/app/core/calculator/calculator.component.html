@@ -1,23 +1,131 @@
-<app-home-nav [hideNav]="false"></app-home-nav>
-<section class="hero">
-    <div class="container-welcome w-container">
+<div class="calculator-view">
+  <app-home-nav [hideNav]="false"></app-home-nav>
+  <section class="hero">
+    <div class="container-calculator w-container">
+      <div class="container-calculate">
+        <h2>BMR & TDEE Calculator</h2>
       <div class="w-layout-flex">
-          <div class="w-layout-flex-left">
-              <h1>
-                  Eat smarter.
-                  <br>
-                  Live better.
-              </h1>
-              <h5>
-                  Track your diet, exercise, and health data.
-              </h5>
-              <div class="sign-up-btn">
-                  <a [routerLink]="'/auth/register'">Sign up - It's Free!</a>
+        <div class="calculate-box-form">
+          <form class="calculate-form">
+            <div class="center">
+              <div class="container-account-info">
+                <div>
+                  <div class="profile-details-row">
+                    <label class="label">Gender</label>
+                    <div class="radio">
+                      <div class="check">
+                        <input
+                          id="male"
+                          class="check-input"
+                          type="radio"
+                          name="gender"
+                          value="male"
+                        />
+                        <label for="male">Male</label>
+                      </div>
+                      <div class="check">
+                        <input
+                          id="female"
+                          class="check-input"
+                          type="radio"
+                          name="gender"
+                          value="female"
+                        />
+                        <label for="female">Female </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="profile-details-row">
+                    <label class="label">Height</label>
+                    <div class="height-box">
+                      <input type="number" name="height" />
+                      <span>cm</span>
+                    </div>
+                  </div>
+                  <div class="profile-details-row">
+                    <label class="label">Weight</label>
+                    <div class="weight-box">
+                      <input type="number" name="weight" />
+                      <span>kg</span>
+                    </div>
+                  </div>
+                  <div class="profile-details-row">
+                    <label class="label">Activity</label>
+                    <div class="activity-box">
+                        <select name="" id="">
+                            <option value="1.2">Sedentary</option>
+                            <option value="1.375">Lightly</option>
+                            <option value="1.55">Moderately</option>
+                            <option value="1.725">Very</option>
+                            <option value="1.9">Extra</option>
+                        </select>
+                    </div>
+                  </div>
+                </div>
               </div>
-          </div>
-          <div class="w-layout-flex-right">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/VEQaH4LruUo?si=en7G4VVVkeKatFW7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-          </div>
+              <button type="submit" class="submit-btn">Calculate</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      </div>
+      <div class="basics">
+        <h2>Basics</h2>
+        <div class="basics-info-box">
+            <div class="item">
+                <p><span class="item-header">bmr:</span> stands for Basal Metabolic Rate. It is the number of calories your body needs to accomplish its most basic (basal) life-sustaining functions. These functions include breathing, circulation, cell production, nutrient processing, protein synthesis, and ion transport. Essentially, BMR is the amount of energy (calories) your body needs to function at rest to maintain the life-sustaining processes for 24 hours.</p>
+            </div>
+            <div class="item">
+                <p><span class="item-header">tdee:</span> stands for Total Daily Energy Expenditure. It represents the total number of calories you burn in a single day, considering all activities. TDEE includes the energy expended through basic bodily functions (BMR), plus the energy used during physical activity, and the energy used in digesting, absorbing, and metabolizing food (also known as the thermic effect of food).
+
+                     TDEE is a more comprehensive measure of calorie expenditure than BMR because it accounts for your lifestyle and activity level.</p>
+            </div>
+            <div class="item">
+                <p><span class="item-header">activity levels:</span></p>
+                <ul>
+                    <li>sedentary activity -  For those who do little to no exercise</li>
+                    <li>light activity - For people doing light exercise/sports 1-3 days a week.</li>
+                    <li>moderately activity - Applies to moderate exercise/sports 3-5 days a week.</li>
+                    <li>very activity - For those who engage in hard exercises/sports 6-7 days a week.</li>
+                    <li>extra activity - For extremely active individuals who either have very physically demanding jobs or engage in very hard exercises/sports and possibly additional physical activities.</li>
+                </ul>
+            </div>
+        </div>
       </div>
     </div>
+    <div class="result">
+        <div class="bmr-result">
+            <span>BMR:</span>
+            <span>635463 kcal</span>
+        </div>
+        <div class="bmr-result">
+            <span>TDEE:</span>
+            <span>635463 kcal</span>
+        </div>
+        <div class="bmr-result">
+            <span>Weight Maintenance:</span>
+            <span>635463 kcal</span>
+        </div>
+        <div class="bmr-result">
+            <span>Mild Weight Loss:</span>
+            <span>635463 kcal</span>
+        </div>
+        <div class="bmr-result">
+            <span>Weight Loss:</span>
+            <span>635463 kcal</span>
+        </div>
+        <div class="bmr-result">
+            <span>Extreme weight loss:</span>
+            <span>635463 kcal</span>
+        </div>
+        <div class="bmr-result">
+            <span>Muscle Gain:<br>(0.25kg per week)</span>
+            <span>635463 kcal</span>
+        </div>
+        <div class="bmr-result">
+            <span>Muscle Gain:<br>0.25kg per week</span>
+            <span>635463 kcal</span>
+        </div>
+    </div>
   </section>
+</div>
