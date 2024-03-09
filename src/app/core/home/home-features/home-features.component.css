@@ -66,6 +66,6 @@
     align-self: stretch;
     grid-column-gap: 40px;
     grid-row-gap: 48px;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
 }

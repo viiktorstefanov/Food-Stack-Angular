@@ -1,31 +1,21 @@
 export const featuresItems = [
     {
-        image: 'assets/images/track.svg',
-        header: 'Track nutrients and other compounds',
-        text: 'Log your meals and track all your macro and micronutrients.',
+        image: 'assets/images/taskdone.png',
+        header: 'Track your calories and nutrients',
+        text: 'Log your meals and track your nutrients.',
     },
     {
-        image: 'assets/images/meals.svg',
-        header: 'Log meals, exercise and health metrics',
-        text: 'Plus, you can create custom foods, recipes, exercises and metrics.',
+        image: 'assets/images/dumbell&bananas.png',
+        header: 'Log meals and exercise',
+        text: 'You can create custom foods and exercises.',
     },
     {
-        image: 'assets/images/reports.svg',
-        header: 'Get valuable health reports and charts',
-        text: 'Learn how nutrients and metrics correlate over time.',
-    },
-    {
-        image: 'assets/images/custom diet.svg',
+        image: 'assets/images/fork&spoon.png',
         header: 'Custom diet settings',
-        text: 'Set weight, macro and nutrient targets to meet your goals.',
+        text: 'Set your nutrient targets to meet your goals.',
     },
     {
-        image: 'assets/images/timer.svg',
-        header: 'Fasting timer',
-        text: 'Track your intermittent fasts and see their effect over time.',
-    },
-    {
-        image: 'assets/images/diet support.svg',
+        image: 'assets/images/carrot.png',
         header: 'Diet support',
         text: `Whether you're Keto, Vegan, or on one recommended by your doctor.`,
     },
