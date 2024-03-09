@@ -57,7 +57,7 @@
     text-transform: uppercase;
     justify-content: center;
     align-items: center;
-    background-color: #fff;
+    background-color: inherit;
     color: #f26a07;
     font-size: 1.5rem;
     line-height: 20px;

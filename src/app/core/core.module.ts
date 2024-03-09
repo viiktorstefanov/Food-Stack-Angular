@@ -6,12 +6,12 @@ import { HomeMentionsComponent } from './home/home-mentions/home-mentions.compon
 import { HomeFeaturesComponent } from './home/home-features/home-features.component';
 import { FeaturesItemComponent } from './home/home-features/features-item/features-item.component';
 import { HomeDiscoverComponent } from './home/home-discover/home-discover.component';
-import { HomeFooterComponent } from './home/home-footer/home-footer.component';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { ContactComponent } from './contact/contact.component';
 import { BlogComponent } from './blog/blog.component';
+import { ArticleComponent } from './blog/article/article.component';
 
 @NgModule({
   declarations: [
@@ -21,10 +21,10 @@ import { BlogComponent } from './blog/blog.component';
     HomeFeaturesComponent,
     FeaturesItemComponent,
     HomeDiscoverComponent,
-    HomeFooterComponent,
     CalculatorComponent,
     ContactComponent,
-    BlogComponent
+    BlogComponent,
+    ArticleComponent
   ],
   imports: [
     CommonModule,

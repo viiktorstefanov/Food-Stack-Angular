@@ -1,2 +1,33 @@
-<app-home-nav [hideNav]="false"></app-home-nav>
-<p>blog works!</p>
+<div class="blog-view">
+    <app-home-nav [hideNav]="false"></app-home-nav>
+    <div class="background">
+        <h2>Foodstack Blog</h2>
+        <p>Guides, Nutrition tips, Workouts, Lifestyle</p>
+        <div class="middle-container">
+            <div class="middle-container-left">
+                <h2>Eat Smarter. <br>Live Better.</h2>
+                <p>Elevate your health journey with the Foodstack - your personalized nutrition companion. Dive deep into the science and unlock the key to vitality and longevity. Track your nutrition and empower yourself to grow. Your path to a healthier and happier life begins here.</p>
+                <button type="submit" class="submit-btn"><a [routerLink]="'/home'">get started</a></button>
+            </div>
+            <div class="middle-container-right">
+                <img src="assets/images/lifestyle.jpg" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="recent-post-container">
+        <h2>recent posts</h2>
+        <div class="box">
+            <app-article></app-article>
+            <app-article></app-article>
+            <app-article></app-article>
+            <app-article></app-article>
+        </div>
+        <div class="more-posts">
+            <a [routerLink]="'/blog/all'">view more<i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+    
+</div>
+<app-home-footer></app-home-footer>
+
+
