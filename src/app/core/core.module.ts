@@ -10,8 +10,6 @@ import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { ContactComponent } from './contact/contact.component';
-import { BlogComponent } from './blog/blog.component';
-import { ArticleComponent } from './blog/article/article.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +21,6 @@ import { ArticleComponent } from './blog/article/article.component';
     HomeDiscoverComponent,
     CalculatorComponent,
     ContactComponent,
-    BlogComponent,
-    ArticleComponent
   ],
   imports: [
     CommonModule,

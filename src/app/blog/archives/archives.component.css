@@ -1,0 +1,36 @@
+.archives-container {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.archives-container .archives-header {
+  padding: 80px 0px 140px 0px;
+  background-color: #72676e;
+  font-size: 1.6rem;
+  font-family: Lato;
+}
+
+.archives-container section h2 {
+  color: #fff;
+  line-height: 1.2em;
+}
+
+.archives-container .archives-content-container {
+  margin-top: -55px;
+}
+
+.archives-container .archives-content-container .archives-content {
+  max-width: 1200px;
+  display: flex;
+  margin-right: auto;
+  margin-left: auto;
+  position: relative;
+  border-radius: 10px;
+  margin-bottom: 40px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 40px;
+  grid-row-gap: 40px;
+}

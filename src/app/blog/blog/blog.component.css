@@ -21,6 +21,10 @@
   position: relative;
 }
 
+.background h2{
+  color: #301d29;;
+}
+
 .background p {
   font-size: 1.5rem;
   text-align: justify;
@@ -76,7 +80,7 @@
 }
 
 .recent-post-container {
-  margin-top: 25%;
+  padding-top: 500px;
   width: 60%;
   align-self: center;
   margin-bottom: 50px;
@@ -95,33 +99,6 @@
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 24px;
   grid-row-gap: 24px;
-}
-
-.more-posts{
-    display: flex;
-    justify-content: flex-end;
-    opacity: 0.9;
-}
-
-.more-posts a {
-    text-align: center;
-    border-radius: 6px;
-    background-color: #ff6c3b;
-    font-size: 1.15rem;
-    cursor: pointer;
-    padding: 12px 40px;
-    margin-top: 30px;
-    font-family: Lato;
-    color: #180f15;
-    text-transform: uppercase;
-}
-
-.more-posts:hover a{
-  box-shadow: 0 2px 8px #777986;
-}
-
-.fa-arrow-right{
-    padding-left: 10px;
 }
 
 .submit-btn {

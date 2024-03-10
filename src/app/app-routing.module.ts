@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './core/home/home.component';
 import { CalculatorComponent } from './core/calculator/calculator.component';
 import { ContactComponent } from './core/contact/contact.component';
-import { BlogComponent } from './core/blog/blog.component';
 
 const routes: Routes = [
   {
@@ -18,6 +17,10 @@ const routes: Routes = [
     Live better.`,
   },
   {
+    path: 'blog',
+    loadChildren: () => import('./blog/blog.module').then((m) => m.BlogModule)
+  },
+  {
     path: 'calculator',
     component: CalculatorComponent, 
     title: `Foodstack: Calculator`,
@@ -27,16 +30,11 @@ const routes: Routes = [
     component: ContactComponent, 
     title: `Foodstack: Contact`,
   },
-  {
-    path: 'blog',
-    component: BlogComponent, 
-    title: `Foodstack: Blog`,
-  },
+
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule)
-  }
-
+  },
 ];
 
 @NgModule({

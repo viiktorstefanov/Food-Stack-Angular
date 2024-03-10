@@ -2,7 +2,7 @@
     <app-home-nav [hideNav]="false"></app-home-nav>
     <div class="background">
         <h2>Foodstack Blog</h2>
-        <p>Guides, Nutrition tips, Workouts, Lifestyle</p>
+        <p>Guides, Nutrition tips, Workouts and Lifestyle</p>
         <div class="middle-container">
             <div class="middle-container-left">
                 <h2>Eat Smarter. <br>Live Better.</h2>
@@ -22,9 +22,7 @@
             <app-article></app-article>
             <app-article></app-article>
         </div>
-        <div class="more-posts">
-            <a [routerLink]="'/blog/all'">view more<i class="fas fa-arrow-right"></i></a>
-        </div>
+        <app-more-posts></app-more-posts>
     </div>
     
 </div>
