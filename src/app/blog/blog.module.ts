@@ -7,13 +7,15 @@ import { ArticleComponent } from './article/article.component';
 import { MorePostsComponent } from './more-posts/more-posts.component';
 import { BlogRoutingModule } from './blog-routing.module';
 import { ArchivesArticleComponent } from './archives/archives-article/archives-article.component';
+import { ArchivesArticleDetailsComponent } from './archives/archives-article-details/archives-article-details.component';
 
 @NgModule({
   declarations: [
     BlogComponent, 
     ArchivesComponent, 
     ArticleComponent, 
-    MorePostsComponent, ArchivesArticleComponent
+    MorePostsComponent, 
+    ArchivesArticleComponent, ArchivesArticleDetailsComponent, 
   ],
   imports: [
     CommonModule,

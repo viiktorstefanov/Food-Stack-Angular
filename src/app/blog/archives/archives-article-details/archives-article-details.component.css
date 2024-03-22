@@ -1,0 +1,79 @@
+.archives-container {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin-right: auto;
+  margin-left: auto;
+  }
+  
+  .archives-container .archives-header {
+    padding: 80px 0px 140px 0px;
+    background-color: #000;
+    font-size: 1.6rem;
+    font-family: Lato;
+  }
+  
+  .archives-container section h2 {
+    color: #fff;
+    line-height: 1.2em;
+    font-size: 42px;
+  }
+  
+  .archives-container .archives-content-container {
+    margin-top: -55px;
+  }
+  
+  .archives-container .archives-content-container .archives-content {
+    max-width: 1200px;
+    display: flex;
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+    border-radius: 10px;
+    margin-bottom: 120px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .archives-article .image-wrapper img {
+    border-radius: 16px;
+    box-shadow: 0px 10px 24px 4px rgba(119, 121, 134, 0.1);
+    max-width: 660px;
+    max-height: 470px;
+    border: 2px solid #fff;
+  }
+
+  .archives-article .content{
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    max-width: 660px;
+  }
+
+  .archives-article .info p {
+    text-align: justify;
+    line-height: 32.4px;
+    font-family: Lato;
+    font-size: 20.25px;
+  }
+
+  .archives-article .main {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .archives-article .img img{
+    border-radius: 16px;
+    max-width: 660px;
+    max-height: 470px;
+  }
+
+  .archives-article .head{
+    font-size: 44px;
+    text-align: left;
+  }
+
+  .archives-article .head h3{
+    margin-bottom: 40px;
+  }

@@ -38,6 +38,10 @@
     align-items: center;
     gap: 2rem;
   }
+
+  .nav a {
+    color: #462b3c;
+  }
   
   .nav-item:hover {
     opacity: 0.6;

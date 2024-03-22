@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BlogComponent } from './blog/blog.component';
 import { ArchivesComponent } from './archives/archives.component';
+import { ArchivesArticleDetailsComponent } from './archives/archives-article-details/archives-article-details.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,11 @@ const routes: Routes = [
     path: 'archives',
     component: ArchivesComponent,
     title: `Foodstack: Blog Archives`
+  },
+  {
+    path: 'archives/details/:blogId',
+    component: ArchivesArticleDetailsComponent,
+    title: `Foodstack: Blog Details`
   }
 ];
 
