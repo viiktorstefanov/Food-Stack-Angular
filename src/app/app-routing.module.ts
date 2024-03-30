@@ -39,14 +39,6 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardModule)
   },
-  {
-    path: 'foods',
-    loadChildren: () => import('./foods/foods.module').then((m) => m.FoodsModule)
-  },
-  {
-    path: 'exercises',
-    loadChildren: () => import('./exercises/exercises.module').then((m) => m.ExercisesModule)
-  },
 ];
 
 @NgModule({

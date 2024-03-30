@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SideNavService } from '../../shared/side-nav/side-nav.service';
 
 @Component({
   selector: 'app-logout',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class LogoutComponent {
 
+  constructor(private sideNavService: SideNavService) {
+    this.sideNavService.hideSideNav();
+  }
 }

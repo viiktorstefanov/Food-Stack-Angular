@@ -5,14 +5,17 @@ import { RouterModule } from '@angular/router';
 import { HomeFooterComponent } from './home-footer/home-footer.component';
 import { PaginatorComponent } from './paginator/paginator.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { SideNavComponent } from './side-nav/side-nav.component';
+import {MatIconModule} from '@angular/material/icon'; 
 
 @NgModule({
-  declarations: [HomeNavComponent, HomeFooterComponent, PaginatorComponent],
+  declarations: [HomeNavComponent, HomeFooterComponent, PaginatorComponent, SideNavComponent],
   imports: [
     CommonModule,
     RouterModule,
     MatPaginatorModule,
+    MatIconModule
   ],
-  exports: [HomeNavComponent, HomeFooterComponent, PaginatorComponent]
+  exports: [HomeNavComponent, HomeFooterComponent, PaginatorComponent, SideNavComponent]
 })
 export class SharedModule { }

@@ -1,1 +1,4 @@
-<router-outlet></router-outlet>
+<app-side-nav *ngIf="!sideNavService.hiddenNav" (onToggleSideNav)="onToggleSideNav($event)"></app-side-nav>
+<main class="views" [ngClass]="getMainClass()"> 
+    <router-outlet></router-outlet>
+</main>

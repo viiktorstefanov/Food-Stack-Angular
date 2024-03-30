@@ -1,0 +1,9 @@
+.view {
+    width: calc(100% - 5rem);
+    margin-left: 5rem;
+    z-index: 0;
+    position: relative;
+    top: 0;
+    padding: 3rem 1.6rem 3rem 1.6rem;
+    padding: 3rem;
+}

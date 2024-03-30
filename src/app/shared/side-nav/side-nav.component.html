@@ -1,0 +1,45 @@
+<div
+  #sideNav
+  class="side-nav"
+  [ngClass]="collapsed ? 'side-nav-collapsed' : ''"
+>
+  <div>
+    <div class="logo-container">
+      <img
+        class="logo"
+        (click)="toggleCollapse()"
+        src="assets/icon/small-logo.png"
+        alt="no-img"
+      />
+      <div class="logo-text" *ngIf="collapsed"></div>
+      <button class="btn-close" *ngIf="collapsed" (click)="closeSideNav()">
+        <i class="fal fa-times close-icon"></i>
+      </button>
+    </div>
+    <ul class="side-nav-nav">
+      <li class="sidenav-nav-item" *ngFor="let data of navData">
+        <a
+          class="side-nav-link"
+          [routerLink]="data.routerLink"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <i class="side-nav-icon" [class]="data.icon"></i>
+          <span class="side-nav-link-text" *ngIf="collapsed">{{
+            data.label
+          }}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="footer" *ngIf="collapsed">
+    <span class="footer-copyrights"
+      >© {{ currentYear }} Copyright:<a
+        class="footer-link"
+        target="_blank"
+        href="https://www.linkedin.com/in/viktorstefanov"
+        >Viktor Stefanov</a
+      ></span
+    >
+  </div>
+</div>
