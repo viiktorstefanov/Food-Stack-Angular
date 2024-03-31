@@ -1,3 +1,68 @@
-<div class="view">
-    <p>diary works!</p>
+<div class="diary">
+    <div class="diary-day-container border">
+        <div class="row">
+            <div class="row-head">
+                <i style="font-size: 1rem;" class="fas fa-plus"></i>
+                <h3>Food</h3>
+            </div>
+            <div class="row-head">
+                <i style="font-size: 1rem;" class="fas fa-plus"></i>
+                <h3>Exercise</h3>
+            </div>
+        </div>
+        <div class="row calories">
+            <div>Add food and exercise to see them in your diary.</div>
+        </div>
+    </div>
+    <div class="diary-calendar-container">
+        <mat-card class="demo-inline-calendar-card">
+            <mat-calendar [(selected)]="selected"></mat-calendar>
+          </mat-card>    
+    </div>
+    <div class="diary-result-container">
+        <div class="charts">
+            <div class="chart">
+                <div class="inner-circle">
+                    <span class="centered-text">Consumed</span>
+                    <span class="sub-text">1950 kcal</span>
+                </div>
+            </div>
+            <div class="chart">
+                <div class="inner-circle">
+                    <span class="centered-text">Burned</span>
+                    <span class="sub-text">1950 kcal</span>
+                </div>
+            </div>
+        </div>
+        <div class="results">
+            <div class="result-energy">
+                <span>Energy</span>
+                <div class="result-energy-kcal">
+                    <span>1231 kcal</span>
+                    <span class="decoration"></span>
+                </div>
+            </div>
+            <div class="result-energy">
+                <span>Protein</span>
+                <div class="result-energy-kcal">
+                    <span>200 g</span>
+                    <span class="decoration"></span>
+                </div>
+            </div>
+            <div class="result-energy">
+                <span>Carbohydrates</span>
+                <div class="result-energy-kcal">
+                    <span>250 g</span>
+                    <span class="decoration"></span>
+                </div>
+            </div>
+            <div class="result-energy">
+                <span>Fats</span>
+                <div class="result-energy-kcal">
+                    <span>50 g</span>
+                    <span class="decoration"></span>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

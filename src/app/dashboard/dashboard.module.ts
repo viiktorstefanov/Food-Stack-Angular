@@ -5,8 +5,9 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { FoodsComponent } from './foods/foods.component';
 import { ExercisesComponent } from './exercises/exercises.component';
 import { DiaryComponent } from './diary/diary.component';
-
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatCardModule} from '@angular/material/card';
+import {provideNativeDateAdapter} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,11 @@ import { DiaryComponent } from './diary/diary.component';
   imports: [
     CommonModule,
     DashboardRoutingModule,
+    MatDatepickerModule,
+    MatCardModule,
+  ],
+  providers: [
+    provideNativeDateAdapter(),
   ]
 })
 export class DashboardModule { }

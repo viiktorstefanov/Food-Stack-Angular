@@ -1,0 +1,172 @@
+.diary {
+  display: grid;
+  grid-template-columns: 3fr 0.8fr;
+  grid-template-areas:
+    "calories calendar"
+    "result .";
+  width: calc(100% - 5rem);
+  margin-left: 5rem;
+  z-index: 1;
+  transition: all 0.5s ease;
+  padding: 2rem 1.5rem 0;
+  top: 0;
+}
+
+.border {
+  border: 1px solid #7779861a;
+}
+
+.diary-day-container, .diary-result-container {
+  border-radius: 10px;
+  box-shadow: #7779861a 0 3px 20px;
+}
+
+.diary-day-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 200px;
+  padding: 1.5rem 2rem;
+  min-height: 500px;
+  grid-area: calories;
+}
+
+.diary-calendar-container {
+  max-width: 500px;
+  margin-left: 20px;
+  text-align: center;
+  grid-area: calendar;
+}
+
+.demo-inline-calendar-card {
+  min-width: 440px;
+  max-width: 440px;
+  max-height: 500px;
+  border-radius: 10px;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+}
+
+.row-head {
+    font-size: 1.5rem;
+    font-family: Lato;
+    display: flex;
+    gap: 10px;
+    padding: 10px 25px;
+    border-radius: 10px;
+}
+
+.row-head:hover {
+    cursor: pointer;
+    background: #ff6c3b;
+    color: #fff;
+}
+
+.row-head h3 {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}
+
+.calories {
+  /* border-radius: 10px;
+  border: 1px #e6e8f0 solid; */
+  min-height: 400px;
+  margin-top: 20px;
+  padding: 20px 25px;
+  font-family: Lato;
+  padding-left: 0 ;
+}
+
+.calories div {
+  border-radius: 10px;
+  border: 1px #e6e8f0 solid;
+  width: 100%;
+}
+
+.diary-result-container {
+    grid-area: result;
+    padding: 1.5rem 2rem;
+    margin-top: 20px;
+    min-height: 350px;
+    display: flex;
+    justify-content: space-around;
+    font-family: Lato;
+}
+
+.charts {
+  display: flex;
+}
+
+.chart {
+  width: 150px; 
+  height: 150px; 
+  background-color: #3498db; 
+  border-radius: 50%; 
+  position: relative; 
+}
+
+.chart:last-child {
+  margin-left: 50px;
+  background-color: #f13c00; 
+}
+
+.inner-circle {
+  width: 130px; 
+  height: 130px; 
+  background-color: #fff; 
+  border-radius: 50%; 
+  position: absolute; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  flex-direction: column; 
+}
+
+.centered-text {
+  font-family: Lato;
+  color: #000;
+  font-weight: bold;
+  font-size: 20px; 
+}
+
+.sub-text {
+  font-family: Lato;
+  color: #000; 
+  font-size: 18px; 
+  margin-top: 10px; 
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  gap: 15px;
+}
+
+.result-energy {
+  display: flex;
+  justify-content: space-between;
+}
+
+.result-energy-kcal{
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.result-energy-kcal .decoration {
+  margin-top: 5px;
+}
+
+.decoration {
+  height: 15px;
+  background: #f0f2fa;
+  border-radius: 10px;
+  width: 400px;
+}
