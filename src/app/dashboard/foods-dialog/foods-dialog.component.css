@@ -147,7 +147,7 @@
   .chart {
     width: 150px; 
     height: 150px; 
-    background-color: #ff6c3b; 
+    background-color: #3498db; 
     border-radius: 50%; 
     position: relative; 
   }
@@ -186,7 +186,7 @@
  }
 
  .fa-circle{
-    color: #ff6c3b;
+    color: #3498db;
     font-size: 10px;
  }
 

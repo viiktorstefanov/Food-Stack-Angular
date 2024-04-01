@@ -140,14 +140,14 @@
 
   .charts {
     display: flex;
-    justify-content: space-between;
+    justify-content:  space-evenly;
     padding: 20px 10px;
   }
   
   .chart {
     width: 150px; 
     height: 150px; 
-    background-color: #ff6c3b; 
+    background-color: #f13c00;; 
     border-radius: 50%; 
     position: relative; 
   }
@@ -172,6 +172,7 @@
     color: #000; 
     font-size: 18px; 
     margin-top: 10px; 
+    text-align: center;
   }
   
  .food-info{
