@@ -84,13 +84,13 @@
   border-radius: 10px;
   border: 1px #e6e8f0 solid;
   width: 100%;
+  padding: 30px 20px;
 }
 
 .diary-result-container {
     grid-area: result;
     padding: 1.5rem 2rem;
     margin-top: 20px;
-    min-height: 350px;
     display: flex;
     justify-content: space-around;
     font-family: Lato;

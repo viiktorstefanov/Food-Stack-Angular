@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { SideNavService } from '../../shared/side-nav/side-nav.service';
+import { MatDialog } from '@angular/material/dialog';
+import { FoodsDialogComponent } from '../foods-dialog/foods-dialog.component';
+import { ExercisesComponent } from '../exercises/exercises.component';
+import { ExercisesDialogComponent } from '../exercises-dialog/exercises-dialog.component';
 
 @Component({
   selector: 'app-diary',
@@ -10,8 +14,17 @@ export class DiaryComponent {
 
   selected: Date | null = null;
 
-  constructor(private sideNavService: SideNavService) {
+  constructor(private sideNavService: SideNavService, private dialog: MatDialog) {
     this.sideNavService.showSideNav();
+    this.dialog.open(FoodsDialogComponent);
+  }
+
+  openFoodsDialog() {
+    this.dialog.open(FoodsDialogComponent);
+  }
+
+  openExercisesDialog() {
+    this.dialog.open(ExercisesDialogComponent);
   }
 
   data = [

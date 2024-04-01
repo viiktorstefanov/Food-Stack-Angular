@@ -1,17 +1,17 @@
 <div class="diary">
     <div class="diary-day-container border">
         <div class="row">
-            <div class="row-head">
+            <div class="row-head" (click)="openFoodsDialog()">
                 <i style="font-size: 1rem;" class="fas fa-plus"></i>
                 <h3>Food</h3>
             </div>
-            <div class="row-head">
+            <div class="row-head" (click)="openExercisesDialog()">
                 <i style="font-size: 1rem;" class="fas fa-plus"></i>
                 <h3>Exercise</h3>
             </div>
         </div>
         <div class="row calories">
-            <div>Add food and exercise to see them in your diary.</div>
+            <div class="row-border-calories">Add food and exercise to see them in your diary.</div>
         </div>
     </div>
     <div class="diary-calendar-container">

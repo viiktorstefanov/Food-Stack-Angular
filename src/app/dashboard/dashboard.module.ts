@@ -8,6 +8,9 @@ import { DiaryComponent } from './diary/diary.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatCardModule} from '@angular/material/card';
 import {provideNativeDateAdapter} from '@angular/material/core';
+import { MatDialogModule} from '@angular/material/dialog';
+import { FoodsDialogComponent } from './foods-dialog/foods-dialog.component';
+import { ExercisesDialogComponent } from './exercises-dialog/exercises-dialog.component'; 
 
 @NgModule({
   declarations: [
@@ -15,12 +18,15 @@ import {provideNativeDateAdapter} from '@angular/material/core';
     FoodsComponent,
     ExercisesComponent,
     DiaryComponent,
+    FoodsDialogComponent,
+    ExercisesDialogComponent,
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     MatDatepickerModule,
     MatCardModule,
+    MatDialogModule,
   ],
   providers: [
     provideNativeDateAdapter(),
