@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SideNavService } from '../../shared/side-nav/side-nav.service';
 
 @Component({
   selector: 'app-calculator',
@@ -6,6 +7,10 @@ import { Component } from '@angular/core';
   styleUrl: './calculator.component.css'
 })
 export class CalculatorComponent {
+
+  constructor(private sideNavService: SideNavService) {
+    this.sideNavService.hideSideNav();
+  }
 
   menBMR: number = 88.362;
   womenBMR: number = 447.593;

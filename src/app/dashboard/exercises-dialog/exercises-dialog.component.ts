@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-exercises-dialog',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrl: './exercises-dialog.component.css'
 })
 export class ExercisesDialogComponent {
+  constructor(private ref: MatDialogRef<ExercisesDialogComponent>) {
 
+  }
+
+  closeDialog() {
+    this.ref.close();
+  }
 }

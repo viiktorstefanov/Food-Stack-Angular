@@ -16,7 +16,6 @@ export class DiaryComponent {
 
   constructor(private sideNavService: SideNavService, private dialog: MatDialog) {
     this.sideNavService.showSideNav();
-    this.dialog.open(FoodsDialogComponent);
   }
 
   openFoodsDialog() {
