@@ -1,0 +1,128 @@
+.diary {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+    width: calc(100% - 5rem);
+    margin-left: 5rem;
+    z-index: 1;
+    transition: all 0.5s ease;
+    padding: 2rem 1.5rem 0;
+    top: 0;
+  }
+  
+  .border {
+    border: 1px solid #7779861a;
+  }
+  
+  .diary-day-container {
+    border-radius: 10px;
+    box-shadow: #7779861a 0 3px 20px;
+  }
+  
+  .diary-day-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 1.5rem 2rem;
+    min-height: 500px;
+    grid-area: calories;
+  }
+  
+  .row {
+      display: flex;
+      gap: 10px;
+  }
+
+  .row:nth-child(2) {
+    margin-top: 3rem;
+  }
+  
+  .row-head {
+      font-size: 1.5rem;
+      font-family: Lato;
+      display: flex;
+      gap: 10px;
+      padding: 10px 25px;
+      border-radius: 10px;
+  }
+  
+  .row-head:hover {
+      cursor: pointer;
+      background: #ff6c3b;
+      color: #fff;
+  }
+  
+  .row-head h3 {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+  }
+  
+  .calories {
+    /* border-radius: 10px;
+    border: 1px #e6e8f0 solid; */
+    min-height: 400px;
+    margin-top: 20px;
+    padding: 20px 25px;
+    font-family: Lato;
+    padding-left: 0 ;
+  }
+  
+  .calories div {
+    border-radius: 10px;
+    border: 1px #e6e8f0 solid;
+    width: 100%;
+    padding: 30px 20px;
+  }
+
+  .dialog-content{
+    margin-top: 3.5rem;
+    max-height: 600px;
+    height: 80%;
+    font-family: Lato;
+}
+
+.dialog-content-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Lato;
+    font-size: 1.2rem;
+    border-radius: 10px;
+  }
+
+  .content-table {
+    border: 1px solid #F5F5F5;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .table-tr-head {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    background-color: #F5F5F5;
+    padding: 10px 30px; 
+    border-radius: 10px; 
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .table-tr{
+    margin-top: 5px;
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+    color: #000;
+    background-color: #fff;
+  }
+
+  .table-tr:nth-child(odd) {
+    background-color: #f9f9f9;
+  }
+  
+  .table-tr:hover {
+    cursor: pointer;
+    background-color: #ff6c3b;
+    color: #FFF;
+  }
+  
+  

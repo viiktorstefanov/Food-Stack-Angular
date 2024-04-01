@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { SideNavService } from '../../shared/side-nav/side-nav.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FoodsDialogComponent } from '../foods-dialog/foods-dialog.component';
-import { ExercisesComponent } from '../exercises/exercises.component';
 import { ExercisesDialogComponent } from '../exercises-dialog/exercises-dialog.component';
 
 @Component({

@@ -16,11 +16,6 @@ export const navBarData = [
         label: 'Foods'
     },
     {
-        routerLink: '/dashboard/exercises',
-        icon: 'fas fa-running',
-        label: 'Exercises'
-    },
-    {
         routerLink: 'blog',
         icon: 'far fa-newspaper',
         label: 'Blog'

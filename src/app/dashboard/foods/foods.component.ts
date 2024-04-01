@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { SideNavService } from '../../shared/side-nav/side-nav.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AddFoodDialogComponent } from '../add-food-dialog/add-food-dialog.component';
 
 @Component({
   selector: 'app-foods',
@@ -8,7 +10,13 @@ import { SideNavService } from '../../shared/side-nav/side-nav.service';
 })
 export class FoodsComponent {
 
-  constructor(private sideNavService: SideNavService) {
+  selected: Date | null = null;
+
+  constructor(private sideNavService: SideNavService, private dialog: MatDialog) {
     this.sideNavService.showSideNav();
+  }
+
+  openAddDialog() {
+    this.dialog.open(AddFoodDialogComponent);
   }
 }

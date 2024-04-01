@@ -3,14 +3,13 @@ import { NgModule } from '@angular/core';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DiaryComponent } from './diary/diary.component';
 import { FoodsComponent } from './foods/foods.component';
-import { ExercisesComponent } from './exercises/exercises.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: DashboardComponent,
-    title: `Foodstack: Dashboard`,
+    pathMatch: 'full',
+    redirectTo: 'diary',
   },
   {
     path: 'diary',
@@ -22,12 +21,6 @@ const routes: Routes = [
     component: FoodsComponent,
     title: `Foodstack: Foods`,
   },
-  {
-    path: 'exercises',
-    component: ExercisesComponent,
-    title: `Foodstack: Exercises`,
-  },
-  
 ];
 
 @NgModule({
