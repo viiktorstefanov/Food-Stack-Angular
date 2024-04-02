@@ -105,6 +105,10 @@
         color: #000;
       }
     }
+
+    .sidenav-nav-item:nth-last-child(1) {
+      margin-top: 2.5rem;
+    }
   }
   
   .footer {

@@ -115,6 +115,14 @@
     background-color: #fff;
   }
 
+  .table-tr span:nth-child(1) {
+    display: flex;
+  }
+
+  .modify-icons {
+   display: none;
+  }
+
   .table-tr:nth-child(odd) {
     background-color: #f9f9f9;
   }
@@ -123,6 +131,16 @@
     cursor: pointer;
     background-color: #ff6c3b;
     color: #FFF;
+
+    .modify-icons {
+      margin-left: 50px;
+    display: flex;
+    gap: 15px;
+    }
+
+    .modify-icons i:hover {
+      opacity: 0.8;
+    }
   }
   
   

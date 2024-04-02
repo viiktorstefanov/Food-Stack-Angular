@@ -32,7 +32,6 @@
 }
 
 .dialog-add {
-  margin-top: 3.5rem;
   display: flex;
   flex-direction: column;
 }
@@ -83,6 +82,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 500px;
 }
 
 .add-food-info{
@@ -150,4 +150,51 @@
 
 .info-btn button:hover, .info-btn button:focus{
     box-shadow: 0 2px 8px 0 rgba(119, 121, 133, 0.76);
+}
+
+/* ticket calories */
+
+.nutrition-facts {
+  background-color: #fff;
+  border: 2px solid #462b3c;;
+  padding: 30px 20px 0 20px;
+  max-width: 300px;
+  min-width: 250px;
+  font-size: 14px;
+  font-family: Lato;
+  display: flex;
+  flex-direction: column;
+}
+
+.nutrition-facts h1 {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 50px;
+  padding: 10px 0;
+}
+
+.section {
+  border-top: 1px solid #462b3c;;
+  padding: 5px 0;
+  margin-bottom: 15px;
+}
+
+.section:nth-of-type(3) {
+  border-bottom: 1px solid #462b3c;;
+}
+
+.section:nth-of-type(4) {
+  margin-top: 20px;
+  border-top: none;
+  border-bottom: none;
+}
+
+.nutrition-facts .label {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+
+.nutrition-facts .label span:first-child {
+  font-weight: bold;
 }

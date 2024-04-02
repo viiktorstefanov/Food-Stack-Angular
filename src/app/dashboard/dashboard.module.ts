@@ -10,7 +10,9 @@ import {provideNativeDateAdapter} from '@angular/material/core';
 import { MatDialogModule} from '@angular/material/dialog';
 import { FoodsDialogComponent } from './foods-dialog/foods-dialog.component';
 import { ExercisesDialogComponent } from './exercises-dialog/exercises-dialog.component';
-import { AddFoodDialogComponent } from './add-food-dialog/add-food-dialog.component'; 
+import { AddFoodDialogComponent } from './add-food-dialog/add-food-dialog.component';
+import { FoodsEditDialogComponent } from './foods-edit-dialog/foods-edit-dialog.component';
+import { FoodsDeleteDialogComponent } from './foods-delete-dialog/foods-delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { AddFoodDialogComponent } from './add-food-dialog/add-food-dialog.compon
     FoodsDialogComponent,
     ExercisesDialogComponent,
     AddFoodDialogComponent,
+    FoodsEditDialogComponent,
+    FoodsDeleteDialogComponent,
   ],
   imports: [
     CommonModule,
