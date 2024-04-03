@@ -40,11 +40,9 @@ async function login(email, password) {
         throw new Error('Incorrect email or password');
     };
 
-    const token = createToken(user);
+    const tokens = createTokens(user);
 
-    tokenBlackList.delete(token);
-
-    return token;
+    return tokens;
 };
 
 async function logout(token) {
@@ -86,6 +84,10 @@ function generateRefreshToken(user) {
     return jwt.sign(payload, process.env.REFRESH_TOKEN_PRIVATE_KEY);
 }
 
+function isTokenBlacklisted(token) {
+    return tokenBlackList.has(token);
+}
+
 function parseToken(token) {
     if (tokenBlackList.has(token)) {
         throw new Error('Token is blacklisted');
@@ -102,6 +104,16 @@ async function deleteUserById(id) {
     return User.findByIdAndDelete(id);
 }
 
+async function reset(email) {
+    const user = await User.findOne({ email });
+
+    if (!user) {
+        throw new Error('User not found');
+    }
+
+    
+}
+
 module.exports = {
     register,
     login,
@@ -109,4 +121,6 @@ module.exports = {
     parseToken,
     getUserById,
     deleteUserById,
+    isTokenBlacklisted,
+    reset,
 }

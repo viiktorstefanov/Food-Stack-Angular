@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 
-const connectionString = 'mongodb://127.0.0.1:27017/foodstack';
-
 const databaseConfig = async () => {
     try {
         await mongoose.connect(process.env.MONGODB_URL, {
