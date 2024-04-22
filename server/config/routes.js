@@ -1,11 +1,11 @@
 const authController = require("../controllers/authController");
-const experiencesController = require("../controllers/experiencesController");
-const placesController = require("../controllers/placesController");
+const foodsController = require("../controllers/foodsController");
 const blogController = require("../controllers/blogController");
+const exerciseController = require("../controllers/exerciseController");
 
 module.exports = (app) => {
     app.use('/users', authController);
     app.use('/blog', blogController);
-    app.use('/experiences', experiencesController);
-    app.use('/places', placesController);
+    app.use('/foods', foodsController);
+    app.use('/exercises', exerciseController);
 };
