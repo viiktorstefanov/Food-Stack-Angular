@@ -59,6 +59,10 @@ export class AuthService implements OnDestroy {
     sessionStorage.removeItem(this.USER_KEY);
   };
 
+  resetUserPassword(email: string) : Observable<any> {
+    return this.http.post<User>('/api/users/forgot-password', { email });
+  }
+
   ngOnDestroy():void {
     this.destroy$.next();
     this.destroy$.complete();
