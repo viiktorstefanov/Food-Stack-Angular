@@ -5,14 +5,52 @@
       <div class="login-form">
         <div class="login">
           <div class="login-box" style="text-align: left">
-            <form>
+            <form [formGroup]="form" (ngSubmit)="submitHandler()">
               <div class="flex-column">
                 <label for="email">Email</label>
-                <input id="email" name="email" placeholder="Email Adress" type="email" />
+                <input
+                  id="{{
+                    email.invalid && (email.dirty || email.touched)
+                      ? 'email'
+                      : ''
+                  }}"
+                  formControlName="email"
+                  name="email"
+                  placeholder="example@email.com"
+                  type="email"
+                />
+                <small
+                  *ngIf="email.invalid && (email.dirty || email.touched)"
+                  class="error"
+                >
+                  <div *ngIf="email.errors?.['required']">
+                    Email is required
+                  </div>
+                  <div *ngIf="email.errors?.['pattern']">Email is invalid</div>
+                </small>
                 <label for="password">Password</label>
-                <input id="password" name="password" placeholder="Password" type="password" />
+                <input
+                  id="password"
+                  formControlName="password"
+                  name="password"
+                  placeholder="Password"
+                  type="password"
+                />
+                <small
+                  *ngIf="
+                    password.invalid && (password.dirty || password.touched)
+                  "
+                  class="error"
+                >
+                  <div *ngIf="password.errors?.['required']">
+                    Password is required
+                  </div>
+                  <div *ngIf="password.errors?.['minlength']">
+                    Password must be at least 8 symbols
+                  </div>
+                </small>
               </div>
-              <button type="submit" class="submit-btn">log in</button>
+              <button [disabled]="form.invalid" type="submit" class="submit-btn">log in</button>
             </form>
           </div>
           <div class="forgot-password-box">

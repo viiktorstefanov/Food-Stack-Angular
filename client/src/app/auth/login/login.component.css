@@ -40,6 +40,7 @@
   border-radius: 10px;
   background: #fff;
   box-shadow: #7779861a 0 3px 20px;
+  position: relative;
 }
 
 .container-header{
@@ -137,3 +138,11 @@
 .not-member-box a:hover{
   opacity: 0.5;
 }
+
+.error {
+  margin-left: 10%;
+  color: #f02849;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
