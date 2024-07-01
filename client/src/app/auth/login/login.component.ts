@@ -36,6 +36,11 @@ export class LoginComponent implements OnDestroy{
     };
 
     const { email, password } = this.form.value;
+
+    if (!email || !password) {
+      this.toastr.error('Email and password are required', 'Error');
+      return;
+    }
       
     this.loginSubscription = this.authService.login(email!, password!).subscribe({
       next: (user) => {
