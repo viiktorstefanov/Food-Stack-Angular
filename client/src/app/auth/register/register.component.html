@@ -3,27 +3,71 @@
   <div class="hero">
     <h2>Create Your Free Account</h2>
     <div class="register-box-form">
-      <form class="register-form">
+      <form class="register-form" [formGroup]="form" (ngSubmit)="submitHandler()">
         <div class="center">
           <div class="container-account-info">
             <div class="account-info-row">
                 <label class="label">First Name</label>
                 <div class="input">
-                    <input type="text" name="firstName" placeholder="First Name">
-                </div>
+                    <input type="text" formControlName="firstName"
+                    name="firstName"
+                    type="text" name="firstName" placeholder="First Name">
+                    
+                </div>          
             </div>
+            <small
+                    *ngIf="
+                      firstName.invalid && (firstName.dirty || firstName.touched)
+                    "
+                    class="error"
+                  >
+                    <div *ngIf="firstName.errors?.['required']">
+                      First name is required
+                    </div>
+                    <div *ngIf="firstName.errors?.['minlength']">
+                        First name be at least 3 symbols
+                    </div>
+                  </small>
             <div class="account-info-row">
                 <label class="label">Email</label>
                 <div class="input">
-                    <input type="email" name="email" placeholder="Email">
+                    <input type="email"
+                      formControlName="email"
+                      name="email"
+                      placeholder="example@email.com"
+                      type="email" >
+                      
                 </div>
             </div>
+            <small
+                  *ngIf="email.invalid && (email.dirty || email.touched)"
+                  class="error"
+                >
+                  <div *ngIf="email.errors?.['required']">
+                    Email is required
+                  </div>
+                  <div *ngIf="email.errors?.['pattern']">Email is invalid</div>
+                </small>
             <div class="account-info-row">
                 <label class="label">New Password</label>
                 <div class="input">
-                    <input type="password" name="password" placeholder="New Password">
+                    <input type="password" name="password" placeholder="New Password" formControlName="password"
+                    name="password">
                 </div>
             </div>
+            <small
+                  *ngIf="
+                    password.invalid && (password.dirty || password.touched)
+                  "
+                  class="error"
+                >
+                  <div *ngIf="password.errors?.['required']">
+                    Password is required
+                  </div>
+                  <div *ngIf="password.errors?.['minlength']">
+                    Password must be at least 8 symbols
+                  </div>
+                </small>
           </div>
           <div class="container-account-info">
             <h3>Profile Details</h3>
@@ -32,11 +76,12 @@
                     <label class="label">Gender</label>
                     <div class="radio">
                         <div class="check">
-                            <input id="male" class="check-input" type="radio" name="gender" value="male">
+                            <input id="male" class="check-input" type="radio" name="gender" value="male" formControlName="gender">
                             <label for="male">Male</label>
                         </div>
                         <div class="check">
-                            <input id="female" class="check-input" type="radio" name="gender" value="female">
+                            <input id="female" class="check-input" type="radio" name="gender" value="female"
+                            formControlName="gender">
                             <label for="female">Female </label>
                         </div>
                     </div>
@@ -44,21 +89,21 @@
                 <div class="profile-details-row">
                     <label class="label">Height</label>
                     <div class="height-box">
-                        <input type="number" name="height">
+                        <input type="number" name="height" formControlName="height">
                         <span>cm</span>
                     </div>
                 </div>
                 <div class="profile-details-row">
                     <label class="label">Weight</label>
                     <div class="weight-box">
-                        <input type="number" name="weight">
+                        <input type="number" name="weight" formControlName="weight" >
                         <span>kg</span>
                     </div>
                 </div>
             </div>
 
           </div>
-          <button type="submit" class="submit-btn">SIGN UP</button>
+          <button  type="submit" class="submit-btn">SIGN UP</button>
         </div>
       </form>
     </div>

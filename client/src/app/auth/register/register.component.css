@@ -151,3 +151,14 @@
 .submit-btn:hover {
   box-shadow: 0 2px 8px #777986;
 }
+
+.error {
+  margin-left: 10px;
+  color: #f02849;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.error div{
+  margin-left: 10px;
+}
