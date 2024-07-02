@@ -11,7 +11,7 @@
                   Track your diet, exercise, and health data.
               </h5>
               <div class="sign-up-btn">
-                  <a [routerLink]="'/auth/register'">Sign up - It's Free!</a>
+                  <a *ngIf="!isAuthenticated" [routerLink]="'/auth/register'">Sign up - It's Free!</a>
               </div>
           </div>
           <div class="w-layout-flex-right">

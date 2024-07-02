@@ -12,7 +12,8 @@
           <a class="nav-item contact" [routerLink]="'/contacts'">contacts</a>
         </nav>
         <div [ngClass]="hideNav ? 'hide' : 'div-login-btn'">
-          <a class="login-btn" [routerLink]="'/auth/login'">log in</a>
+          <a *ngIf="!isAuthenticated" class="login-btn" [routerLink]="'/auth/login'">log in</a>
+          <a *ngIf="isAuthenticated" class="login-btn" [routerLink]="'/auth/logout'">logout</a>
         </div>
     </div>
   </section>
