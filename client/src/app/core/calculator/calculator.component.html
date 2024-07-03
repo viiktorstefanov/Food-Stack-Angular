@@ -6,15 +6,22 @@
         <h2>BMR & TDEE Calculator</h2>
       <div class="w-layout-flex">
         <div class="calculate-box-form">
-          <form class="calculate-form">
+          <form [formGroup]="form" class="calculate-form" (ngSubmit)="submitHandler()">
             <div class="center">
               <div class="container-account-info">
                 <div>
+                  <div class="profile-details-row">
+                    <label class="label">Age</label>
+                    <div class="height-box">
+                      <input formControlName="age" type="number" name="age" />
+                    </div>
+                  </div>
                   <div class="profile-details-row">
                     <label class="label">Gender</label>
                     <div class="radio">
                       <div class="check">
                         <input
+                          formControlName="gender"
                           id="male"
                           class="check-input"
                           type="radio"
@@ -25,6 +32,7 @@
                       </div>
                       <div class="check">
                         <input
+                          formControlName="gender"
                           id="female"
                           class="check-input"
                           type="radio"
@@ -38,21 +46,21 @@
                   <div class="profile-details-row">
                     <label class="label">Height</label>
                     <div class="height-box">
-                      <input type="number" name="height" />
+                      <input formControlName="height" type="number" name="height" />
                       <span>cm</span>
                     </div>
                   </div>
                   <div class="profile-details-row">
                     <label class="label">Weight</label>
                     <div class="weight-box">
-                      <input type="number" name="weight" />
+                      <input formControlName="weight" type="number" name="weight" />
                       <span>kg</span>
                     </div>
                   </div>
                   <div class="profile-details-row">
                     <label class="label">Activity</label>
                     <div class="activity-box">
-                        <select name="" id="">
+                        <select formControlName="activity" name="activity" id="activity">
                             <option value="1.2">Sedentary</option>
                             <option value="1.375">Lightly</option>
                             <option value="1.55">Moderately</option>
@@ -96,35 +104,35 @@
     <div class="result">
         <div class="bmr-result">
             <span>BMR:</span>
-            <span>635463 kcal</span>
+            <span>{{resultBMR}} kcal</span>
         </div>
         <div class="bmr-result">
             <span>TDEE:</span>
-            <span>635463 kcal</span>
+            <span>{{TDEE}} kcal</span>
         </div>
         <div class="bmr-result">
             <span>Weight Maintenance:</span>
-            <span>635463 kcal</span>
+            <span>{{weightMaintenance}} kcal</span>
         </div>
         <div class="bmr-result">
             <span>Mild Weight Loss:</span>
-            <span>635463 kcal</span>
+            <span>{{weightMildLoss}} kcal</span>
         </div>
         <div class="bmr-result">
             <span>Weight Loss:</span>
-            <span>635463 kcal</span>
+            <span>{{weightLoss}} kcal</span>
         </div>
         <div class="bmr-result">
-            <span>Extreme weight loss:</span>
-            <span>635463 kcal</span>
+            <span>Extreme weight Loss:</span>
+            <span>{{weightExtremeLoss}} kcal</span>
         </div>
         <div class="bmr-result">
             <span>Muscle Gain:<br>(0.25kg per week)</span>
-            <span>635463 kcal</span>
+            <span>{{gainPerWeek025}} kcal</span>
         </div>
         <div class="bmr-result">
-            <span>Muscle Gain:<br>0.25kg per week</span>
-            <span>635463 kcal</span>
+            <span>Muscle Gain:<br>0.5kg per week</span>
+            <span>{{gainPerWeek05}} kcal</span>
         </div>
     </div>
   </section>

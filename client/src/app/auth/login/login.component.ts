@@ -44,7 +44,8 @@ export class LoginComponent implements OnDestroy{
       
     this.loginSubscription = this.authService.login(email!, password!).subscribe({
       next: (user) => {
-        this.toastr.success('Login successful. You are now signed in');
+        this.toastr.success('Login successful.');
+        this.toastr.success('You are now signed in.');
         
         this.router.navigate(['/home']);
       },

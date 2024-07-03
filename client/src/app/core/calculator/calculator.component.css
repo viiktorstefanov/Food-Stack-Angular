@@ -3,7 +3,7 @@
   text-align: center;
   background-image: url(/assets/images/dots.png);
   background-position: right bottom;
-  background-repeat: space;
+  background-repeat: no-repeat;
   background-attachment: fixed;
   display: flex;
   flex-direction: column;

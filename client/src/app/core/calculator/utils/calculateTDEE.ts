@@ -1,6 +1,4 @@
-export function calculateTDEE(personBMR: number, activity: string) : number {
-
-    const activityNumber = +activity;
+export function calculateTDEE(personBMR: number, activity: number) : number {
 
     //sedentary activity(1.2) -  For those who do little to no exercise.
 
@@ -13,7 +11,7 @@ export function calculateTDEE(personBMR: number, activity: string) : number {
     //extra activity(1.9) -For extremely active individuals who either have very physically 
     // demanding jobs or engage in very hard exercises/sports and possibly additional physical activities.
 
-    return personBMR * activityNumber;
+    return personBMR * activity;
 };
 
 // TDEE stands for Total Daily Energy Expenditure. It represents the total number of calories you burn in a single day, considering all activities. TDEE includes the energy expended through basic bodily functions (BMR), plus the energy used during physical activity, and the energy used in digesting, absorbing, and metabolizing food (also known as the thermic effect of food).
