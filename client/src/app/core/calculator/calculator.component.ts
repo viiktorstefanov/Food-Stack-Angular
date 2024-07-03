@@ -14,7 +14,7 @@ import { calculateLossCalories } from './utils/calculateLossCalories';
 })
 export class CalculatorComponent {
 
-  errors: string[] = [];
+  resultsVisible: boolean = false;
 
   form = this.fb.group({
     age: ['', [Validators.required]],
@@ -79,6 +79,8 @@ export class CalculatorComponent {
     this.weightLoss = lossCalories.weightLoss.toFixed(0);
     this.weightMildLoss = lossCalories.mildWeightLoss.toFixed(0);
     this.weightMaintenance = lossCalories.maintain.toFixed(0);
+
+    this.resultsVisible = true;
   }
 
 

@@ -101,7 +101,7 @@
         </div>
       </div>
     </div>
-    <div class="result">
+    <div class="result" [ngClass]="{ 'hidden': !resultsVisible }">
         <div class="bmr-result">
             <span>BMR:</span>
             <span>{{resultBMR}} kcal</span>
