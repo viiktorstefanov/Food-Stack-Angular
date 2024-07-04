@@ -1,12 +1,12 @@
 <article class="post">
-    <a [routerLink]="'archives/details/fw'">
+    <a [routerLink]="['archives/details', blog?._id]">
         <div>
-            <img src="assets/images/macronutrients.jpg" alt="">
+            <img src="{{blog?.imageUrl}}" alt="no-img">
         </div>
     </a>
     <div>
         <h3>
-            <a [routerLink]="'archives/details/fw'">Devicea Integration: Apple Health Integration</a>
+            <a [routerLink]="['archives/details', blog?._id]">{{blog?.title}}</a>
         </h3>
     </div>
 </article>

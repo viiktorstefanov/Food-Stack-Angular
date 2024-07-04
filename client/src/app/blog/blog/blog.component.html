@@ -17,10 +17,7 @@
     <div class="recent-post-container">
         <h2>recent posts</h2>
         <div class="box">
-            <app-article></app-article>
-            <app-article></app-article>
-            <app-article></app-article>
-            <app-article></app-article>
+            <app-article *ngFor="let blog of blogList" [blog]="blog"></app-article>
         </div>
         <app-more-posts></app-more-posts>
     </div>

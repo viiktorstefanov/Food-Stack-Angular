@@ -19,7 +19,11 @@ export class BlogService implements OnDestroy {
    };
 
    getAllBlogs(): Observable<Blog[]> {
-    return this.http.get<Blog[]>('/api/blog//archives').pipe(takeUntil(this.destroy$));
+    return this.http.get<Blog[]>('/api/blog/archives').pipe(takeUntil(this.destroy$));
+   };
+
+   getRecentBlogs(): Observable<Blog[]> {
+    return this.http.get<Blog[]>('/api/blog/archives/recent').pipe(takeUntil(this.destroy$));
    };
 
    getById(id: string) : Observable<Blog> {
