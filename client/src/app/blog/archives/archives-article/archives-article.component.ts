@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Blog } from '../../types/blog';
 
 @Component({
   selector: 'app-archives-article',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './archives-article.component.css'
 })
 export class ArchivesArticleComponent {
-
+  @Input() blog: Blog | undefined;
 }

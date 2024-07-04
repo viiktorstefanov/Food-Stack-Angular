@@ -8,6 +8,7 @@ import { MorePostsComponent } from './more-posts/more-posts.component';
 import { BlogRoutingModule } from './blog-routing.module';
 import { ArchivesArticleComponent } from './archives/archives-article/archives-article.component';
 import { ArchivesArticleDetailsComponent } from './archives/archives-article-details/archives-article-details.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -15,12 +16,14 @@ import { ArchivesArticleDetailsComponent } from './archives/archives-article-det
     ArchivesComponent, 
     ArticleComponent, 
     MorePostsComponent, 
-    ArchivesArticleComponent, ArchivesArticleDetailsComponent,
+    ArchivesArticleComponent, 
+    ArchivesArticleDetailsComponent,
   ],
   imports: [
     CommonModule,
     BlogRoutingModule,
     SharedModule,
+    MatPaginatorModule,
   ]
 })
 export class BlogModule { }

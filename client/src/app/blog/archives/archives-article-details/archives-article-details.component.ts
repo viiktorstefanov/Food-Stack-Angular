@@ -24,12 +24,10 @@ export class ArchivesArticleDetailsComponent implements OnInit, OnDestroy{
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['blogId'];
-    console.log(this.id);
     
     this.blogService.getById(this.id).pipe(takeUntil(this.destroy$)).subscribe({
       next: (blog) => {
-        this.blog = blog;
-        console.log(blog);    
+        this.blog = blog;  
       },
       error: (err) => {
         if(err.status === 0) {

@@ -34,3 +34,9 @@
   grid-column-gap: 40px;
   grid-row-gap: 40px;
 }
+
+.paginator{
+  display: flex; 
+  justify-content: center;
+  padding-bottom: 50px;
+}

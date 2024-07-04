@@ -24,9 +24,7 @@ export class BlogComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.blogService.getRecentBlogs().pipe(takeUntil(this.destroy$)).subscribe({
       next: (recentBlogs) => {
-        this.blogList = recentBlogs;
-        console.log(this.blogList);
-        
+        this.blogList = recentBlogs;  
       },
       error: (err) => {
         if (err.status === 0) {

@@ -6,13 +6,13 @@
         </section>
         <section class="archives-content-container">
             <div class="archives-content">
-                <app-archives-article></app-archives-article>
-                <app-archives-article></app-archives-article>
-                <app-archives-article></app-archives-article>
-                <app-archives-article></app-archives-article>
+                <app-archives-article *ngFor="let blog of displayedBlogs" [blog]="blog"></app-archives-article>
             </div>
         </section>
-        <app-paginator></app-paginator>
+        <section class="paginator">
+            <mat-paginator [length]="blogList.length" [pageSizeOptions]="[6, 12, 24, 36, 54]" (page)="onPageChange($event)">
+            </mat-paginator>
+        </section>
     </div>
 </div>
 <app-home-footer></app-home-footer>

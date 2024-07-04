@@ -1,8 +1,8 @@
 <article class="archives-article">
-    <a [routerLink]="'details/fw'" class="article-link">
+    <a [routerLink]="['details', blog?._id]" class="article-link">
         <div>
-            <img src="assets/images/pixels-test.webp" alt="">
+            <img src="{{blog?.imageUrl}}" alt="no-img">
         </div>
     </a>
-    <h3><a [routerLink]="'details/fw'">Devices Integration: Apple Health </a></h3>     
+    <h3><a [routerLink]="['details', blog?._id]">{{blog?.title}}</a></h3>     
 </article>
