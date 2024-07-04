@@ -32,7 +32,7 @@
     display: block;
     width: 100%;
     max-height: none;
-    max-width: none;
+    max-width: 200px;
     transition: filter 0.3s;
     border-style: solid;
     border-width: 0px 0px 0px 0px;

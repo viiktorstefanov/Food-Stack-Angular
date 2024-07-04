@@ -15,7 +15,7 @@ import { ArchivesArticleDetailsComponent } from './archives/archives-article-det
     ArchivesComponent, 
     ArticleComponent, 
     MorePostsComponent, 
-    ArchivesArticleComponent, ArchivesArticleDetailsComponent, 
+    ArchivesArticleComponent, ArchivesArticleDetailsComponent,
   ],
   imports: [
     CommonModule,
