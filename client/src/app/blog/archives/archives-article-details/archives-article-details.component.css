@@ -74,6 +74,9 @@
     text-align: left;
   }
 
-  .archives-article .head h3{
+  .archives-article h1{
     margin-bottom: 40px;
+    text-align: left;
+    font-size: 2.5rem;
+    margin-top: 40px;
   }
