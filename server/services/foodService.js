@@ -1,7 +1,6 @@
 const User = require("../models/user");
 const Food = require("../models/food");
 
-const { parseError } = require("../utils/parseError");
 require("dotenv").config();
 const axios = require("axios");
 
@@ -68,6 +67,45 @@ async function searchFoodsAPI(query) {
  
 }
 
+async function searchFoodByIdFromAPI(foodId) {
+
+  const queryParams = {
+    type: "public",
+    ingr: foodId,
+    app_id: APP_ID,
+    app_key: APP_KEY,
+  };
+
+  try {
+    const result = await axios.get(API_URL, { params: queryParams });
+ 
+    const hasFoundedFood = result.data.hints;
+    
+    if(hasFoundedFood.length > 0) {
+    const food = result.data.hints[0].food;
+    const response = {
+        foodId: food.foodId,
+        label: food.label,
+        nutrients: {
+          kcal: food.nutrients.ENERC_KCAL,
+          protein: food.nutrients.PROCNT,
+          fat: food.nutrients.FAT,
+          carbohydrates: food.nutrients.CHOCDF,
+        },
+      };
+
+      return response;
+    } else {
+      return undefined;
+    }
+
+  } catch ( error) {
+    console.log(error);
+  }
+
+ 
+}
+
 async function addUserCustomFood(userId, foodData) {
   
   const user = await User.findById(userId);
@@ -118,5 +156,6 @@ module.exports = {
   getUserCustomFoods,
   searchUserCustomFoods,
   addUserCustomFood,
-  deleteUserCustomFood
+  deleteUserCustomFood,
+  searchFoodByIdFromAPI
 };

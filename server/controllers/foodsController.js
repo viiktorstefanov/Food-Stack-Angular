@@ -7,6 +7,8 @@ const { parseError } = require('../utils/parseError');
 
 foodsController.get("/", async (req, res) => {
     try {
+       //http://localhost:5000/foods/?item=apple
+
         if (!req.query || !req.query.item || req.query.length <= 0) {
             throw new Error('Missing information about searched item');
         }
@@ -14,7 +16,7 @@ foodsController.get("/", async (req, res) => {
         const query = req.query.item.toLocaleLowerCase();
 
         // const user = JSON.parse(req.headers.user);
-        const user = '660ff02fd259c8283d4a273b';
+        const user = '66840bd16d71738d3068f4e1';
        
         const resultCustomFoods = await searchUserCustomFoods(user, query);
       
@@ -86,5 +88,7 @@ foodsController.delete('/custom/:id', async (req, res) => {
         res.status(400).json({ message });
     }
 });
+
+
 
 module.exports = foodsController;
