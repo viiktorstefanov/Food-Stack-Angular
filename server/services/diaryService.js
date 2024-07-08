@@ -2,11 +2,9 @@ const User = require("../models/user");
 const Food = require("../models/food");
 const DailyFood = require("../models/dailyFood");
 
-const mongoose = require("mongoose");
+const { Types } = require("mongoose");
 
 const { searchFoodByIdFromAPI } = require("./foodService");
-
-
 
 async function addUserDailyFood(userId, foodId, date, quantity) {
   let food = undefined;
@@ -17,7 +15,7 @@ async function addUserDailyFood(userId, foodId, date, quantity) {
     throw new Error("User not found");
   }
 
-  const isValidId = mongoose.Types.ObjectId.isValid(foodId);
+  const isValidId = Types.ObjectId.isValid(foodId);
  
   if (isValidId) {
     food = await Food.findById(foodId);
@@ -41,7 +39,7 @@ async function addUserDailyFood(userId, foodId, date, quantity) {
     if (foodEntry) {
       foodEntry.quantity += quantity;
     } else {
-      dailyFoodEntry.foods.push({ userId, foodId, quantity });
+      dailyFoodEntry.foods.push({  foodId, quantity });
     }
   } else {
     dailyFoodEntry = new DailyFood({
@@ -57,32 +55,30 @@ async function addUserDailyFood(userId, foodId, date, quantity) {
 
 async function getUserDailyFoods(userId, date) {
 
-    const dailyEntries = await DailyFood.findOne(
-        { date, 'foods.userId': userId } 
-    );
+    const dailyEntries = await DailyFood.findOne({ date, userId });
 
     const foodPromises = dailyEntries.foods.map(async dailyFood => {
         let food;
-        const isValidId = mongoose.Types.ObjectId.isValid(dailyFood.foodId);
+        const isValidId = Types.ObjectId.isValid(dailyFood.foodId);
 
         if (isValidId) {
-            let findedFood = await Food.findById(dailyFood.foodId);
+            const foundFood = await Food.findById(dailyFood.foodId);
             food = {
-                macronutrients: { protein: findedFood.macronutrients.protein, carbohydrates: findedFood.macronutrients.carbohydrates, fat: findedFood.macronutrients.fat},
-                _id : findedFood._id,
-                name: findedFood.name,
-                calories: findedFood.calories,
+                macronutrients: { protein: foundFood.macronutrients.protein, carbohydrates: foundFood.macronutrients.carbohydrates, fat: foundFood.macronutrients.fat},
+                _id : foundFood._id,
+                name: foundFood.name,
+                calories: foundFood.calories,
                 quantity: dailyFood.quantity,
                 api: false,
             };
 
         } else {
-            let findedFood = await searchFoodByIdFromAPI(dailyFood.foodId);
+            const foundFood = await searchFoodByIdFromAPI(dailyFood.foodId);
             food = {
-                macronutrients: { protein: findedFood.nutrients.protein, carbohydrates: findedFood.nutrients.carbohydrates, fat: findedFood.nutrients.fat},
-                _id : findedFood.foodId,
-                name: findedFood.label,
-                calories: findedFood.nutrients.kcal,
+                macronutrients: { protein: foundFood.nutrients.protein, carbohydrates: foundFood.nutrients.carbohydrates, fat: foundFood.nutrients.fat},
+                _id : foundFood.foodId,
+                name: foundFood.label,
+                calories: foundFood.nutrients.kcal,
                 quantity: dailyFood.quantity,
                 api: true,
             }
@@ -98,16 +94,29 @@ async function getUserDailyFoods(userId, date) {
 
 async function removeUserDailyFoods(userId, date, foodId) {
      await DailyFood.findOneAndUpdate(
-        { date, 'foods.userId': userId }, 
-        { $pull: { 'foods': { userId, foodId } } },
+        { date, userId }, 
+        { $pull: { 'foods': { foodId } } },
         { new: true } 
     );  
 
     console.log(`Successfully removed food with foodId ${foodId} for userId ${userId} on date ${date}`);
 }
 
+async function editUserDailyFood(userId, date, foodId, quantity) {
+  const dailyEntry = await DailyFood.findOne({ date, userId });
+ 
+  const foodEntry = dailyEntry.foods.find(food => food.foodId.toString() === foodId.toString());
+
+  foodEntry.quantity = quantity;
+
+  await dailyEntry.save();
+
+  return dailyEntry
+}
+
 module.exports = {
     addUserDailyFood,
     getUserDailyFoods,
-    removeUserDailyFoods
+    removeUserDailyFoods,
+    editUserDailyFood
 };
