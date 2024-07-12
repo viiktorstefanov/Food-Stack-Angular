@@ -56,7 +56,7 @@ async function addUserDailyFood(userId, foodId, date, quantity) {
 async function getUserDailyFoods(userId, date) {
 
     const dailyEntries = await DailyFood.findOne({ date, userId });
-
+    
     const foodPromises = dailyEntries.foods.map(async dailyFood => {
         let food;
         const isValidId = Types.ObjectId.isValid(dailyFood.foodId);
@@ -111,7 +111,7 @@ async function editUserDailyFood(userId, date, foodId, quantity) {
 
   await dailyEntry.save();
 
-  return dailyEntry
+  return dailyEntry.foods;
 }
 
 module.exports = {

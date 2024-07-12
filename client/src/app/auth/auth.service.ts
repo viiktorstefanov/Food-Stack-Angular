@@ -51,7 +51,7 @@ export class AuthService implements OnDestroy {
 
   updateUser(user: User) { 
     this.$$user.next(user);
-
+    
     sessionStorage.setItem(this.USER_KEY, JSON.stringify(user));
   };
 

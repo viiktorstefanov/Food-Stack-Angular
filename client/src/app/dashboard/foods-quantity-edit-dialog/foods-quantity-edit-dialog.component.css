@@ -1,0 +1,200 @@
+.foods-container {
+    max-height: 1000px;
+    width: 50dvw;
+    max-width: 50dvw;
+    padding: 30px 50px;
+    display: flex;
+    flex-direction: column;
+    font-family: Lato;
+  }
+  
+  .dialog-head {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .btn-modal-close {
+    font-size: 30px;
+  }
+  
+  .btn-modal-close:hover {
+    cursor: pointer;
+  }
+  
+  .close-icon:hover {
+    opacity: 0.5;
+  }
+  
+  .foods-container input:focus {
+    outline: none;
+    border-color: none;
+    box-shadow: none;
+  }
+  
+  .dialog-add {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .charts {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 10px;
+  }
+  
+  .chart {
+    width: 150px;
+    height: 150px;
+    background-color: #3498db;
+    border-radius: 50%;
+    position: relative;
+  }
+  
+  .inner-circle {
+    width: 130px;
+    height: 130px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .sub-text {
+    font-family: Lato;
+    color: #000;
+    font-size: 18px;
+    margin-top: 10px;
+  }
+  
+  .dialog-form {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 3rem;
+  }
+  
+  .add-food-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 500px;
+  }
+  
+  .add-food-info{
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 40px;
+      gap: 15px;
+  }
+  
+  .add-food-info .info-wrapper, .add-food-macronutrients .info-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 500px;
+  }
+  
+  .add-food-info .info-wrapper label, .add-food-macronutrients .info-wrapper label {
+      width: 100px;
+  }
+  
+  .add-food-macronutrients{
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 20px;
+  }
+  
+  .dialog-form input{
+      width: 300px;
+      height: 2rem;
+      background-color:#F5F5F5;
+      border: none;
+      outline: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-family: 'Helvetica', sans-serif;
+      line-height: 18px;
+      word-spacing: 0px;
+      text-decoration: rgb(28,30,33);
+      font-size: 1.3rem;
+      font-family: Lato;
+  }
+  
+  .info-btn{
+      display: flex;
+      justify-content: center;
+      margin-top: 3.5rem;
+  }
+  
+  .info-btn button {
+      height: 2.5rem;
+      background: none;
+      border: none;
+      border-radius: 6px;
+      box-shadow: none;
+      color: #fff;
+      font-size: 1.2rem;
+      padding: 0 2rem;
+      background-color: #ff6c3b;
+      overflow: hidden;
+      text-shadow: none;
+      min-width: 13rem;
+      cursor: pointer;
+  }
+  
+  .info-btn button:hover, .info-btn button:focus{
+      box-shadow: 0 2px 8px 0 rgba(119, 121, 133, 0.76);
+  }
+  
+  /* ticket calories */
+  
+  .nutrition-facts {
+    background-color: #fff;
+    border: 2px solid #462b3c;;
+    padding: 30px 20px 0 20px;
+    max-width: 300px;
+    min-width: 250px;
+    font-size: 14px;
+    font-family: Lato;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .nutrition-facts h1 {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 10px 0;
+  }
+  
+  .section {
+    border-top: 1px solid #462b3c;;
+    padding: 5px 0;
+    margin-bottom: 15px;
+  }
+  
+  .section:nth-of-type(3) {
+    border-bottom: 1px solid #462b3c;;
+  }
+  
+  .section:nth-of-type(4) {
+    margin-top: 20px;
+    border-top: none;
+    border-bottom: none;
+  }
+  
+  .nutrition-facts .label {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+  }
+  
+  .nutrition-facts .label span:first-child {
+    font-weight: bold;
+  }

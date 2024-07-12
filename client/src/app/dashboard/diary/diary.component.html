@@ -1,68 +1,116 @@
 <div class="diary">
-    <div class="diary-day-container border">
-        <div class="row">
-            <div class="row-head" (click)="openFoodsDialog()">
-                <i style="font-size: 1rem;" class="fas fa-plus"></i>
-                <h3>Food</h3>
-            </div>
-            <div class="row-head" (click)="openExercisesDialog()">
-                <i style="font-size: 1rem;" class="fas fa-plus"></i>
-                <h3>Exercise</h3>
-            </div>
-        </div>
-        <div class="row calories">
-            <div class="row-border-calories">Add food and exercise to see them in your diary.</div>
-        </div>
+  <div class="diary-day-container border">
+    <div class="row">
+      <div class="row-head" (click)="openFoodsDialog()">
+        <i style="font-size: 1rem" class="fas fa-plus"></i>
+        <h3>Food</h3>
+      </div>
+      <div class="row-head" (click)="openExercisesDialog()">
+        <i style="font-size: 1rem" class="fas fa-plus"></i>
+        <h3>Exercise</h3>
+      </div>
     </div>
-    <div class="diary-calendar-container">
-        <mat-card class="demo-inline-calendar-card">
-            <mat-calendar [(selected)]="selected"></mat-calendar>
-          </mat-card>    
+    <div *ngIf="dailyFoods.length == 0" class="row calories">
+      <div class="row-border-calories">
+        Add food and exercise to see them in your diary.
+      </div>
     </div>
-    <div class="diary-result-container">
-        <div class="charts">
-            <div class="chart">
-                <div class="inner-circle">
-                    <span class="centered-text">Consumed</span>
-                    <span class="sub-text">1950 kcal</span>
-                </div>
+    <div *ngIf="dailyFoods.length > 0" class="dialog-content">
+        <div class="content-table">
+            <div class="table-tr-head">
+              <span>Description</span>
+              <span>Serving</span>
             </div>
-            <div class="chart">
-                <div class="inner-circle">
-                    <span class="centered-text">Burned</span>
-                    <span class="sub-text">-1950 kcal</span>
-                </div>
+            <div *ngFor="let food of dailyFoods" (click)="onFoodClick(food)" class="table-tr">
+              <span
+                >{{food.name}}
+                <div class="modify-icons">
+                  <i (click)="openEditDialog(food)" class="fas fa-pen"></i>
+                  <i (click)="openDeleteDialog(food)" class="far fa-trash-alt"></i></div
+              ></span>
+              <span>{{food.quantity}} g</span>
             </div>
-        </div>
-        <div class="results">
-            <div class="result-energy">
-                <span>Energy</span>
-                <div class="result-energy-kcal">
-                    <span>1231 kcal</span>
-                    <span class="decoration"></span>
-                </div>
-            </div>
-            <div class="result-energy">
-                <span>Protein</span>
-                <div class="result-energy-kcal">
-                    <span>200 g</span>
-                    <span class="decoration"></span>
-                </div>
-            </div>
-            <div class="result-energy">
-                <span>Carbohydrates</span>
-                <div class="result-energy-kcal">
-                    <span>250 g</span>
-                    <span class="decoration"></span>
-                </div>
-            </div>
-            <div class="result-energy">
-                <span>Fats</span>
-                <div class="result-energy-kcal">
-                    <span>50 g</span>
-                    <span class="decoration"></span>
-                </div>
-            </div>
-        </div>
+          </div>
     </div>
+    
+  </div>
+  <div class="diary-calendar-container">
+    <mat-card class="demo-inline-calendar-card">
+      <mat-calendar
+        [(selected)]="selected"
+        (selectedChange)="dateChanged($event)"
+      ></mat-calendar>
+    </mat-card>
+  </div>
+  <div class="diary-result-container">
+    <div class="charts">
+      <div class="chart">
+        <div class="inner-circle">
+          <span class="centered-text">Consumed</span>
+          <span class="sub-text">{{ consumedCalories }} kcal</span>
+        </div>
+      </div>
+      <div class="chart">
+        <div class="inner-circle">
+          <span class="centered-text">Burned</span>
+          <span class="sub-text">{{ burnedCalories }} kcal</span>
+        </div>
+      </div>
+    </div>
+    <div class="results">
+      <div class="result-energy">
+        <span>Energy</span>
+        <div class="result-energy-kcal">
+          <span>{{consumedCalories}} kcal</span>
+          <span class="decoration"></span>
+        </div>
+      </div>
+      <div class="result-energy">
+        <span>Protein</span>
+        <div class="result-energy-kcal">
+          <span>{{consumedProteins}} g</span>
+          <span class="decoration"></span>
+        </div>
+      </div>
+      <div class="result-energy">
+        <span>Carbohydrates</span>
+        <div class="result-energy-kcal">
+          <span>{{consumedCarbohydrates}} g</span>
+          <span class="decoration"></span>
+        </div>
+      </div>
+      <div class="result-energy">
+        <span>Fats</span>
+        <div class="result-energy-kcal">
+          <span>{{consumedFats}} g</span>
+          <span class="decoration"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="dialog-add" *ngIf="showNutrinitonFacts">
+    <div class="nutrition-facts">
+      <h1>Nutrition Facts</h1>
+      <div class="section">
+        <div class="label">
+          <span>Total Fats</span> <span>{{nutritionFactValues?.fats}}g</span>
+        </div>
+      </div>
+      <div class="section">
+        <div class="label">
+          <span>Total Carbohydrates</span> <span>{{nutritionFactValues?.carbohydrates}}g</span>
+        </div>
+      </div>
+      <div class="section">
+        <div class="label">
+          <span>Total Proteins</span> <span>{{nutritionFactValues?.protein}}g</span>
+        </div>
+      </div>
+      <div class="section">
+        <div class="label">
+          <span>Total Calories</span> <span>{{nutritionFactValues?.calories}} kcal</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

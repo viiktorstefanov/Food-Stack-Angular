@@ -1,3 +1,5 @@
+import { Food } from "../../dashboard/types/Food";
+
 export type User = {
     firstName: string,
     email: string,
@@ -5,6 +7,8 @@ export type User = {
     gender: string,
     height: string,
     weight: string,
-    accessToken?: string,
+    customFoods?: Food[],
+    accessToken: string,
+    refreshToken: string,
     _id: string,
 };

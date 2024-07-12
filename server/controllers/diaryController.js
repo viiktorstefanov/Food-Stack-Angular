@@ -12,7 +12,7 @@ diaryController.get("/", async (req, res) => {
   try {
     //http://localhost:5000/diary/?item=date
     const date = req.query.item.toLocaleLowerCase();
-
+   
     // const user = JSON.parse(req.headers.user);
     const userId = "66840bd16d71738d3068f4e1";
 
@@ -102,7 +102,7 @@ diaryController.put("/", async (req, res) => {
 
     res.json(editedDailyFood).end();
     console.log(
-      `Food with id ${foodId} edited for user with id ${userId} on date`
+      `Food with id ${foodId} quantity edited for user with id ${userId} on date`
     );
   } catch (error) {
     const message = parseError(error);

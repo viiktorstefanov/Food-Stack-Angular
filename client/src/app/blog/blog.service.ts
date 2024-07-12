@@ -33,13 +33,6 @@ export class BlogService implements OnDestroy {
    deleteById(id: string) {
     return this.http.delete(`/api/blog/archives/${id}`).pipe(takeUntil(this.destroy$));
   };
-
-   createPlace(title : string, city: string, street: string, description: string) {
-    return this.http.post('/api/archives/add', {
-      title, city, street, description
-    }).pipe(takeUntil(this.destroy$));
-   };
-
  
   ngOnDestroy(): void {
     this.destroy$.next();

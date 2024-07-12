@@ -13,6 +13,8 @@ import { ExercisesDialogComponent } from './exercises-dialog/exercises-dialog.co
 import { AddFoodDialogComponent } from './add-food-dialog/add-food-dialog.component';
 import { FoodsEditDialogComponent } from './foods-edit-dialog/foods-edit-dialog.component';
 import { FoodsDeleteDialogComponent } from './foods-delete-dialog/foods-delete-dialog.component';
+import { FoodsQuantityEditDialogComponent } from './foods-quantity-edit-dialog/foods-quantity-edit-dialog.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { FoodsDeleteDialogComponent } from './foods-delete-dialog/foods-delete-d
     AddFoodDialogComponent,
     FoodsEditDialogComponent,
     FoodsDeleteDialogComponent,
+    FoodsQuantityEditDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -31,6 +34,7 @@ import { FoodsDeleteDialogComponent } from './foods-delete-dialog/foods-delete-d
     MatDatepickerModule,
     MatCardModule,
     MatDialogModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideNativeDateAdapter(),
