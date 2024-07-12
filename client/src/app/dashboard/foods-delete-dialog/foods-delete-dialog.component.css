@@ -40,3 +40,8 @@
     align-items: center;   
     justify-content: center;
 }
+
+.food-name{
+    text-transform: uppercase;
+    color: #f13c00;
+}

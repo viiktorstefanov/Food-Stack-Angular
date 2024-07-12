@@ -1,12 +1,12 @@
 <div class="delete-dialog">
     <h2 mat-dialog-title>Delete food name</h2>
 <mat-dialog-content>
-   Are you sure you want to delete Apple?
+   Are you sure you want to delete <span class="food-name">{{this.food?.name}}</span>?
 </mat-dialog-content>
 <mat-dialog-actions>
     <div class="buttons-wrapper">
-        <button>OK</button>
-        <button>NO</button>
+        <button (click)="onDeleteHandler()">YES</button>
+        <button (click)="closeDialog()">NO</button>
     </div>
 </mat-dialog-actions>
 </div>

@@ -56,6 +56,10 @@ async function addUserDailyFood(userId, foodId, date, quantity) {
 async function getUserDailyFoods(userId, date) {
 
     const dailyEntries = await DailyFood.findOne({ date, userId });
+
+    if(!dailyEntries) {
+      throw new Error('There are no daily food entries added');
+    }
     
     const foodPromises = dailyEntries.foods.map(async dailyFood => {
         let food;

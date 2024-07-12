@@ -18,12 +18,18 @@ diaryController.get("/", async (req, res) => {
 
     const result = await getUserDailyFoods(userId, date);
 
+    
     res.json(result).end();
 
     console.log("All daily foods were sent.");
   } catch (error) {
     const message = parseError(error);
     console.log(message);
+
+    if(message === 'There are no daily food entries added') {
+      return res.status(200).end();
+    }
+
     if (message.includes("\n")) {
       const errors = message.split("\n");
       return res.status(400).json({ message: errors }).end();
