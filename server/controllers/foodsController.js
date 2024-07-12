@@ -15,10 +15,10 @@ foodsController.get("/", async (req, res) => {
 
         const query = req.query.item.toLocaleLowerCase();
 
-        // const user = JSON.parse(req.headers.user);
-        const user = '66840bd16d71738d3068f4e1';
+        const user = JSON.parse(req.headers.user);
+        const userId = user._id;
        
-        const resultCustomFoods = await searchUserCustomFoods(user, query);
+        const resultCustomFoods = await searchUserCustomFoods(userId, query);
       
         const resultFoodsAPI = await searchFoodsAPI(query);
 

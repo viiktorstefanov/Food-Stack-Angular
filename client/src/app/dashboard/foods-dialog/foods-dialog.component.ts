@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
+import { DashboardService } from '../dashboard.service';
 
 @Component({
   selector: 'app-foods-dialog',
@@ -8,20 +12,60 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class FoodsDialogComponent {
 
-  constructor(private ref: MatDialogRef<FoodsDialogComponent>) {
+  form = this.fb.group({
+    searchItem: ['', [Validators.required]],
+  });
+
+  errors: string[] = [];
+  private searchSubscription: Subscription | undefined;
+
+  constructor(private ref: MatDialogRef<FoodsDialogComponent>, private dashboardService: DashboardService, private fb: FormBuilder, private toastr: ToastrService) {
 
   }
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
+  isFoodSelected: boolean = false;
+
+  submitHandler() {
+
+    this.errors = [];
+
+    if (this.form.invalid) {
+      this.toastr.error('Enter food name', 'Error');
+       return;
+    };
+    
+    const { searchItem } = this.form.value;
+    
+    this.searchSubscription = this.dashboardService.editDailyFoodQuantity(this.date, this.food!._id, Number(quantity)).subscribe({
+      next: (response) => {          
+          this.ref.close();
+          
+          },
+          error: (err) => {
+            if (err.status === 0) {
+              this.toastr.error('Unable to connect to the server', 'Error');
+              return;
+            }
+            
+            this.errors.push(err.error.message);
+            this.errors.forEach(error => this.toastr.error(error, 'Error'));   
+          }
+    });
+    
+    
+  }
 
   closeDialog() {
     this.ref.close();
   }
+
+
 }
 
 
-export class TableBasicExample {
+export class Table {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
 }
@@ -44,4 +88,4 @@ export interface PeriodicElement {
   position: number;
   weight: number;
   symbol: string;
-}
+};

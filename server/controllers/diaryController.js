@@ -13,8 +13,8 @@ diaryController.get("/", async (req, res) => {
     //http://localhost:5000/diary/?item=date
     const date = req.query.item.toLocaleLowerCase();
    
-    // const user = JSON.parse(req.headers.user);
-    const userId = "66840bd16d71738d3068f4e1";
+    const user = JSON.parse(req.headers.user);
+    const userId = user._id;
 
     const result = await getUserDailyFoods(userId, date);
 
@@ -40,14 +40,14 @@ diaryController.get("/", async (req, res) => {
 
 diaryController.post("/add", async (req, res) => {
   try {
-    // const user = JSON.parse(req.headers.user);
-    const userId = "66840bd16d71738d3068f4e1";
-    //  const foodId = 'food_a1gb9ubb72c7snbuxr3weagwv0dd';
-    const foodId = "660ff0aae2f78317ed42be17";
+    const user = JSON.parse(req.headers.user);
+    const userId = user._id;
+  
+    const foodId = req.body.foodId;
     const date = req.body.date;
     const quantity = req.body.quantity;
 
-    await addUserDailyFood(userId, foodId, "07/07/2024", 5);
+    await addUserDailyFood(userId, foodId, date, quantity);
 
     res.status(204).end();
 
@@ -71,8 +71,8 @@ diaryController.delete("/", async (req, res) => {
     const date = req.query.item.toLocaleLowerCase();
     const foodId = req.query.foodId;
 
-    // const user = JSON.parse(req.headers.user);
-    const userId = "66840bd16d71738d3068f4e1";
+    const user = JSON.parse(req.headers.user);
+    const userId = user._id;
 
     const result = await removeUserDailyFoods(userId, date, foodId);
 
@@ -91,10 +91,12 @@ diaryController.delete("/", async (req, res) => {
 diaryController.put("/", async (req, res) => {
   try {
     //http://localhost:5000/diary/?item=date
-    // const user = JSON.parse(req.headers.user);
-    const userId = "66840bd16d71738d3068f4e1";
-    //  const foodId = 'food_a1gb9ubb72c7snbuxr3weagwv0dd';
-    const foodId = "660ff0aae2f78317ed42be17";
+
+    const user = JSON.parse(req.headers.user);
+    const userId = user._id;
+
+     const foodId = req.body.foodId;
+
     const date = req.query.item.toLocaleLowerCase();
 
     const quantity = req.body.quantity;

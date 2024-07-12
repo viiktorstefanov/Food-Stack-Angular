@@ -28,9 +28,13 @@ export class DashboardService implements OnDestroy {
 
   deleteDailyFood(date: string, foodId: string) : Observable<any> {
     return this.http.delete<any>(`/api/diary/?item=${date}&foodId=${foodId}`);
-  }
+  };
 
-   ngOnDestroy(): void {
+  addDailyFood(foodId: string, date: string, quantity: string) {
+    return this.http.post<any>(`/api/diary/add`, { foodId, date, quantity }).pipe(takeUntil(this.destroy$));
+  };
+
+  ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
   };

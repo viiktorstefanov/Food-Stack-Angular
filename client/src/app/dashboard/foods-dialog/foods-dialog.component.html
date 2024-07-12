@@ -10,9 +10,9 @@
   </div>
 
   <div class="dialog-search-bar">
-        <form>
-            <input type="text" placeholder="Search all foods">
-            <button>SEARCH</button>
+        <form [formGroup]="form" (ngSubmit)="submitHandler()">
+            <input type="text" placeholder="Search all foods" name="searchItem" formControlName="searchItem">
+            <button type="submit">SEARCH</button>
         </form>
   </div>
 
@@ -53,7 +53,7 @@
         </div>
   </div>
 
-  <div class="dialog-add">
+  <div class="dialog-add" *ngIf="isFoodSelected">
     <div class="charts">
         <div class="chart">
             <div class="inner-circle">
