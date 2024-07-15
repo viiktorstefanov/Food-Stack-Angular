@@ -11,13 +11,12 @@ const { parseError } = require("../utils/parseError");
 diaryController.get("/", async (req, res) => {
   try {
     //http://localhost:5000/diary/?item=date
-    const date = req.query.item.toLocaleLowerCase();
-   
+    const date = req.query.item;
+
     const user = JSON.parse(req.headers.user);
     const userId = user._id;
 
     const result = await getUserDailyFoods(userId, date);
-
     
     res.json(result).end();
 
@@ -45,7 +44,7 @@ diaryController.post("/add", async (req, res) => {
   
     const foodId = req.body.foodId;
     const date = req.body.date;
-    const quantity = req.body.quantity;
+    const quantity = Number(req.body.quantity);
 
     await addUserDailyFood(userId, foodId, date, quantity);
 
