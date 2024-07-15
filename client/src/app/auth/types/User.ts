@@ -1,4 +1,4 @@
-import { Food } from "../../dashboard/types/Food";
+import { DailyFood } from "../../dashboard/types/DailyFood";
 
 export type User = {
     firstName: string,
@@ -7,7 +7,7 @@ export type User = {
     gender: string,
     height: string,
     weight: string,
-    customFoods?: Food[],
+    customFoods?: DailyFood[],
     accessToken: string,
     refreshToken: string,
     _id: string,

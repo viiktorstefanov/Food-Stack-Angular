@@ -3,7 +3,7 @@ import { SideNavService } from '../../shared/side-nav/side-nav.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FoodsDialogComponent } from '../foods-dialog/foods-dialog.component';
 import { ExercisesDialogComponent } from '../exercises-dialog/exercises-dialog.component';
-import { Food } from '../types/Food';
+import { DailyFood } from '../types/DailyFood';
 import { FoodsDeleteDialogComponent } from '../foods-delete-dialog/foods-delete-dialog.component';
 import { ToastrService } from 'ngx-toastr';
 import { DashboardService } from '../dashboard.service';
@@ -17,14 +17,15 @@ import { NutritionFacts } from '../types/NutritionFacts';
   styleUrl: './diary.component.css',
 })
 export class DiaryComponent implements OnInit, OnDestroy {
-  dailyFoods: Food[] = [];
-  selected: Date | null = null;
-  burnedCalories: string = '0';
+  dailyFoods: DailyFood[] = [];
+  selected: string | null = null;
+  burnedCalories: number = 0;
   consumedCalories: number = 0;
+  totalCaloriesOfDay: number = 0;
   consumedProteins: number = 0;
   consumedFats: number = 0;
   consumedCarbohydrates: number = 0;
-  selectedDate: Date | undefined | string;
+  selectedDate: string | undefined;
   errors: string[] = [];
   private destroy$ = new Subject<void>();
 
@@ -38,11 +39,11 @@ export class DiaryComponent implements OnInit, OnDestroy {
     private dashboardService: DashboardService
   ) {
     this.sideNavService.showSideNav();
+
   }
 
   ngOnInit(): void {
     const currentDate = new Date().toLocaleDateString('en-GB');
-    // const currentDate = '07/07/2024';
 
     //get foods for current date
     this.dashboardService
@@ -52,33 +53,7 @@ export class DiaryComponent implements OnInit, OnDestroy {
         next: (dailyFoods) => {
           if (dailyFoods) {
             this.dailyFoods = dailyFoods;
-
-            let totalCalories = 0;
-            let totalProteins = 0;
-            let totalFats = 0;
-            let totalCarbohydrates = 0;
-
-            this.dailyFoods.forEach((currFood) => {
-              const servingFactor = Number(currFood.quantity / 100);
-
-              totalCalories += Math.round(
-                Number(currFood.calories) * servingFactor
-              );
-              totalProteins += Math.round(
-                Number(currFood.macronutrients.protein) * servingFactor
-              );
-              totalFats += Math.round(
-                Number(currFood.macronutrients.fat) * servingFactor
-              );
-              totalCarbohydrates += Math.round(
-                Number(currFood.macronutrients.carbohydrates) * servingFactor
-              );
-            });
-
-            this.consumedCalories = totalCalories;
-            this.consumedProteins = totalProteins;
-            this.consumedFats = totalFats;
-            this.consumedCarbohydrates = totalCarbohydrates;
+            this.calculateConsumedMacros();
           }
         },
         error: (err) => {
@@ -100,7 +75,38 @@ export class DiaryComponent implements OnInit, OnDestroy {
     this.selectedDate = currentDate;
   }
 
-  onFoodClick(food: Food) {
+  calculateConsumedMacros() {
+    let totalCalories = 0;
+    let totalProteins = 0;
+    let totalFats = 0;
+    let totalCarbohydrates = 0;
+
+    this.dailyFoods.forEach((currFood) => {
+      const servingFactor = Number(currFood.quantity) / 100;
+
+      totalCalories += Math.round(Number(currFood.calories) * servingFactor);
+      totalProteins += Math.round(
+        Number(currFood.macronutrients.protein) * servingFactor
+      );
+      totalFats += Math.round(Number(currFood.macronutrients.fat) * servingFactor
+);
+totalCarbohydrates += Math.round(
+  Number(currFood.macronutrients.carbohydrates) * servingFactor
+);
+});
+
+this.consumedCalories = totalCalories;
+this.consumedProteins = totalProteins;
+this.consumedFats = totalFats;
+this.consumedCarbohydrates = totalCarbohydrates;
+this.calculateTotalCaloriesOfDay();
+}
+
+calculateTotalCaloriesOfDay() {
+  this.totalCaloriesOfDay = this.consumedCalories - this.burnedCalories;
+}
+
+  onFoodClick(food: DailyFood) {
     this.nutritionFactValues = {
       calories: 0,
       fats: 0,
@@ -114,18 +120,18 @@ export class DiaryComponent implements OnInit, OnDestroy {
       Number(food.calories) * servingFactor
     );
     this.nutritionFactValues!.fats =
-      Number(food.macronutrients.fat) * servingFactor;
+      Math.round(Number(food.macronutrients.fat) * servingFactor);
     this.nutritionFactValues!.carbohydrates =
-      Number(food.macronutrients.carbohydrates) * servingFactor;
+    Math.round(Number(food.macronutrients.carbohydrates) * servingFactor);
     this.nutritionFactValues!.protein =
-      Number(food.macronutrients.protein) * servingFactor;
+    Math.round(Number(food.macronutrients.protein) * servingFactor);
 
-    this.showNutrinitonFacts = !this.showNutrinitonFacts;
+    this.showNutrinitonFacts = true;
   }
 
   dateChanged(event: any): void {
     this.dailyFoods = [];
-
+    
     this.selectedDate = event?.toLocaleDateString('en-GB');
     const currentDate = event?.toLocaleDateString('en-GB');
     this.dashboardService
@@ -135,33 +141,7 @@ export class DiaryComponent implements OnInit, OnDestroy {
         next: (dailyFoods) => {
           if (dailyFoods) {
             this.dailyFoods = dailyFoods;
-
-            let totalCalories = 0;
-            let totalProteins = 0;
-            let totalFats = 0;
-            let totalCarbohydrates = 0;
-
-            this.dailyFoods.forEach((currFood) => {
-              const servingFactor = Number(currFood.quantity / 100);
-
-              totalCalories += Math.round(
-                Number(currFood.calories) * servingFactor
-              );
-              totalProteins += Math.round(
-                Number(currFood.macronutrients.protein) * servingFactor
-              );
-              totalFats += Math.round(
-                Number(currFood.macronutrients.fat) * servingFactor
-              );
-              totalCarbohydrates += Math.round(
-                Number(currFood.macronutrients.carbohydrates) * servingFactor
-              );
-            });
-
-            this.consumedCalories = totalCalories;
-            this.consumedProteins = totalProteins;
-            this.consumedFats = totalFats;
-            this.consumedCarbohydrates = totalCarbohydrates;
+            this.calculateConsumedMacros();
           }
         },
         error: (err) => {
@@ -184,22 +164,17 @@ export class DiaryComponent implements OnInit, OnDestroy {
   }
 
   openFoodsDialog() {
-    this.dialog.open(FoodsDialogComponent);
-  }
-
-  openExercisesDialog() {
-    this.dialog.open(ExercisesDialogComponent);
-  }
-
-  openEditDialog(food: Food) {
-    const dialogRef = this.dialog.open(FoodsQuantityEditDialogComponent, {
-      data: { food: food, date: this.selectedDate },
+    const dialogRef = this.dialog.open(FoodsDialogComponent, {
+      data: { date: this.selectedDate },
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      // const currentDate = new Date().toLocaleDateString('en-GB');
-      const currentDate = '07/07/2024';
-
+      const currentDate = this.selectedDate;
+      
+      if(!currentDate) {
+        return;
+      }
+      
       //get foods for current date
       this.dashboardService
         .getAllDailyFoods(currentDate)
@@ -207,34 +182,47 @@ export class DiaryComponent implements OnInit, OnDestroy {
         .subscribe({
           next: (dailyFoods) => {
             this.dailyFoods = dailyFoods;
+            this.calculateConsumedMacros();
+          },
+          error: (err) => {
+            if (err.status === 0) {
+              this.toastr.error('Unable to connect to the server', 'Error');
+              return;
+            }
+            this.errors = [];
+            this.errors.push(err.error.message);
+            this.errors.forEach((error) => this.toastr.error(error, 'Error'));
+          },
+        });
 
-            let totalCalories = 0;
-            let totalProteins = 0;
-            let totalFats = 0;
-            let totalCarbohydrates = 0;
+      this.selectedDate = currentDate;
+    })
+  }
 
-            this.dailyFoods.forEach((currFood) => {
-              const servingFactor = Number(currFood.quantity / 100);
+  openExercisesDialog() {
+    this.dialog.open(ExercisesDialogComponent);
+  }
 
-              totalCalories += Math.round(
-                Number(currFood.calories) * servingFactor
-              );
-              totalProteins += Math.round(
-                Number(currFood.macronutrients.protein) * servingFactor
-              );
-              totalFats += Math.round(
-                Number(currFood.macronutrients.fat) * servingFactor
-              );
-              totalCarbohydrates += Math.round(
-                Number(currFood.macronutrients.carbohydrates) * servingFactor
-              );
-            });
+  openEditDialog(food: DailyFood) {
+    const dialogRef = this.dialog.open(FoodsQuantityEditDialogComponent, {
+      data: { food: food, date: this.selectedDate },
+    });
 
-            this.consumedCalories = totalCalories;
-            this.consumedProteins = totalProteins;
-            this.consumedFats = totalFats;
-            this.consumedCarbohydrates = totalCarbohydrates;
-            this.showNutrinitonFacts = false;
+    dialogRef.afterClosed().subscribe(() => {
+      const currentDate = this.selectedDate;
+      
+      if(!currentDate) {
+        return;
+      }
+      
+      //get foods for current date
+      this.dashboardService
+        .getAllDailyFoods(currentDate)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe({
+          next: (dailyFoods) => {
+            this.dailyFoods = dailyFoods;
+            this.calculateConsumedMacros();
           },
           error: (err) => {
             if (err.status === 0) {
@@ -251,14 +239,17 @@ export class DiaryComponent implements OnInit, OnDestroy {
     });
   }
 
-  openDeleteDialog(food: Food) {
+  openDeleteDialog(food: DailyFood) {
     const dialogRef = this.dialog.open(FoodsDeleteDialogComponent, {
       data: { food: food, date: this.selectedDate },
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      // const currentDate = new Date().toLocaleDateString('en-GB');
-      const currentDate = '07/07/2024';
+      const currentDate = this.selectedDate;
+      
+      if(!currentDate) {
+        return;
+      }
 
       //get foods for current date
       this.dashboardService
@@ -267,34 +258,7 @@ export class DiaryComponent implements OnInit, OnDestroy {
         .subscribe({
           next: (dailyFoods) => {
             this.dailyFoods = dailyFoods;
-
-            let totalCalories = 0;
-            let totalProteins = 0;
-            let totalFats = 0;
-            let totalCarbohydrates = 0;
-
-            this.dailyFoods.forEach((currFood) => {
-              const servingFactor = Number(currFood.quantity / 100);
-
-              totalCalories += Math.round(
-                Number(currFood.calories) * servingFactor
-              );
-              totalProteins += Math.round(
-                Number(currFood.macronutrients.protein) * servingFactor
-              );
-              totalFats += Math.round(
-                Number(currFood.macronutrients.fat) * servingFactor
-              );
-              totalCarbohydrates += Math.round(
-                Number(currFood.macronutrients.carbohydrates) * servingFactor
-              );
-            });
-
-            this.consumedCalories = totalCalories;
-            this.consumedProteins = totalProteins;
-            this.consumedFats = totalFats;
-            this.consumedCarbohydrates = totalCarbohydrates;
-            this.showNutrinitonFacts = false;
+            this.calculateConsumedMacros();
           },
           error: (err) => {
             if (err.status === 0) {

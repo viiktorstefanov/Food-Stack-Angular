@@ -5,7 +5,7 @@ import { AddFoodDialogComponent } from '../add-food-dialog/add-food-dialog.compo
 import { FoodsEditDialogComponent } from '../foods-edit-dialog/foods-edit-dialog.component';
 import { FoodsDeleteDialogComponent } from '../foods-delete-dialog/foods-delete-dialog.component';
 import { AuthService } from '../../auth/auth.service';
-import { Food } from "../types/Food";
+import { DailyFood } from "../types/DailyFood";
 
 @Component({
   selector: 'app-foods',
@@ -15,7 +15,7 @@ import { Food } from "../types/Food";
 export class FoodsComponent implements OnInit{
 
   selected: Date | null = null;
-  customFoods : Food[]| undefined = [];
+  customFoods : DailyFood[]| undefined = [];
 
   constructor(private sideNavService: SideNavService, private dialog: MatDialog, private authService: AuthService) {
     this.sideNavService.showSideNav();
@@ -23,7 +23,6 @@ export class FoodsComponent implements OnInit{
 
   ngOnInit(): void {
     this.customFoods = this.authService.getUserInfo?.customFoods;
-    console.log(this.customFoods);
     
   }
 

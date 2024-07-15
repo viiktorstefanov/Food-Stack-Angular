@@ -1,7 +1,7 @@
 import { Component, Inject, OnDestroy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
-import { Food } from '../types/Food';
+import { DailyFood } from '../types/DailyFood';
 import { DashboardService } from '../dashboard.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -14,11 +14,11 @@ export class FoodsDeleteDialogComponent implements OnDestroy{
 
   private foodSubscription: Subscription | undefined;
 
-  food: Food | undefined;
+  food: DailyFood | undefined;
   errors: string[] = [];
-  date: string = '';
+  date: string;
 
-  constructor(private ref: MatDialogRef<FoodsDeleteDialogComponent>, private toastr: ToastrService, private dashboardService: DashboardService, @Inject(MAT_DIALOG_DATA) public data: { food: Food, date: string }) {
+  constructor(private ref: MatDialogRef<FoodsDeleteDialogComponent>, private toastr: ToastrService, private dashboardService: DashboardService, @Inject(MAT_DIALOG_DATA) public data: { food: DailyFood, date: string }) {
     this.food = data.food;
     this.date = data.date;
   }

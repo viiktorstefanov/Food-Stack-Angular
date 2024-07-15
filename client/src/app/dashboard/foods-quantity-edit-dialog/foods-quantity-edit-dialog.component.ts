@@ -1,6 +1,6 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Food } from '../types/Food';
+import { DailyFood } from '../types/DailyFood';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
@@ -17,17 +17,17 @@ export class FoodsQuantityEditDialogComponent  implements OnDestroy{
     quantity: [ 0, [Validators.required]],
   });
 
-  food: Food | undefined;
+  food: DailyFood | undefined;
   errors: string[] = [];
   fat: Number = 0;
   carbs: Number = 0;
   protein: Number = 0;
   calories: Number = 0;
-  date: string = '';
+  date: string;
 
   private foodSubscription: Subscription | undefined;
 
-  constructor(private fb: FormBuilder, private dashboardService: DashboardService, private toastr: ToastrService, private ref: MatDialogRef<FoodsQuantityEditDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: { food: Food, date: string }) {
+  constructor(private fb: FormBuilder, private dashboardService: DashboardService, private toastr: ToastrService, private ref: MatDialogRef<FoodsQuantityEditDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: { food: DailyFood, date: string }) {
     this.food = data.food;
     this.date = data.date;
     

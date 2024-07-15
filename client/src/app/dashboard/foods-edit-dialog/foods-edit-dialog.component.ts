@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Food } from '../types/Food';
+import { DailyFood } from '../types/DailyFood';
 
 @Component({
   selector: 'app-foods-edit-dialog',
@@ -9,9 +9,9 @@ import { Food } from '../types/Food';
 })
 export class FoodsEditDialogComponent {
 
-  food: Food | undefined;
+  food: DailyFood | undefined;
 
-  constructor(private ref: MatDialogRef<FoodsEditDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: { food: Food }) {
+  constructor(private ref: MatDialogRef<FoodsEditDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: { food: DailyFood }) {
     this.food = data.food;
     console.log(this.food);
     

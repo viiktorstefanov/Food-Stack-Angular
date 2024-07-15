@@ -108,9 +108,14 @@
   position: relative; 
 }
 
-.chart:last-child {
+.chart:nth-child(2) {
   margin-left: 50px;
   background-color: #f13c00; 
+}
+
+.chart:last-child {
+  margin-left: 50px;
+  background-color: #26a655; 
 }
 
 .inner-circle {

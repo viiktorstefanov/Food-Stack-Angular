@@ -10,45 +10,21 @@
   </div>
 
   <div class="dialog-search-bar">
-        <form [formGroup]="form" (ngSubmit)="submitHandler()">
+        <form [formGroup]="searchForm" (ngSubmit)="onSearchHandler()">
             <input type="text" placeholder="Search all foods" name="searchItem" formControlName="searchItem">
             <button type="submit">SEARCH</button>
         </form>
   </div>
 
-  <div class="dialog-content">
+  <div class="dialog-content" *ngIf="searchResults && searchResults.length > 0">
         <div class="content-table">
             <div class="table-tr-head">
                 <span>Description</span>
-                <span>Source</span>
+                <span></span>
             </div>
-            <div class="table-tr">
-                <span>Chichen</span>
-                <span>50g</span>
-            </div>
-            <div class="table-tr">
-                <span>Chichen</span>
-                <span>50g</span>
-            </div>
-            <div class="table-tr">
-                <span>Chichen</span>
-                <span>50g</span>
-            </div>
-            <div class="table-tr">
-                <span>Chichen</span>
-                <span>50g</span>
-            </div>
-            <div class="table-tr">
-                <span>Chichen</span>
-                <span>50g</span>
-            </div>
-            <div class="table-tr">
-                <span>Chichen</span>
-                <span>50g</span>
-            </div>
-            <div class="table-tr">
-                <span>Chichen</span>
-                <span>50g</span>
+            <div (click)="onFoodClick(food)" class="table-tr" *ngFor="let food of searchResults">
+                <span>{{food.label}}</span>
+                <span></span>
             </div>
         </div>
   </div>
@@ -57,30 +33,30 @@
     <div class="charts">
         <div class="chart">
             <div class="inner-circle">
-                <span class="sub-text">1950 kcal</span>
+                <span class="sub-text">{{calories}} kcal</span>
             </div>
         </div>
         <div class="food-info">
             <div class="macro-item">
                 <i class="fas fa-circle"></i>
-                <span class="macro-item-text">Protein: 13g</span>
+                <span class="macro-item-text">Protein: {{protein}}g</span>
             </div>
             <div class="macro-item">
                 <i class="fas fa-circle"></i>
-                <span class="macro-item-text">Carbohydrates: 33g</span>
+                <span class="macro-item-text">Carbohydrates: {{carbohydrates}}g</span>
             </div>
             <div class="macro-item">
                 <i class="fas fa-circle"></i>
-                <span class="macro-item-text">Fats: 5g</span>
+                <span class="macro-item-text">Fats: {{fats}}g</span>
             </div>
         </div>
         <div class="food-add">
-            <form class="food-add-form" action="">
+            <form [formGroup]="addForm" (ngSubmit)="onSubmitHandler()" class="food-add-form">
                 <div class="serving">
                     <label class="serving-header">
                         Serving size: 
                     </label>
-                    <label><input type="text"> g.</label>
+                    <label><input type="number" name="quantity" formControlName="quantity"> g.</label>
                 
                 </div>
                 <button>ADD TO DIARY</button>
