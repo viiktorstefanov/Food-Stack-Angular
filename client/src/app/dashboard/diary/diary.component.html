@@ -5,10 +5,6 @@
         <i style="font-size: 1rem" class="fas fa-plus"></i>
         <h3>Food</h3>
       </div>
-      <div class="row-head" (click)="openExercisesDialog()">
-        <i style="font-size: 1rem" class="fas fa-plus"></i>
-        <h3>Exercise</h3>
-      </div>
     </div>
     <div *ngIf="dailyFoods.length == 0 " class="row calories">
       <div class="row-border-calories">
@@ -48,18 +44,6 @@
         <div class="inner-circle">
           <span class="centered-text">Consumed</span>
           <span class="sub-text">{{ consumedCalories }} kcal</span>
-        </div>
-      </div>
-      <div class="chart">
-        <div class="inner-circle">
-          <span class="centered-text">Burned</span>
-          <span class="sub-text">{{ burnedCalories }} kcal</span>
-        </div>
-      </div>
-      <div class="chart">
-        <div class="inner-circle">
-          <span class="centered-text">Total</span>
-          <span class="sub-text">{{ totalCaloriesOfDay }} kcal</span>
         </div>
       </div>
     </div>

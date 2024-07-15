@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SideNavService } from '../../shared/side-nav/side-nav.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FoodsDialogComponent } from '../foods-dialog/foods-dialog.component';
-import { ExercisesDialogComponent } from '../exercises-dialog/exercises-dialog.component';
 import { DailyFood } from '../types/DailyFood';
 import { FoodsDeleteDialogComponent } from '../foods-delete-dialog/foods-delete-dialog.component';
 import { ToastrService } from 'ngx-toastr';
@@ -19,9 +18,8 @@ import { NutritionFacts } from '../types/NutritionFacts';
 export class DiaryComponent implements OnInit, OnDestroy {
   dailyFoods: DailyFood[] = [];
   selected: string | null = null;
-  burnedCalories: number = 0;
+
   consumedCalories: number = 0;
-  totalCaloriesOfDay: number = 0;
   consumedProteins: number = 0;
   consumedFats: number = 0;
   consumedCarbohydrates: number = 0;
@@ -39,7 +37,6 @@ export class DiaryComponent implements OnInit, OnDestroy {
     private dashboardService: DashboardService
   ) {
     this.sideNavService.showSideNav();
-
   }
 
   ngOnInit(): void {
@@ -88,23 +85,19 @@ export class DiaryComponent implements OnInit, OnDestroy {
       totalProteins += Math.round(
         Number(currFood.macronutrients.protein) * servingFactor
       );
-      totalFats += Math.round(Number(currFood.macronutrients.fat) * servingFactor
-);
-totalCarbohydrates += Math.round(
-  Number(currFood.macronutrients.carbohydrates) * servingFactor
-);
-});
+      totalFats += Math.round(
+        Number(currFood.macronutrients.fat) * servingFactor
+      );
+      totalCarbohydrates += Math.round(
+        Number(currFood.macronutrients.carbohydrates) * servingFactor
+      );
+    });
 
-this.consumedCalories = totalCalories;
-this.consumedProteins = totalProteins;
-this.consumedFats = totalFats;
-this.consumedCarbohydrates = totalCarbohydrates;
-this.calculateTotalCaloriesOfDay();
-}
-
-calculateTotalCaloriesOfDay() {
-  this.totalCaloriesOfDay = this.consumedCalories - this.burnedCalories;
-}
+    this.consumedCalories = totalCalories;
+    this.consumedProteins = totalProteins;
+    this.consumedFats = totalFats;
+    this.consumedCarbohydrates = totalCarbohydrates;
+  }
 
   onFoodClick(food: DailyFood) {
     this.nutritionFactValues = {
@@ -119,19 +112,22 @@ calculateTotalCaloriesOfDay() {
     this.nutritionFactValues!.calories = Math.round(
       Number(food.calories) * servingFactor
     );
-    this.nutritionFactValues!.fats =
-      Math.round(Number(food.macronutrients.fat) * servingFactor);
-    this.nutritionFactValues!.carbohydrates =
-    Math.round(Number(food.macronutrients.carbohydrates) * servingFactor);
-    this.nutritionFactValues!.protein =
-    Math.round(Number(food.macronutrients.protein) * servingFactor);
+    this.nutritionFactValues!.fats = Math.round(
+      Number(food.macronutrients.fat) * servingFactor
+    );
+    this.nutritionFactValues!.carbohydrates = Math.round(
+      Number(food.macronutrients.carbohydrates) * servingFactor
+    );
+    this.nutritionFactValues!.protein = Math.round(
+      Number(food.macronutrients.protein) * servingFactor
+    );
 
     this.showNutrinitonFacts = true;
   }
 
   dateChanged(event: any): void {
     this.dailyFoods = [];
-    
+
     this.selectedDate = event?.toLocaleDateString('en-GB');
     const currentDate = event?.toLocaleDateString('en-GB');
     this.dashboardService
@@ -170,11 +166,11 @@ calculateTotalCaloriesOfDay() {
 
     dialogRef.afterClosed().subscribe(() => {
       const currentDate = this.selectedDate;
-      
-      if(!currentDate) {
+
+      if (!currentDate) {
         return;
       }
-      
+
       //get foods for current date
       this.dashboardService
         .getAllDailyFoods(currentDate)
@@ -196,11 +192,7 @@ calculateTotalCaloriesOfDay() {
         });
 
       this.selectedDate = currentDate;
-    })
-  }
-
-  openExercisesDialog() {
-    this.dialog.open(ExercisesDialogComponent);
+    });
   }
 
   openEditDialog(food: DailyFood) {
@@ -210,11 +202,11 @@ calculateTotalCaloriesOfDay() {
 
     dialogRef.afterClosed().subscribe(() => {
       const currentDate = this.selectedDate;
-      
-      if(!currentDate) {
+
+      if (!currentDate) {
         return;
       }
-      
+
       //get foods for current date
       this.dashboardService
         .getAllDailyFoods(currentDate)
@@ -246,8 +238,8 @@ calculateTotalCaloriesOfDay() {
 
     dialogRef.afterClosed().subscribe(() => {
       const currentDate = this.selectedDate;
-      
-      if(!currentDate) {
+
+      if (!currentDate) {
         return;
       }
 

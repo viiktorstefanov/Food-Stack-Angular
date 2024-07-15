@@ -23,6 +23,7 @@ export class FoodsComponent implements OnInit{
 
   ngOnInit(): void {
     this.customFoods = this.authService.getUserInfo?.customFoods;
+    console.log(this.customFoods);
     
   }
 
