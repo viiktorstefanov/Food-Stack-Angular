@@ -1,6 +1,6 @@
 const foodsController = require('express').Router();
 
-const { searchFoodsAPI, getUserCustomFoods, searchUserCustomFoods, addUserCustomFood, deleteUserCustomFood } = require('../services/foodService');
+const { searchFoodsAPI, getUserCustomFoods, searchUserCustomFoods, addUserCustomFood, deleteUserCustomFood, editUserCustomFood } = require('../services/foodService');
 
 const { parseError } = require('../utils/parseError');
 
@@ -67,7 +67,7 @@ foodsController.post('/add', async (req, res) => {
     try {
             const user = JSON.parse(req.headers.user);
             const food = req.body.food;
-  
+
             if(!req.body || req.body.length <= 0) {
                 throw new Error('Please, enter your new food');
             };
@@ -77,6 +77,24 @@ foodsController.post('/add', async (req, res) => {
             res.status(204).end();
 
             console.log(`${user.email} added a new custom food with name: ${newCustomFood.label}` );
+        
+    } catch (error) {
+        const message = parseError(error);
+        res.status(400).json({ message });
+    }
+});
+
+foodsController.put('/custom/:id', async (req, res) => {
+    try {
+            const user = JSON.parse(req.headers.user);
+            const foodId = req.params.id;
+            const foodData = req.body;
+     
+            const editedCustomFood = await editUserCustomFood(user._id, foodData.food);
+
+            res.json(editedCustomFood).end();
+            
+            console.log(`${user.email} edited custom food with id ${foodId}`);
         
     } catch (error) {
         const message = parseError(error);

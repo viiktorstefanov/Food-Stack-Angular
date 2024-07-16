@@ -133,11 +133,11 @@ async function addUserCustomFood(userId, foodData) {
           nutrients: {
               kcal: foodData.calories,
               protein: foodData.protein,
-              carbs: foodData.carbohydrates,
+              carbohydrates: foodData.carbohydrates,
               fat: foodData.fat,
           }
       });
-
+      console.log(newCustomFood);
       return newCustomFood;
 };
 
@@ -159,7 +159,25 @@ async function deleteUserCustomFood(userId, foodId) {
   if (!deletedFood) {
       throw new Error('Food not found');
   }
+};
 
+async function editUserCustomFood(userId, foodData) {
+
+ const customFood = await Food.findById( { ownerId: userId, _id: foodData.foodId });
+  
+ if(!customFood) { 
+  throw new Error('Food not found');
+ };
+
+ customFood.label = foodData.name;
+ customFood.nutrients.kcal = foodData.calories;
+ customFood.nutrients.protein = foodData.protein;
+ customFood.nutrients.fat = foodData.fat;
+ customFood.nutrients.carbohydrates = foodData.carbohydrates;
+
+ await customFood.save();
+
+ return customFood;
 }
 
 module.exports = {
@@ -168,5 +186,6 @@ module.exports = {
   searchUserCustomFoods,
   addUserCustomFood,
   deleteUserCustomFood,
-  searchFoodByIdFromAPI
+  searchFoodByIdFromAPI,
+  editUserCustomFood
 };
