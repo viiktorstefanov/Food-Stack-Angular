@@ -15,18 +15,27 @@ foodsController.get("/", async (req, res) => {
 
         const query = req.query.item.toLocaleLowerCase();
 
+        if (query.length <= 0) {
+            throw new Error('Query parameter is empty');
+        }
+
         const user = JSON.parse(req.headers.user);
         const userId = user._id;
        
         const resultCustomFoods = await searchUserCustomFoods(userId, query);
-      
+        
         const resultFoodsAPI = await searchFoodsAPI(query);
 
         const combinedResults = [...resultCustomFoods, ...resultFoodsAPI];
+        
+        if(combinedResults.length === 0) {
+            throw new Error('No results found')
+        };
 
         res.json(combinedResults).end();
    
-        console.log("All foods were sent.");
+        console.log(`Found foods for query: ${query} were sent`);
+
     } catch (error) {
       const message = parseError(error);
       console.log(message);
@@ -41,8 +50,13 @@ foodsController.get("/", async (req, res) => {
 foodsController.get('/custom/:id', async (req, res) => {
     try {
         const userId = req.params.id;
+        const user = JSON.parse(req.headers.user);
         const result =  await getUserCustomFoods(userId);
+
         res.json(result).end();
+
+        console.log(`${user.email}'s custom foods were sent`);
+
     } catch (error) {
         const message = parseError(error);
         res.status(400).json({ message });
@@ -52,16 +66,17 @@ foodsController.get('/custom/:id', async (req, res) => {
 foodsController.post('/add', async (req, res) => {
     try {
             const user = JSON.parse(req.headers.user);
-            const food = req.body;
-
+            const food = req.body.food;
+  
             if(!req.body || req.body.length <= 0) {
                 throw new Error('Please, enter your new food');
             };
 
+            const newCustomFood = await addUserCustomFood(user._id, food);
 
-            const newCustomFood = await addUserCustomFood(food, user._id);
-            console.log('new custom food added');
             res.status(204).end();
+
+            console.log(`${user.email} added a new custom food with name: ${newCustomFood.label}` );
         
     } catch (error) {
         const message = parseError(error);
@@ -76,12 +91,9 @@ foodsController.delete('/custom/:id', async (req, res) => {
 
             const deletedFood = await deleteUserCustomFood(user._id, foodId);
         
-            if (!deletedFood) {
-                throw new Error('Food not found');
-            }
-
-            console.log('custom food deleted');
             res.status(204).end();
+            
+            console.log(`${user.email} deleted custom food with id ${foodId}`);
         
     } catch (error) {
         const message = parseError(error);

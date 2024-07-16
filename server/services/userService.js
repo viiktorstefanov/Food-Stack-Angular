@@ -62,7 +62,6 @@ function createTokens(user) {
         gender: user.gender,
         height: user.height,
         weight: user.weight,
-        customFoods: user.customFoods,
         accessToken,
         refreshToken,
     };

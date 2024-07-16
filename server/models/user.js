@@ -7,7 +7,6 @@ const userSchema = new Schema({
     gender: { type: String, enum: ['male', 'female'], required: [true, 'Gender is required'] },
     height: { type: Number, required: [true, 'Height is required'], minlength: [3, 'Height should be at least 3 numbers'], maxlength: [3, 'Height can be max 3 numbers'] }, 
     weight: { type: Number, required: [true, 'Weight is required'], maxlength: [3, 'Weight can be max 3 numbers'] },
-    customFoods: { type: Array, default: [] }
 });
 
 userSchema.index({ email: 1 }, {

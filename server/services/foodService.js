@@ -10,13 +10,13 @@ const API_URL = process.env.API_URL;
 
 //food
 async function getUserCustomFoods(userId) {
-  const user = await User.findById(userId);
+  const customFoods = await Food.find({ ownerId: userId });
 
-  if (!user) {
-    throw new Error("User not found");
+  if (!customFoods) {
+    throw new Error("Custom foods not found");
   }
 
-  return user.customFoods;
+  return customFoods;
 }
 
 async function searchUserCustomFoods(userId, query) {
@@ -26,13 +26,26 @@ async function searchUserCustomFoods(userId, query) {
     throw new Error("User not found");
   }
 
-  const userCustomFoods = user.customFoods;
+  const userCustomFoods = await Food.find({ ownerId: userId });
 
   const regex = new RegExp(query, 'i');
 
-  const filteredFoods = userCustomFoods.filter(food => regex.test(food.name));
+  const filteredFoods = userCustomFoods.filter(food => regex.test(food.label));
 
-  return filteredFoods;
+  const foods = filteredFoods.map((food) => {
+    return {
+      foodId: food._id.toString(),
+      label: food.label,
+      nutrients: {
+        kcal: food.nutrients.kcal,
+        protein: food.nutrients.protein,
+        fat: food.nutrients.fat,
+        carbohydrates: food.nutrients.carbohydrates
+      }
+    }
+  });
+
+  return foods;
 }
 
 async function searchFoodsAPI(query) {
@@ -107,7 +120,7 @@ async function searchFoodByIdFromAPI(foodId) {
 }
 
 async function addUserCustomFood(userId, foodData) {
-  
+
   const user = await User.findById(userId);
 
   if (!user) {
@@ -115,20 +128,17 @@ async function addUserCustomFood(userId, foodData) {
   }
 
   const newCustomFood = await Food.create({
-          name: foodData.name,
-          calories: foodData.calories,
-          macronutrients: {
+          label: foodData.name,
+          ownerId: user._id.toString(),
+          nutrients: {
+              kcal: foodData.calories,
               protein: foodData.protein,
               carbs: foodData.carbohydrates,
               fat: foodData.fat,
           }
       });
 
-      user.customFoods.push(newCustomFood);
-      
-      await user.save();
-      
-      return user.customFoods;
+      return newCustomFood;
 };
 
 async function deleteUserCustomFood(userId, foodId) {
@@ -138,17 +148,18 @@ async function deleteUserCustomFood(userId, foodId) {
       throw new Error('User not found');
   }
 
+  const customFood = await Food.findById(foodId);
+
+  if(customFood.ownerId.toString() !== userId) {
+    throw new Error(`You're not an owner`)
+  };
+
   const deletedFood = await Food.findByIdAndDelete(foodId);
 
   if (!deletedFood) {
       throw new Error('Food not found');
   }
 
-  user.customFoods = user.customFoods.filter(food => food._id.toString() !== foodId);
-
-  await user.save();
-
-  return user.customFoods;
 }
 
 module.exports = {

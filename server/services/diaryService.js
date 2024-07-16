@@ -68,11 +68,12 @@ async function getUserDailyFoods(userId, date) {
 
         if (isValidId) {
             const foundFood = await Food.findById(dailyFood.foodId);
+      
             food = {
-                macronutrients: { protein: foundFood.macronutrients.protein, carbohydrates: foundFood.macronutrients.carbohydrates, fat: foundFood.macronutrients.fat},
+                macronutrients: { protein: foundFood.nutrients.protein, carbohydrates: foundFood.nutrients.carbohydrates, fat: foundFood.nutrients.fat},
                 _id : foundFood._id,
-                name: foundFood.name,
-                calories: foundFood.calories,
+                name: foundFood.label,
+                calories: foundFood.nutrients.kcal,
                 quantity: dailyFood.quantity,
                 api: false,
             };

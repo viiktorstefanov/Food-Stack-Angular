@@ -20,7 +20,8 @@ diaryController.get("/", async (req, res) => {
     
     res.json(result).end();
 
-    console.log("All daily foods were sent.");
+    console.log(`${user.email}'s daily foods for ${date} were sent.`);
+
   } catch (error) {
     const message = parseError(error);
     console.log(message);
@@ -51,7 +52,7 @@ diaryController.post("/add", async (req, res) => {
     res.status(204).end();
 
     console.log(
-      `Food with id ${foodId} added for user with id ${userId} on date`
+       `${user.email} added a new food with Id ${foodId} on ${date}.`
     );
   } catch (error) {
     const message = parseError(error);
@@ -76,6 +77,7 @@ diaryController.delete("/", async (req, res) => {
     const result = await removeUserDailyFoods(userId, date, foodId);
 
     res.status(204).end();
+    
   } catch (error) {
     const message = parseError(error);
     console.log(message);
@@ -108,8 +110,9 @@ diaryController.put("/", async (req, res) => {
     );
 
     res.json(editedDailyFood).end();
+    
     console.log(
-      `Food with id ${foodId} quantity edited for user with id ${userId} on date`
+      `Food with id ${foodId} quantity edited for ${user.email} for ${date}`
     );
   } catch (error) {
     const message = parseError(error);
