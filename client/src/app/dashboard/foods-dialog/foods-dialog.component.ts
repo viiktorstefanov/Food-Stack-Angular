@@ -73,6 +73,7 @@ export class FoodsDialogComponent implements OnInit, OnDestroy{
         next: (result) => {
           this.searchResults = [];
           this.searchResults = result; 
+          
         },
         error: (err) => {
           if (err.status === 0) {

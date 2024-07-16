@@ -4,8 +4,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddFoodDialogComponent } from '../add-food-dialog/add-food-dialog.component';
 import { FoodsEditDialogComponent } from '../foods-edit-dialog/foods-edit-dialog.component';
 import { FoodsDeleteDialogComponent } from '../foods-delete-dialog/foods-delete-dialog.component';
+import { CustomFood, Food } from "../types/DailyFood";
+import { DashboardService } from '../dashboard.service';
 import { AuthService } from '../../auth/auth.service';
-import { DailyFood } from "../types/DailyFood";
+import { Subject, takeUntil } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-foods',
@@ -15,27 +18,52 @@ import { DailyFood } from "../types/DailyFood";
 export class FoodsComponent implements OnInit{
 
   selected: Date | null = null;
-  customFoods : DailyFood[]| undefined = [];
+  customFoods : Food[] = [];
+  userId: string | undefined;
+  private destroy$ = new Subject<void>();
+  errors: string[] = [];
 
-  constructor(private sideNavService: SideNavService, private dialog: MatDialog, private authService: AuthService) {
+  constructor(private sideNavService: SideNavService, private dialog: MatDialog, private dashboardService: DashboardService, private authService: AuthService, private toastr: ToastrService) {
     this.sideNavService.showSideNav();
   }
 
   ngOnInit(): void {
-    this.customFoods = this.authService.getUserInfo?.customFoods;
-    console.log(this.customFoods);
     
+    this.userId = this.authService.getUserId;
+    this.dashboardService.getUserCustomFoods(this.userId!).pipe(takeUntil(this.destroy$))
+    .subscribe({
+      next: (result) => {
+        if (result) {
+          this.customFoods = result;
+          
+        }
+      },
+      error: (err) => {
+        if (err.status === 0) {
+          this.toastr.error('Unable to connect to the server', 'Error');
+          return;
+        }
+
+        // if (err.error.message === 'There are no custom food entries added') {
+        //   return;
+        // }
+
+        this.errors = [];
+        this.errors.push(err.error.message);
+        this.errors.forEach((error) => this.toastr.error(error, 'Error'));
+      },
+    });
   }
 
   openAddDialog() {
-    this.dialog.open(AddFoodDialogComponent);
+    const dialogRef = this.dialog.open(AddFoodDialogComponent);
   }
 
   openEditDialog() {
-    this.dialog.open(FoodsEditDialogComponent);
+    const dialogRef = this.dialog.open(FoodsEditDialogComponent);
   }
 
   openDeleteDialog() {
-    this.dialog.open(FoodsDeleteDialogComponent);
+    const dialogRef = this.dialog.open(FoodsDeleteDialogComponent);
   }
 }

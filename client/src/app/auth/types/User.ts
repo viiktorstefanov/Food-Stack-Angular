@@ -1,5 +1,3 @@
-import { DailyFood } from "../../dashboard/types/DailyFood";
-
 export type User = {
     firstName: string,
     email: string,
@@ -7,7 +5,6 @@ export type User = {
     gender: string,
     height: string,
     weight: string,
-    customFoods?: DailyFood[],
     accessToken: string,
     refreshToken: string,
     _id: string,

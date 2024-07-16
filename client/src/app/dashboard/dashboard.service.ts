@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, takeUntil } from 'rxjs';
-import { DailyFood, Food } from './types/DailyFood';
+import { CustomFood, DailyFood, Food } from './types/DailyFood';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +36,14 @@ export class DashboardService implements OnDestroy {
 
   addDailyFood(foodId: string, date: string, quantity: number) {
     return this.http.post<any>(`/api/diary/add`, { foodId, date, quantity }).pipe(takeUntil(this.destroy$));
+  };
+
+  getUserCustomFoods(userId: string) {
+    return this.http.get<Food[]>(`/api/foods/custom/${userId}`).pipe(takeUntil(this.destroy$));
+  };
+
+  addUserCustomFood(food: CustomFood) {
+    return this.http.post<any>(`/api/foods/add`, { food }).pipe(takeUntil(this.destroy$));
   };
 
   ngOnDestroy(): void {

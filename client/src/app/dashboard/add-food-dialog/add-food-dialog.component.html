@@ -10,53 +10,49 @@
     </div>
 
     <div class="dialog-form">
-        <form class="add-food-form">
+        <form class="add-food-form" [formGroup]="form" (submit)="submitHandler()">
             <div class="add-food-info">
                 <div class="info-wrapper">
                     <label for="">Food name:</label>
-                    <input type="text">
-                </div>
-                <div class="info-wrapper">
-                    <label for="">Serving size:</label>
-                    <input type="text">
+                    <input type="text" formControlName="name" name="name">
                 </div>
             </div>
             <div class="add-food-macronutrients">
                 <div class="info-wrapper">
-                    <label for="">Kcal:</label>
-                    <input type="text">
+                    <label for="calories">Kcal:</label>
+                    <input type="number" formControlName="calories" name="calories" id="calories" >
                 </div>
                 <div class="info-wrapper">
-                    <label for="">Proteins:</label>
-                    <input type="text">
+                    <label for="protein">Proteins:</label>
+                    <input type="number" formControlName="protein" name="protein" id="protein" >
                 </div>
                 <div class="info-wrapper">
-                    <label for="">Carbohydrates:</label>
-                    <input type="text">
+                    <label for="carbs">Carbohydrates:</label>
+                    <input type="number" formControlName="carbs" name="carbs" id="carbs">
                 </div>
                 <div class="info-wrapper">
-                    <label for="">Fats:</label>
-                    <input type="text">
+                    <label for="fat">Fats:</label>
+                    <input type="number" formControlName="fat" name="fat" id="fat">
                 </div>
             </div>
             <div class="info-btn">
-                <button>CREATE FOOD</button>
+                <button type="submit">CREATE FOOD</button>
             </div>
         </form>
         <div class="dialog-add">
             <div class="nutrition-facts">
-                <h1>Nutrition Facts</h1>
+                <h1>Nutrition Facts for 100g</h1>
                 <div class="section">
-                  <div class="label"><span>Total Fats</span> <span>50g</span></div>
+                  <div class="label"><span>Total Fats</span> <span>{{nutritionFactValues.fats}}g</span></div>
                 </div>
                 <div class="section">
-                  <div class="label"><span>Total Carbohydrates</span> <span>20g</span></div>
+                  <div class="label"><span>Total Carbohydrates</span> <span>{{nutritionFactValues.carbohydrates}}g</span></div>
                 </div>
                 <div class="section">
-                  <div class="label"><span>Total Proteins</span> <span>100g</span></div>
+                  <div class="label"><span>Total Proteins</span> <span>{{nutritionFactValues.protein}}g</span></div>
                 </div>
                 <div class="section">
-                    <div class="label"><span>Total Calories</span> <span>1950 kcal</span></div>
+                    <div class="label"><span>Total Calories</span> <span>{{nutritionFactValues.calories}} kcal</span></div>
                   </div>
               </div>
           </div>

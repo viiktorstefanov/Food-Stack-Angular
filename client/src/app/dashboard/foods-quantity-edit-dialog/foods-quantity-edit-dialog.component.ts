@@ -11,7 +11,7 @@ import { DashboardService } from '../dashboard.service';
   templateUrl: './foods-quantity-edit-dialog.component.html',
   styleUrl: './foods-quantity-edit-dialog.component.css'
 })
-export class FoodsQuantityEditDialogComponent  implements OnDestroy{
+export class FoodsQuantityEditDialogComponent implements OnInit, OnDestroy{
 
   form = this.fb.group({
     quantity: [ 0, [Validators.required]],
@@ -26,19 +26,30 @@ export class FoodsQuantityEditDialogComponent  implements OnDestroy{
   date: string;
 
   private foodSubscription: Subscription | undefined;
+  private valueChangesSubscription: Subscription | undefined;
 
   constructor(private fb: FormBuilder, private dashboardService: DashboardService, private toastr: ToastrService, private ref: MatDialogRef<FoodsQuantityEditDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: { food: DailyFood, date: string }) {
     this.food = data.food;
     this.date = data.date;
-    
-    const servingFactor = Number(this.food.quantity) / 100;
-    
-    this.fat = Number(this.food.macronutrients.fat) * servingFactor;
-    this.carbs = Number(this.food.macronutrients.carbohydrates) * servingFactor;
-    this.protein = Number(this.food.macronutrients.protein) * servingFactor;
-    this.calories = Math.round(Number(this.food.calories) * servingFactor);
-    
+  }
+
+  ngOnInit(): void {
+    this.updateNutritionFacts(Number(this.food?.quantity));
     this.form.patchValue({ quantity: Number(this.food?.quantity) });
+
+    this.valueChangesSubscription = this.form.get('quantity')?.valueChanges.subscribe(value => {
+      if (typeof value === 'number') {
+        this.updateNutritionFacts(value);
+      }
+    });
+  }
+
+  updateNutritionFacts(quantity: number): void {
+    const servingFactor = quantity / 100;
+    this.fat = Math.round(Number(this.food!.macronutrients.fat) * servingFactor);
+    this.carbs = Math.round(Number(this.food!.macronutrients.carbohydrates) * servingFactor);
+    this.protein = Math.round(Number(this.food!.macronutrients.protein) * servingFactor);
+    this.calories = Math.round(Number(this.food!.calories) * servingFactor);
   }
 
 
@@ -78,6 +89,9 @@ export class FoodsQuantityEditDialogComponent  implements OnDestroy{
   ngOnDestroy(): void {
     if (this.foodSubscription) {
       this.foodSubscription.unsubscribe();
+    }
+    if (this.valueChangesSubscription) {
+      this.valueChangesSubscription.unsubscribe();
     }
   }
 }

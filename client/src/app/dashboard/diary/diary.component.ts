@@ -176,7 +176,7 @@ export class DiaryComponent implements OnInit, OnDestroy {
         .getAllDailyFoods(currentDate)
         .pipe(takeUntil(this.destroy$))
         .subscribe({
-          next: (dailyFoods) => {
+          next: (dailyFoods) => {  
             this.dailyFoods = dailyFoods;
             this.calculateConsumedMacros();
           },
@@ -201,6 +201,7 @@ export class DiaryComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe(() => {
+      this.showNutrinitonFacts = false;
       const currentDate = this.selectedDate;
 
       if (!currentDate) {

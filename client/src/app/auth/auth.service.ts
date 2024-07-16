@@ -27,6 +27,10 @@ export class AuthService implements OnDestroy {
     return this.user;
   };
 
+  get getUserId() : string | undefined {
+    return this.user?._id;
+  }
+
   constructor(private http: HttpClient) { 
     const storedUser = sessionStorage.getItem(this.USER_KEY);
 

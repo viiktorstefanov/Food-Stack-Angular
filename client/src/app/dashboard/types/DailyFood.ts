@@ -7,9 +7,18 @@ export type DailyFood = {
         fat: string,
         carbohydrates: string,
     },
-    quantity: number,
-    api: boolean,
+    quantity?: number,
+    api?: boolean,
     label?: string,
+};
+
+export type CustomFood = {
+    name: string,
+    calories: number,
+    protein: number,
+    carbohydrates: number,
+    fat: number,
+    _id?: string,
 };
 
 

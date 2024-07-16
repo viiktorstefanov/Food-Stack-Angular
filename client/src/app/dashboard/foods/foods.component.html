@@ -9,14 +9,14 @@
                 <h3>Add Food</h3>
             </div>
         </div>
-        <div class="dialog-content">
+        <div class="dialog-content" *ngIf="customFoods.length > 0">
             <div class="content-table">
                 <div class="table-tr-head">
                     <span>Description</span>
                     <span></span>
                 </div>
-                <div class="table-tr">
-                    <span>Chichen <div class="modify-icons">
+                <div class="table-tr" *ngFor="let food of customFoods">
+                    <span>{{food.label}} <div class="modify-icons">
                         <i (click)="openEditDialog()" class="fas fa-pen"></i>
                         <i (click)="openDeleteDialog()" class="far fa-trash-alt"></i>
                     </div></span>
