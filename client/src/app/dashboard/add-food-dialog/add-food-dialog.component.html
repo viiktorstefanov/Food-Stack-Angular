@@ -13,8 +13,8 @@
         <form class="add-food-form" [formGroup]="form" (submit)="submitHandler()">
             <div class="add-food-info">
                 <div class="info-wrapper">
-                    <label for="">Food name:</label>
-                    <input type="text" formControlName="name" name="name">
+                    <label for="name">Food name:</label>
+                    <input type="text" formControlName="name" name="name" id="name">
                 </div>
             </div>
             <div class="add-food-macronutrients">
@@ -59,13 +59,3 @@
     </div>
 
   </div>
-  
-  
-
-<!--  <div class="charts">
-                <div class="chart">
-                    <div class="inner-circle">
-                        <span class="sub-text">1950 kcal</span>
-                    </div>
-                </div>
-            </div> -->

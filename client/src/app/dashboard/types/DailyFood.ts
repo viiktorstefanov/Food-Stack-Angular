@@ -24,7 +24,9 @@ export type CustomFood = {
 
 export type Food = {
     foodId: string,
+    _id?: string,
     label: string,
+    ownerId?: string,
     nutrients : {
         kcal: number,
         protein: number,

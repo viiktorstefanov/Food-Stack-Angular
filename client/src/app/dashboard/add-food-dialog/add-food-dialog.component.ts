@@ -30,10 +30,6 @@ export class AddFoodDialogComponent implements OnInit ,OnDestroy{
   };
   private foodSubscription: Subscription | undefined;
   private formSubscription: Subscription | undefined;
-  // calories: number = 0;
-  // proteins: number = 0;
-  // fats: number = 0;
-  // carbs: number = 0;
 
   constructor(private ref: MatDialogRef<AddFoodDialogComponent>, private dashboardService: DashboardService, private toastr: ToastrService, private fb: FormBuilder) {
 
@@ -74,13 +70,8 @@ export class AddFoodDialogComponent implements OnInit ,OnDestroy{
        return;
     };
 
-    // this.calories = +calories;
-    // this.proteins = +protein;
-    // this.carbs = +carbs;
-    // this.fats = +fat;
-
     const customFood = { name , calories, protein, fat, carbohydrates: carbs };
-
+    
     this.foodSubscription = this.dashboardService
       .addUserCustomFood(customFood)
       .subscribe({

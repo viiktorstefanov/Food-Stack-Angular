@@ -17,8 +17,8 @@
                 </div>
                 <div class="table-tr" *ngFor="let food of customFoods">
                     <span>{{food.label}} <div class="modify-icons">
-                        <i (click)="openEditDialog()" class="fas fa-pen"></i>
-                        <i (click)="openDeleteDialog()" class="far fa-trash-alt"></i>
+                        <i (click)="openEditDialog(food)" class="fas fa-pen"></i>
+                        <i (click)="openDeleteDialog(food)" class="far fa-trash-alt"></i>
                     </div></span>
                     <span></span>
                 </div>
