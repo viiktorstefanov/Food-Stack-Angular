@@ -48,7 +48,11 @@ export class DashboardService implements OnDestroy {
 
   editUserCustomFood(foodId: string, food: CustomFood) {
     return this.http.put<any>(`/api/foods/custom/${foodId}}`, { food }).pipe(takeUntil(this.destroy$));
-  }
+  };
+
+  deleteUserCustomFood(foodId: string) : Observable<any> {
+    return this.http.delete<any>(`/api/foods/custom/${foodId}`);
+  };
 
   ngOnDestroy(): void {
     this.destroy$.next();

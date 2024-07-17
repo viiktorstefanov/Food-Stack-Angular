@@ -3,12 +3,12 @@ import { SideNavService } from '../../shared/side-nav/side-nav.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddFoodDialogComponent } from '../add-food-dialog/add-food-dialog.component';
 import { FoodsEditDialogComponent } from '../foods-edit-dialog/foods-edit-dialog.component';
-import { FoodsDeleteDialogComponent } from '../foods-delete-dialog/foods-delete-dialog.component';
 import { CustomFood, Food } from '../types/DailyFood';
 import { DashboardService } from '../dashboard.service';
 import { AuthService } from '../../auth/auth.service';
 import { Subject, takeUntil } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { CustomFoodsDeleteDialogComponent } from '../custom-foods-delete-dialog/custom-foods-delete-dialog.component';
 
 @Component({
   selector: 'app-foods',
@@ -79,7 +79,7 @@ export class FoodsComponent implements OnInit {
   }
 
   openDeleteDialog(food: Food) {
-    const dialogRef = this.dialog.open(FoodsDeleteDialogComponent, {
+    const dialogRef = this.dialog.open(CustomFoodsDeleteDialogComponent, {
       data: { food: food },
     });
 

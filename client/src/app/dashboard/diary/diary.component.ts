@@ -41,35 +41,9 @@ export class DiaryComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const currentDate = new Date().toLocaleDateString('en-GB');
-
-    //get foods for current date
-    this.dashboardService
-      .getAllDailyFoods(currentDate)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe({
-        next: (dailyFoods) => {
-          if (dailyFoods) {
-            this.dailyFoods = dailyFoods;
-            this.calculateConsumedMacros();
-          }
-        },
-        error: (err) => {
-          if (err.status === 0) {
-            this.toastr.error('Unable to connect to the server', 'Error');
-            return;
-          }
-
-          if (err.error.message === 'There are no daily food entries added') {
-            return;
-          }
-
-          this.errors = [];
-          this.errors.push(err.error.message);
-          this.errors.forEach((error) => this.toastr.error(error, 'Error'));
-        },
-      });
-
     this.selectedDate = currentDate;
+
+    this.fetchAllDailyFoods();
   }
 
   calculateConsumedMacros() {
@@ -129,34 +103,36 @@ export class DiaryComponent implements OnInit, OnDestroy {
     this.dailyFoods = [];
 
     this.selectedDate = event?.toLocaleDateString('en-GB');
-    const currentDate = event?.toLocaleDateString('en-GB');
+    
+    this.fetchAllDailyFoods();
+  }
+
+  fetchAllDailyFoods() {
     this.dashboardService
-      .getAllDailyFoods(currentDate)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe({
-        next: (dailyFoods) => {
-          if (dailyFoods) {
-            this.dailyFoods = dailyFoods;
-            this.calculateConsumedMacros();
-          }
-        },
-        error: (err) => {
-          if (err.status === 0) {
-            this.toastr.error('Unable to connect to the server', 'Error');
-            return;
-          }
+    .getAllDailyFoods(this.selectedDate!)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe({
+      next: (dailyFoods) => {
+        if (dailyFoods) {
+          this.dailyFoods = dailyFoods;
+          this.calculateConsumedMacros();
+        }
+      },
+      error: (err) => {
+        if (err.status === 0) {
+          this.toastr.error('Unable to connect to the server', 'Error');
+          return;
+        }
 
-          if (err.error.message === 'There are no daily food entries added') {
-            return;
-          }
+        if (err.error.message === 'There are no daily food entries added') {
+          return;
+        }
 
-          this.errors = [];
-          this.errors.push(err.error.message);
-          this.errors.forEach((error) => this.toastr.error(error, 'Error'));
-        },
-      });
-
-    this.selectedDate = currentDate;
+        this.errors = [];
+        this.errors.push(err.error.message);
+        this.errors.forEach((error) => this.toastr.error(error, 'Error'));
+      },
+    });
   }
 
   openFoodsDialog() {
@@ -165,33 +141,7 @@ export class DiaryComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      const currentDate = this.selectedDate;
-
-      if (!currentDate) {
-        return;
-      }
-
-      //get foods for current date
-      this.dashboardService
-        .getAllDailyFoods(currentDate)
-        .pipe(takeUntil(this.destroy$))
-        .subscribe({
-          next: (dailyFoods) => {  
-            this.dailyFoods = dailyFoods;
-            this.calculateConsumedMacros();
-          },
-          error: (err) => {
-            if (err.status === 0) {
-              this.toastr.error('Unable to connect to the server', 'Error');
-              return;
-            }
-            this.errors = [];
-            this.errors.push(err.error.message);
-            this.errors.forEach((error) => this.toastr.error(error, 'Error'));
-          },
-        });
-
-      this.selectedDate = currentDate;
+      this.fetchAllDailyFoods();
     });
   }
 
@@ -202,33 +152,7 @@ export class DiaryComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(() => {
       this.showNutrinitonFacts = false;
-      const currentDate = this.selectedDate;
-
-      if (!currentDate) {
-        return;
-      }
-
-      //get foods for current date
-      this.dashboardService
-        .getAllDailyFoods(currentDate)
-        .pipe(takeUntil(this.destroy$))
-        .subscribe({
-          next: (dailyFoods) => {
-            this.dailyFoods = dailyFoods;
-            this.calculateConsumedMacros();
-          },
-          error: (err) => {
-            if (err.status === 0) {
-              this.toastr.error('Unable to connect to the server', 'Error');
-              return;
-            }
-            this.errors = [];
-            this.errors.push(err.error.message);
-            this.errors.forEach((error) => this.toastr.error(error, 'Error'));
-          },
-        });
-
-      this.selectedDate = currentDate;
+      this.fetchAllDailyFoods();
     });
   }
 
@@ -238,33 +162,8 @@ export class DiaryComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      const currentDate = this.selectedDate;
-
-      if (!currentDate) {
-        return;
-      }
-
-      //get foods for current date
-      this.dashboardService
-        .getAllDailyFoods(currentDate)
-        .pipe(takeUntil(this.destroy$))
-        .subscribe({
-          next: (dailyFoods) => {
-            this.dailyFoods = dailyFoods;
-            this.calculateConsumedMacros();
-          },
-          error: (err) => {
-            if (err.status === 0) {
-              this.toastr.error('Unable to connect to the server', 'Error');
-              return;
-            }
-            this.errors = [];
-            this.errors.push(err.error.message);
-            this.errors.forEach((error) => this.toastr.error(error, 'Error'));
-          },
-        });
-
-      this.selectedDate = currentDate;
+      this.showNutrinitonFacts = false;
+      this.fetchAllDailyFoods();
     });
   }
 

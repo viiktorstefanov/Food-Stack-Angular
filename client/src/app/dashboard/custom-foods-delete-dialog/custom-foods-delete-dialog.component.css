@@ -1,0 +1,47 @@
+.delete-dialog button {
+    height: 2.5rem;
+    background: none;
+    border: none;
+    border-radius: 6px;
+    box-shadow: none;
+    color: #000;
+    font-size: 1.2rem;
+    padding: 0 2rem;
+    background-color: #ff6c3b;
+    opacity: 0.9;
+    overflow: hidden;
+    text-shadow: none;
+    min-width: 5rem;
+    cursor: pointer;
+    outline: none;
+}
+
+.delete-dialog button:nth-child(1) {
+    background-color: #fff;
+    color: #000;
+}
+
+.delete-dialog button:nth-child(1):hover {
+    box-shadow: 0 2px 8px 0 rgba(119, 121, 133, 0.76);
+}
+
+.delete-dialog button:nth-child(2):hover {
+    box-shadow: 0 2px 8px 0 rgba(119, 121, 133, 0.76);
+}
+
+.buttons-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.mat-mdc-dialog-actions{
+    display: flex;      
+    align-items: center;   
+    justify-content: center;
+}
+
+.food-name{
+    text-transform: uppercase;
+    color: #f13c00;
+}

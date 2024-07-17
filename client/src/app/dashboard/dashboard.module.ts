@@ -14,6 +14,7 @@ import { FoodsEditDialogComponent } from './foods-edit-dialog/foods-edit-dialog.
 import { FoodsDeleteDialogComponent } from './foods-delete-dialog/foods-delete-dialog.component';
 import { FoodsQuantityEditDialogComponent } from './foods-quantity-edit-dialog/foods-quantity-edit-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CustomFoodsDeleteDialogComponent } from './custom-foods-delete-dialog/custom-foods-delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     FoodsEditDialogComponent,
     FoodsDeleteDialogComponent,
     FoodsQuantityEditDialogComponent,
+    CustomFoodsDeleteDialogComponent,
   ],
   imports: [
     CommonModule,
