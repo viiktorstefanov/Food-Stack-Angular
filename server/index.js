@@ -17,5 +17,5 @@ async function start() {
 
 start();
 
-module.exports = { start };
+module.exports =  start;
 
