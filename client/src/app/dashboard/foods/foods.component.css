@@ -142,5 +142,11 @@
       opacity: 0.8;
     }
   }
+
+  .table-tr.hovered {
+    cursor: pointer;
+    background: #ff6c3b;
+    color: #fff;
+  }
   
   

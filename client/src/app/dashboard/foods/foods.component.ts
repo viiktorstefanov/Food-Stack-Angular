@@ -18,6 +18,7 @@ import { CustomFoodsDeleteDialogComponent } from '../custom-foods-delete-dialog/
 export class FoodsComponent implements OnInit {
   selected: Date | null = null;
   customFoods: Food[] = [];
+  selectedFood: Food | null = null;
   userId: string | undefined;
   private destroy$ = new Subject<void>();
   errors: string[] = [];
@@ -35,6 +36,10 @@ export class FoodsComponent implements OnInit {
   ngOnInit(): void {
     this.userId = this.authService.getUserId;
     this.fetchCustomFoods();
+  }
+
+  onFoodClick(food: Food) {
+    this.selectedFood = food;
   }
 
   fetchCustomFoods() {
@@ -74,6 +79,7 @@ export class FoodsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {
+      this.selectedFood = null;
       this.fetchCustomFoods();
     });
   }
@@ -84,6 +90,7 @@ export class FoodsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {
+      this.selectedFood = null;
       this.fetchCustomFoods();
     });
   }
