@@ -116,6 +116,20 @@ export class DiaryComponent implements OnInit, OnDestroy {
   dateChanged(event: any): void {
     this.dailyFoods = [];
 
+    this.consumedCalories = 0;
+    this.consumedProteins = 0;
+    this.consumedFats = 0;
+    this.consumedCarbohydrates = 0;
+    this.nutritionChartData = {
+      labels: ['Protein', 'Fats', 'Carbs'],
+      datasets: [
+        {
+          data: [this.consumedProteins, this.consumedFats, this.consumedCarbohydrates],
+          backgroundColor: ['#44D07B', '#EA3B04', '#1CCAD7']
+        }
+      ]
+    };
+    
     this.selectedDate = event?.toLocaleDateString('en-GB');
     
     this.fetchAllDailyFoods();
