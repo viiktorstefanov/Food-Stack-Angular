@@ -4,8 +4,6 @@ const expressConfig = require('./config/express');
 const routesConfig = require('./config/routes');
 require('dotenv').config();
 
-start();
-
 async function start() {
     const app = express();
 
@@ -16,4 +14,6 @@ async function start() {
     const PORT = process.env.PORT || 3000;
     app.listen(PORT, () => console.log(`server listen on port: ${PORT}`));
 }
+
+start();
 
