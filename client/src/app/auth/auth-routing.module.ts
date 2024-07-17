@@ -10,6 +10,7 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    canActivate: [registerGuard],
     title: `Foodstack: Login`,
   },
   {
