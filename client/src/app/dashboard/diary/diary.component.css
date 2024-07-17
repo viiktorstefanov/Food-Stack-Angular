@@ -285,3 +285,9 @@
 .nutrition-facts .label span:first-child {
   font-weight: bold;
 }
+
+.table-tr.hovered {
+  cursor: pointer;
+  background: #ff6c3b;
+  color: #fff;
+}

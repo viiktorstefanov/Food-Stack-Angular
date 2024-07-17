@@ -17,7 +17,7 @@
               <span>Description</span>
               <span>Serving</span>
             </div>
-            <div *ngFor="let food of dailyFoods" (click)="onFoodClick(food)" class="table-tr">
+            <div *ngFor="let food of dailyFoods" (click)="onFoodClick(food)" class="table-tr" [ngClass]="{'hovered': selectedFood === food}">
               <span
                 >{{food.name}}
                 <div class="modify-icons">

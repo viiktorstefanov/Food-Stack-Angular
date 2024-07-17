@@ -24,6 +24,7 @@ export class DiaryComponent implements OnInit, OnDestroy {
   consumedFats: number = 0;
   consumedCarbohydrates: number = 0;
   selectedDate: string | undefined;
+  selectedFood: DailyFood | null = null;
   errors: string[] = [];
   private destroy$ = new Subject<void>();
 
@@ -97,6 +98,7 @@ export class DiaryComponent implements OnInit, OnDestroy {
     );
 
     this.showNutrinitonFacts = true;
+    this.selectedFood = food;
   }
 
   dateChanged(event: any): void {
@@ -152,6 +154,7 @@ export class DiaryComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(() => {
       this.showNutrinitonFacts = false;
+      this.selectedFood = null;
       this.fetchAllDailyFoods();
     });
   }
@@ -163,6 +166,7 @@ export class DiaryComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(() => {
       this.showNutrinitonFacts = false;
+      this.selectedFood = null;
       this.fetchAllDailyFoods();
     });
   }
