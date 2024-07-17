@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { LogoutComponent } from './logout/logout.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { registerGuard } from '../guards/register.guard';
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
+    canActivate: [registerGuard],
     title: `Foodstack: Register`,
   },
   {

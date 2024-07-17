@@ -1,4 +1,4 @@
 export const environment = {
     USER_KEY: 'userData',
-    apiUrl: 'http://localhost:5000'
+    apiUrl: 'https://food-stack-angular.onrender.com'
 };
