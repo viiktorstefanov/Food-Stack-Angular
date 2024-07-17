@@ -1,7 +1,6 @@
 const User = require("../models/user");
 const Food = require("../models/food");
 const DailyFood = require("../models/dailyFood");
-const moment = require('moment');
 
 const { Types } = require("mongoose");
 
@@ -68,7 +67,7 @@ async function getUserDailyFoods(userId, date) {
 
         if (isValidId) {
             const foundFood = await Food.findById(dailyFood.foodId);
-      
+            
             food = {
                 macronutrients: { protein: foundFood.nutrients.protein, carbohydrates: foundFood.nutrients.carbohydrates, fat: foundFood.nutrients.fat},
                 _id : foundFood._id,
@@ -80,6 +79,7 @@ async function getUserDailyFoods(userId, date) {
 
         } else {
             const foundFood = await searchFoodByIdFromAPI(dailyFood.foodId);
+           
             food = {
                 macronutrients: { protein: foundFood.nutrients.protein, carbohydrates: foundFood.nutrients.carbohydrates, fat: foundFood.nutrients.fat},
                 _id : foundFood.foodId,
@@ -89,7 +89,7 @@ async function getUserDailyFoods(userId, date) {
                 api: true,
             }
         }
-
+    
         return food;
     });
 

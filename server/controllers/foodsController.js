@@ -4,7 +4,6 @@ const { searchFoodsAPI, getUserCustomFoods, searchUserCustomFoods, addUserCustom
 
 const { parseError } = require('../utils/parseError');
 
-
 foodsController.get("/", async (req, res) => {
     try {
        //http://localhost:5000/foods/?item=apple
@@ -118,7 +117,5 @@ foodsController.delete('/custom/:id', async (req, res) => {
         res.status(400).json({ message });
     }
 });
-
-
 
 module.exports = foodsController;

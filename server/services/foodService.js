@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const Food = require("../models/food");
+const DailyFood = require("../models/dailyFood");
 
 require("dotenv").config();
 const axios = require("axios");
@@ -137,7 +138,7 @@ async function addUserCustomFood(userId, foodData) {
               fat: foodData.fat,
           }
       });
-      console.log(newCustomFood);
+
       return newCustomFood;
 };
 
@@ -159,6 +160,11 @@ async function deleteUserCustomFood(userId, foodId) {
   if (!deletedFood) {
       throw new Error('Food not found');
   }
+
+  const deleteFoodFromDailyEntries = await DailyFood.updateMany(
+    { userId, 'foods.foodId': foodId },
+    { $pull: { foods: { foodId } } }
+);
 };
 
 async function editUserCustomFood(userId, foodData) {
