@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "express api",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
@@ -10,7 +10,7 @@
     "node": "18"
   },
   "keywords": [],
-  "author": "",
+  "author": "viktor stefanov",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.6.8",
