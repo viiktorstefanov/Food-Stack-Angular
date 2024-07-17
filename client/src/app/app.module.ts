@@ -21,7 +21,7 @@ import { appInterceptorProvider } from './app.interceptor';
     HttpClientModule,
     CoreModule,
     SharedModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
   ],
   providers: [
     appInterceptorProvider,

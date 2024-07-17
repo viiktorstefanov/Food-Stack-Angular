@@ -22,7 +22,7 @@
                 <span>Description</span>
                 <span></span>
             </div>
-            <div (click)="onFoodClick(food)" class="table-tr" *ngFor="let food of searchResults">
+            <div (click)="onFoodClick(food)" class="table-tr" *ngFor="let food of searchResults" [ngClass]="{'hovered': selectedFood === food}">
                 <span>{{food.label}}</span>
                 <span></span>
             </div>

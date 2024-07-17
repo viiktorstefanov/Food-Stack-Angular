@@ -260,4 +260,9 @@
   margin-right: 5px;
 }
 
+.table-tr.hovered {
+  cursor: pointer;
+  background: #ff6c3b;
+  color: #fff;
+}
 

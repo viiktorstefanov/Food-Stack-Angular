@@ -15,6 +15,7 @@ import { FoodsDeleteDialogComponent } from './foods-delete-dialog/foods-delete-d
 import { FoodsQuantityEditDialogComponent } from './foods-quantity-edit-dialog/foods-quantity-edit-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CustomFoodsDeleteDialogComponent } from './custom-foods-delete-dialog/custom-foods-delete-dialog.component';
+import { ChartModule } from 'primeng/chart';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { CustomFoodsDeleteDialogComponent } from './custom-foods-delete-dialog/c
     MatDatepickerModule,
     MatCardModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ChartModule
   ],
   providers: [
     provideNativeDateAdapter(),

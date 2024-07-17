@@ -16,6 +16,7 @@ import { NutritionFacts } from '../types/NutritionFacts';
   styleUrl: './diary.component.css',
 })
 export class DiaryComponent implements OnInit, OnDestroy {
+  nutritionChartData: any;
   dailyFoods: DailyFood[] = [];
   selected: string | null = null;
 
@@ -41,6 +42,7 @@ export class DiaryComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+
     const currentDate = new Date().toLocaleDateString('en-GB');
     this.selectedDate = currentDate;
 
@@ -72,6 +74,16 @@ export class DiaryComponent implements OnInit, OnDestroy {
     this.consumedProteins = totalProteins;
     this.consumedFats = totalFats;
     this.consumedCarbohydrates = totalCarbohydrates;
+
+    this.nutritionChartData = {
+      labels: ['Protein', 'Fats', 'Carbs'],
+      datasets: [
+        {
+          data: [this.consumedProteins, this.consumedFats, this.consumedCarbohydrates],
+          backgroundColor: ['#44D07B', '#EA3B04', '#1CCAD7']
+        }
+      ]
+    };
   }
 
   onFoodClick(food: DailyFood) {

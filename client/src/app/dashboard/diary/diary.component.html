@@ -40,12 +40,7 @@
   </div>
   <div class="diary-result-container">
     <div class="charts">
-      <div class="chart">
-        <div class="inner-circle">
-          <span class="centered-text">Consumed</span>
-          <span class="sub-text">{{ consumedCalories }} kcal</span>
-        </div>
-      </div>
+      <p-chart type="doughnut" [data]="nutritionChartData"></p-chart>
     </div>
     <div class="results">
       <div class="result-energy">
