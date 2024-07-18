@@ -32,7 +32,7 @@ export class AuthService implements OnDestroy {
   }
 
   constructor(private http: HttpClient) { 
-    const storedUser = sessionStorage.getItem(this.USER_KEY);
+    const storedUser = sessionStorage.getItem(this.USER_KEY) || localStorage.getItem(this.USER_KEY);
 
     if(storedUser) {    
       this.$$user.next(JSON.parse(storedUser));
@@ -57,10 +57,12 @@ export class AuthService implements OnDestroy {
     this.$$user.next(user);
     
     sessionStorage.setItem(this.USER_KEY, JSON.stringify(user));
+    localStorage.setItem(this.USER_KEY,JSON.stringify(user));
   };
 
   clearUser() {
     sessionStorage.removeItem(this.USER_KEY);
+    localStorage.removeItem(this.USER_KEY);
   };
 
   resetUserPassword(email: string) : Observable<any> {
