@@ -1,6 +1,6 @@
 # <a align="center" href="https://foodstack-8524b.web.app/home">Foodstack</a>
 
-<a align="center" href="https://www.youtube.com/watch?v=InMo2uwrvgg">Video Review</a>
+<!-- <a align="center" href="https://www.youtube.com/watch?v=InMo2uwrvgg">Video Review</a> -->
 
 <!-- # [![Video Review](https://img.youtube.com/vi/InMo2uwrvgg/0.jpg)](https://www.youtube.com/watch?v=InMo2uwrvgg) -->
 
