@@ -7,6 +7,7 @@ import { PaginatorComponent } from './paginator/paginator.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import {MatIconModule} from '@angular/material/icon'; 
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [HomeNavComponent, HomeFooterComponent, PaginatorComponent, SideNavComponent],
@@ -14,7 +15,8 @@ import {MatIconModule} from '@angular/material/icon';
     CommonModule,
     RouterModule,
     MatPaginatorModule,
-    MatIconModule
+    MatIconModule,
+    MatTooltipModule
   ],
   exports: [HomeNavComponent, HomeFooterComponent, PaginatorComponent, SideNavComponent]
 })

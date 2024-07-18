@@ -10,9 +10,10 @@
         (click)="toggleCollapse()"
         src="assets/icon/small-logo.png"
         alt="no-img"
+        matTooltip="Toggle Sidebar"
       />
       <div class="logo-text" *ngIf="collapsed"></div>
-      <button class="btn-close" *ngIf="collapsed" (click)="closeSideNav()">
+      <button class="btn-close" *ngIf="collapsed" (click)="closeSideNav()" matTooltip="Close Sidebar">
         <i class="fal fa-times close-icon"></i>
       </button>
     </div>
@@ -23,6 +24,7 @@
           [routerLink]="data.routerLink"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
+          [matTooltip]="data.label"
         >
           <i class="side-nav-icon" [class]="data.icon"></i>
           <span class="side-nav-link-text" *ngIf="collapsed">{{
