@@ -2,7 +2,9 @@
 
 <a align="center" href="https://www.youtube.com/watch?v=InMo2uwrvgg">Video Review</a>
 
-# [![Video Review](https://img.youtube.com/vi/InMo2uwrvgg/0.jpg)](https://www.youtube.com/watch?v=InMo2uwrvgg)
+<!-- # [![Video Review](https://img.youtube.com/vi/InMo2uwrvgg/0.jpg)](https://www.youtube.com/watch?v=InMo2uwrvgg) -->
+
+[![Watch the video](https://img.youtube.com/vi/InMo2uwrvgg/0.jpg)](https://www.youtube.com/watch?v=InMo2uwrvgg)
 
 #### Front-end:
 <p align="left">
