@@ -40,9 +40,10 @@ authController.post('/login', async(req, res) => {
 
 authController.get('/logout', async(req, res) => {
     try {
+        const user = JSON.parse(req.headers.user);
         const accessToken = req.headers.authorization?.split(' ')[1];
         await logout(accessToken);
-        console.log(`User has logged out`);
+        console.log(`${user.email} has logged out`);
         res.status(204).end();
     } catch (error) {
             const message = parseError(error);
