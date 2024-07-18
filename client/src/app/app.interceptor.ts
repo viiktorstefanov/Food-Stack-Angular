@@ -22,7 +22,9 @@ import {
   
     errors: string[] = [];
   
-    constructor(private AuthService: AuthService, private router: Router, private toastr: ToastrService,) {}
+    constructor(private AuthService: AuthService, private router: Router, private toastr: ToastrService) {
+
+    }
   
     intercept(
       req: HttpRequest<any>,
@@ -62,7 +64,6 @@ import {
         catchError((err) => {
           if (err.status === 401) {
             this.AuthService.clearUser();
-            // this.router.navigate(['home']);
             this.errors = [];
             this.errors.push(err.error.message);
             this.errors.forEach(error => this.toastr.error(error, 'Error'));  
