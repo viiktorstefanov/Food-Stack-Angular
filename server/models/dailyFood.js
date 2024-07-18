@@ -1,7 +1,7 @@
 const { Schema, model, Types } = require('mongoose');
 
 const dailyFoodSchema = new Schema({
-    date: { type: String, required: [true, 'Date is required'], unique: true },
+    date: { type: String, required: [true, 'Date is required'] },
     userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     foods: [
         {

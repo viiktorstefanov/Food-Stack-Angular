@@ -31,9 +31,6 @@ async function searchUserCustomFoods(userId, query) {
 
   const userCustomFoods = await Food.find({ ownerId: userId, label: regex });
 
-
-  // const filteredFoods = userCustomFoods.filter(food => regex.test(food.label));
-
   const foods = userCustomFoods.map((food) => {
     return {
       foodId: food._id.toString(),

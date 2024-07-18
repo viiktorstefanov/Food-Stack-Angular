@@ -7,14 +7,15 @@ const { Types } = require("mongoose");
 const { searchFoodByIdFromAPI } = require("./foodService");
 
 async function addUserDailyFood(userId, foodId, date, quantity) {
-  let food = undefined;
-
+  
   const user = await User.findById(userId);
-
+  
   if (!user) {
     throw new Error("User not found");
   }
-
+  
+  let food = undefined;
+  
   const isValidId = Types.ObjectId.isValid(foodId);
  
   if (isValidId) {
