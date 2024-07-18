@@ -27,13 +27,14 @@ async function searchUserCustomFoods(userId, query) {
     throw new Error("User not found");
   }
 
-  const userCustomFoods = await Food.find({ ownerId: userId });
-
   const regex = new RegExp(query, 'i');
 
-  const filteredFoods = userCustomFoods.filter(food => regex.test(food.label));
+  const userCustomFoods = await Food.find({ ownerId: userId, label: regex });
 
-  const foods = filteredFoods.map((food) => {
+
+  // const filteredFoods = userCustomFoods.filter(food => regex.test(food.label));
+
+  const foods = userCustomFoods.map((food) => {
     return {
       foodId: food._id.toString(),
       label: food.label,
