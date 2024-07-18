@@ -30,7 +30,7 @@ export class ArchivesComponent implements OnInit, OnDestroy {
       next: (allBlogs) => {
         this.blogList = allBlogs;
         this.paginator.length = this.blogList.length;
-        this.updateDisplayedPlaces();
+        this.updateDisplayedBlogs();
       },
       error: (err) => {
         if (err.status === 0) {
@@ -44,19 +44,18 @@ export class ArchivesComponent implements OnInit, OnDestroy {
     });
   };
 
+  onPageChange(event: PageEvent) {
+    this.updateDisplayedBlogs();
+  };
+
+  private updateDisplayedBlogs() {
+    const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
+    const endIndex = startIndex + this.paginator.pageSize;
+    this.displayedBlogs = this.blogList.slice(startIndex, endIndex);
+  };
 
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
-  };
-
-  onPageChange(event: PageEvent) {
-    this.updateDisplayedPlaces();
-  };
-
-  private updateDisplayedPlaces() {
-    const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
-    const endIndex = startIndex + this.paginator.pageSize;
-    this.displayedBlogs = this.blogList.slice(startIndex, endIndex);
   };
 }

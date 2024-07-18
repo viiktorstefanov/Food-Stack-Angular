@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SideNavService } from '../../shared/side-nav/side-nav.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddFoodDialogComponent } from '../add-food-dialog/add-food-dialog.component';
@@ -15,7 +15,7 @@ import { CustomFoodsDeleteDialogComponent } from '../custom-foods-delete-dialog/
   templateUrl: './foods.component.html',
   styleUrl: './foods.component.css',
 })
-export class FoodsComponent implements OnInit {
+export class FoodsComponent implements OnInit, OnDestroy {
   selected: Date | null = null;
   customFoods: Food[] = [];
   selectedFood: Food | null = null;
@@ -93,5 +93,10 @@ export class FoodsComponent implements OnInit {
       this.selectedFood = null;
       this.fetchCustomFoods();
     });
+  };
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

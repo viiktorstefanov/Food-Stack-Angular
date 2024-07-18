@@ -143,8 +143,17 @@ export class FoodsDialogComponent implements OnInit, OnDestroy{
   }
 
   ngOnDestroy(): void {
-    this.searchSubscription?.unsubscribe();
-    this.quantitySubscription?.unsubscribe();
+    if(this.searchSubscription) {
+      this.searchSubscription?.unsubscribe();
+    }
+
+    if(this.quantitySubscription) {
+      this.quantitySubscription?.unsubscribe();
+    }
+   
+    if(this.submitSubscription) {
+      this.submitSubscription?.unsubscribe();
+    }
   }
 };
 
