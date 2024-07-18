@@ -1,7 +1,5 @@
 # <a align="center" href="https://foodstack-8524b.web.app/home">Foodstack</a>
 
-[![Watch the video](https://img.youtube.com/vi/InMo2uwrvgg/0.jpg)](https://www.youtube.com/watch?v=InMo2uwrvgg)
-
 #### Front-end:
 <p align="left">
   <a>
@@ -15,6 +13,8 @@
     <img src="https://skillicons.dev/icons?i=nodejs,express,mongodb" />
   </a>
 </p>
+
+[![Watch the video](https://img.youtube.com/vi/InMo2uwrvgg/0.jpg)](https://www.youtube.com/watch?v=InMo2uwrvgg)
 
 ## Table of Contents
 
