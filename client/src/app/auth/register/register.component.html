@@ -22,10 +22,10 @@
                     class="error"
                   >
                     <div *ngIf="firstName.errors?.['required']">
-                      First name is required
+                      Enter your first name.
                     </div>
                     <div *ngIf="firstName.errors?.['minlength']">
-                        First name be at least 3 symbols
+                      Ensure your first name is at least 3 characters.
                     </div>
                   </small>
             <div class="account-info-row">
@@ -44,9 +44,9 @@
                   class="error"
                 >
                   <div *ngIf="email.errors?.['required']">
-                    Email is required
+                    Enter your email address.
                   </div>
-                  <div *ngIf="email.errors?.['pattern']">Email is invalid</div>
+                  <div *ngIf="email.errors?.['pattern']">Enter a valid email address.</div>
                 </small>
             <div class="account-info-row">
                 <label class="label">New Password</label>
@@ -62,11 +62,12 @@
                   class="error"
                 >
                   <div *ngIf="password.errors?.['required']">
-                    Password is required
+                    Enter your password.
                   </div>
                   <div *ngIf="password.errors?.['minlength']">
-                    Password must be at least 8 symbols
+                    Ensure your password is at least 8 characters.
                   </div>
+                  <div *ngIf="password.errors?.['strong']">Password must contain uppercase, lowercase, number and a special character.</div>
                 </small>
           </div>
           <div class="container-account-info">

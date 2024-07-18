@@ -4,6 +4,7 @@ import { AuthService } from '../auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { PasswordValidator } from './registerValidator';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,7 @@ export class RegisterComponent implements OnDestroy{
   form = this.fb.group({
     firstName: ['', [Validators.required, Validators.minLength(3)]],
     email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]],
-    password: ['', [Validators.required, Validators.minLength(8)]],
+    password: ['', [Validators.required, Validators.minLength(8), PasswordValidator.strong]],
     gender: ['', [Validators.required]],
     height: ['', [Validators.required]],
     weight: ['', [Validators.required]]
@@ -31,12 +32,27 @@ export class RegisterComponent implements OnDestroy{
 
   submitHandler() : void {
 
+    const { firstName, email, password, weight, height, gender } = this.form.value;
+
+    if(!gender) {
+      this.toastr.error('Please select your gender.', 'Error');
+      return;
+    }
+
+    if(!height) {
+      this.toastr.error('Please enter your height.', 'Error');
+      return;
+    }
+
+    if(!weight) {
+      this.toastr.error('Please enter your weight.', 'Error');
+      return;
+    }
+
     if (this.form.invalid) {
-      this.toastr.error('All fields are required', 'Error');
+      this.toastr.error('All fields are required.', 'Error');
        return;
     };
-
-    const { firstName, email, password, weight, height, gender } = this.form.value;
     
     this.registerSubscription = this.authService.register(firstName!, email!, password!, gender!, height!, weight!).subscribe({
       next: (user) => {
@@ -87,5 +103,4 @@ export class RegisterComponent implements OnDestroy{
       this.registerSubscription.unsubscribe();
     }
   };
-
 }

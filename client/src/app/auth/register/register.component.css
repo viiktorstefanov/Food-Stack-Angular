@@ -134,6 +134,7 @@
 }
 
 .submit-btn {
+  font-family: 'Roboto';
   margin: 20px;
   width: 244px;
   text-align: center;
@@ -157,6 +158,11 @@
   color: #f02849;
   font-size: 14px;
   letter-spacing: 0.5px;
+  font-family: 'Roboto';
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .error div{
