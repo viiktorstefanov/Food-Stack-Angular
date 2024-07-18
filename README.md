@@ -2,7 +2,7 @@
 
 <a align="center" href="https://www.youtube.com/watch?v=InMo2uwrvgg">Video Review</a>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/InMo2uwrvgg?si=1Sh-Ei3nyBIMzkGt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+# [![Video Review](https://img.youtube.com/vi/InMo2uwrvgg/0.jpg)](https://www.youtube.com/watch?v=InMo2uwrvgg)
 
 #### Front-end:
 <p align="left">
