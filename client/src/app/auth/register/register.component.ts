@@ -40,7 +40,7 @@ export class RegisterComponent implements OnDestroy{
     
     this.registerSubscription = this.authService.register(firstName!, email!, password!, gender!, height!, weight!).subscribe({
       next: (user) => {
-        this.toastr.success('Register successful. You are now signed in');
+        this.toastr.success('You are now signed in');
         
         this.router.navigate(['/home']);
       },

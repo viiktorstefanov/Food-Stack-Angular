@@ -16,7 +16,7 @@ export const featuresItems = [
     },
     {
         image: 'assets/images/carrot.png',
-        header: 'Improve your health knowledge',
+        header: 'Improve your knowledge',
         text: `Empower your well-being.`,
     },
 ]
