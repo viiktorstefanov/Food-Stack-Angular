@@ -1,9 +1,11 @@
+require('dotenv').config();
+
 const User = require("../models/user");
 
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const secret = process.env.SECRET;
 
-const secret = 'm0sTD@ng3rouSPa$$worD1995';
 const tokenBlackList = new Set();
 
 async function register(email, password, firstName, gender, height, weight) {
