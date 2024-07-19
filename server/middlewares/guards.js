@@ -22,5 +22,4 @@ function isGuest() {
 module.exports = {
     hasUser,
     isGuest,
-    isAuthenticated
 }
