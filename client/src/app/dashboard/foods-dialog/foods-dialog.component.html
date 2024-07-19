@@ -19,7 +19,7 @@
   <div class="dialog-content" *ngIf="searchResults && searchResults.length > 0">
         <div class="content-table">
             <div class="table-tr-head">
-                <span>Description</span>
+                <span style="font-weight: bold;">Description</span>
                 <span></span>
             </div>
             <div (click)="onFoodClick(food)" class="table-tr" *ngFor="let food of searchResults" [ngClass]="{'hovered': selectedFood === food}">

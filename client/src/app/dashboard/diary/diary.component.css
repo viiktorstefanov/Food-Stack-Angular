@@ -98,6 +98,7 @@
 
 .charts {
   display: flex;
+  font-family: "Roboto";
 }
 
 .chart {
@@ -148,6 +149,7 @@
   justify-content: center;
   width: 600px;
   gap: 15px;
+  font-family: "Roboto";
 }
 
 .result-energy {
@@ -178,7 +180,7 @@
   margin-top: 3.5rem;
   max-height: 600px;
   height: 80%;
-  font-family: Lato;
+  font-family: "Roboto";
 }
 
 .content-table {

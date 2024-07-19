@@ -86,7 +86,8 @@
 .dialog-content{
     margin-top: 3.5rem;
     max-height: 600px;
-    height: 80%
+    height: 80%;
+    font-family: "Roboto";
 }
 
 .dialog-content-table {
@@ -145,12 +146,13 @@
     display: flex;
     justify-content: space-between;
     padding: 20px 10px;
+    font-family: "Roboto";
   }
-  
+ 
   .chart {
     width: 150px; 
     height: 150px; 
-    background-color: #3498db; 
+    background-color: #ff6c3b; 
     border-radius: 50%; 
     position: relative; 
   }
@@ -171,7 +173,7 @@
   }
   
   .sub-text {
-    font-family: Lato;
+    font-family: "Roboto";
     color: #000; 
     font-size: 18px; 
     margin-top: 10px; 
@@ -189,7 +191,7 @@
  }
 
  .fa-circle{
-    color: #3498db;
+    color: #ff6c3b;
     font-size: 10px;
  }
 
@@ -238,6 +240,10 @@
     font-family: Lato;
 }
 
+.food-add button {
+  font-family: "Roboto";
+}
+
 .food-add-form {
     display: flex;
     flex-direction: column;
@@ -248,6 +254,7 @@
 
 .serving {
     display: flex;
+    font-family: "Roboto";
 }
 
 .serving label {    
