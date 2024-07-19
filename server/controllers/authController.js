@@ -1,10 +1,12 @@
 const { register, login, logout, reset } = require('../services/userService');
 const { body, validationResult } = require('express-validator');
 const { parseError } = require('../utils/parseError');
+const { isGuest, hasUser } = require('../middlewares/guards');
 
 const authController = require('express').Router();
 
 authController.post('/register',
+    isGuest(),
     body('email').isEmail().withMessage('Enter a valid email address.'),
     body('password').isLength({ min: 8 }).withMessage('Enter a password with a minimum of 8 characters.'),
     async (req, res) => {
@@ -27,7 +29,7 @@ authController.post('/register',
         }
 });
 
-authController.post('/login', async(req, res) => {
+authController.post('/login', isGuest(), async(req, res) => {
     try {
         const userWithTokens = await login(req.body.email, req.body.password);
         res.json(userWithTokens).end();
@@ -43,7 +45,7 @@ authController.post('/login', async(req, res) => {
     }
 });
 
-authController.get('/logout', async(req, res) => {
+authController.get('/logout', hasUser(), async(req, res) => {
     try {
         const user = JSON.parse(req.headers.user);
         const accessToken = req.headers.authorization?.split(' ')[1];
@@ -62,6 +64,7 @@ authController.get('/logout', async(req, res) => {
 });
 
 authController.post('/forgot-password',
+    isGuest(),
     body('email').isEmail().withMessage('Invalid email'),
     async (req, res) => {
         try {
