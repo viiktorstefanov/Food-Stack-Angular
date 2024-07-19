@@ -42,7 +42,7 @@ import {
       if (userData) {
         req = req.clone({
         setHeaders: {
-          'M-Authorization': JSON.stringify(userData.accessToken),
+          'F-Authorization': JSON.stringify(userData.accessToken),
           'user' : JSON.stringify(userData),
         }
         });
