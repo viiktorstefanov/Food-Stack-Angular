@@ -6,9 +6,9 @@ const databaseConfig = async () => {
             useUnifiedTopology: true,
             useNewUrlParser: true
         });
-        console.log('database is connected');
+        console.log('Database is successfully connected.');
     } catch(err) {
-        console.log('Error with initializing database !');
+        console.log('Error with initializing database.');
         console.log(err.message);
         process.exit(1);
     }

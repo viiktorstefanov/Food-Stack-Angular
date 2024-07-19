@@ -12,7 +12,7 @@ async function start() {
     routesConfig(app);
 
     const PORT = process.env.PORT || 3000;
-    app.listen(PORT, () => console.log(`server listen on port: ${PORT}`));
+    app.listen(PORT, () => console.log(`Server is listening on port: ${PORT}`));
 }
 
 start();

@@ -15,7 +15,7 @@ foodsController.get("/", async (req, res) => {
         const query = req.query.item.toLocaleLowerCase();
 
         if (query.length <= 0) {
-            throw new Error('Query parameter is empty');
+            throw new Error('Type the name of the food you want to search.');
         }
 
         const user = JSON.parse(req.headers.user);
@@ -28,12 +28,12 @@ foodsController.get("/", async (req, res) => {
         const combinedResults = [...resultCustomFoods, ...resultFoodsAPI];
         
         if(combinedResults.length === 0) {
-            throw new Error('No results found')
+            throw new Error('No matches found.')
         };
 
         res.json(combinedResults).end();
    
-        console.log(`Found foods for query: ${query} were sent`);
+        console.log(`Found foods for query: ${query} were sent to ${user.email}`);
 
     } catch (error) {
       const message = parseError(error);
@@ -54,11 +54,16 @@ foodsController.get('/custom/:id', async (req, res) => {
 
         res.json(result).end();
 
-        console.log(`${user.email}'s custom foods were sent`);
+        console.log(`${user.email}'s custom foods have been sent.`);
 
     } catch (error) {
         const message = parseError(error);
-        res.status(400).json({ message });
+      console.log(message);
+      if (message.includes("\n")) {
+        const errors = message.split("\n");
+        return res.status(400).json({ message: errors }).end();
+      }
+      res.status(400).json({ message }).end();
     }
 });
 
@@ -68,18 +73,23 @@ foodsController.post('/add', async (req, res) => {
             const food = req.body.food;
 
             if(!req.body || req.body.length <= 0) {
-                throw new Error('Please, enter your new food');
+                throw new Error('Enter the information for your new food.');
             };
 
             const newCustomFood = await addUserCustomFood(user._id, food);
 
             res.status(204).end();
 
-            console.log(`${user.email} added a new custom food with name: ${newCustomFood.label}` );
+            console.log(`${user.email} has added a new custom food named: ${newCustomFood.label}.` );
         
     } catch (error) {
         const message = parseError(error);
-        res.status(400).json({ message });
+      console.log(message);
+      if (message.includes("\n")) {
+        const errors = message.split("\n");
+        return res.status(400).json({ message: errors }).end();
+      }
+      res.status(400).json({ message }).end();
     }
 });
 
@@ -93,11 +103,16 @@ foodsController.put('/custom/:id', async (req, res) => {
 
             res.json(editedCustomFood).end();
             
-            console.log(`${user.email} edited custom food with id ${foodId}`);
+            console.log(`${user.email} has made changes to custom food ${foodId}.`);
         
     } catch (error) {
         const message = parseError(error);
-        res.status(400).json({ message });
+      console.log(message);
+      if (message.includes("\n")) {
+        const errors = message.split("\n");
+        return res.status(400).json({ message: errors }).end();
+      }
+      res.status(400).json({ message }).end();
     }
 });
 
@@ -110,11 +125,16 @@ foodsController.delete('/custom/:id', async (req, res) => {
         
             res.status(204).end();
             
-            console.log(`${user.email} deleted custom food with id ${foodId}`);
+            console.log(`${user.email} has deleted the custom food with ${foodId}.`);
         
     } catch (error) {
         const message = parseError(error);
-        res.status(400).json({ message });
+        console.log(message);
+        if (message.includes("\n")) {
+          const errors = message.split("\n");
+          return res.status(400).json({ message: errors }).end();
+        }
+        res.status(400).json({ message }).end();
     }
 });
 

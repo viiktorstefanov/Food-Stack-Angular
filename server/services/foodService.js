@@ -11,10 +11,11 @@ const API_URL = process.env.API_URL;
 
 //food
 async function getUserCustomFoods(userId) {
+
   const customFoods = await Food.find({ ownerId: userId });
 
   if (!customFoods) {
-    throw new Error("Custom foods not found");
+    throw new Error("No custom foods were found.");
   }
 
   return customFoods;

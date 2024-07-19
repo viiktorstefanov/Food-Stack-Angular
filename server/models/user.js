@@ -1,12 +1,12 @@
 const { Schema, model } = require('mongoose');
 
 const userSchema = new Schema({
-    email: { type: String, required: [true, 'Email is required'], minlength: [9, 'Email should be at least 9 characters long'], unique: [true, 'Email is already used']  }, 
+    email: { type: String, required: [true, 'Email is missing'], minlength: [9, 'Email should be at least 9 characters long'], unique: [true, 'Email address is already taken']  }, 
     hashedPassword: { type: String, required: true },
-    firstName: { type: String, required: [true, 'First name is required'] },
-    gender: { type: String, enum: ['male', 'female'], required: [true, 'Gender is required'] },
-    height: { type: Number, required: [true, 'Height is required'], minlength: [3, 'Height should be at least 3 numbers'], maxlength: [3, 'Height can be max 3 numbers'] }, 
-    weight: { type: Number, required: [true, 'Weight is required'], maxlength: [3, 'Weight can be max 3 numbers'] },
+    firstName: { type: String, required: [true, 'First name is missing'] },
+    gender: { type: String, enum: ['male', 'female'], required: [true, 'Gender is missing'] },
+    height: { type: Number, required: [true, 'Height is missing'], minlength: [3, 'Enter a height that has a minimum of 3 digits'], maxlength: [3, 'Enter a height with no more than 3 digits'] }, 
+    weight: { type: Number, required: [true, 'Weight is missing'], maxlength: [3, 'Enter a weight with no more than 3 digits'] },
 });
 
 userSchema.index({ email: 1 }, {

@@ -59,7 +59,7 @@ async function getUserDailyFoods(userId, date) {
     const dailyEntries = await DailyFood.findOne({ date, userId });
 
     if(!dailyEntries) {
-      throw new Error('There are no daily food entries added');
+      throw new Error(`There are no food entries for ${date}`);
     }
     
     const foodPromises = dailyEntries.foods.map(async dailyFood => {
@@ -100,13 +100,14 @@ async function getUserDailyFoods(userId, date) {
 }
 
 async function removeUserDailyFoods(userId, date, foodId) {
+  const user = await User.findById(userId);
      await DailyFood.findOneAndUpdate(
         { date, userId }, 
         { $pull: { 'foods': { foodId } } },
         { new: true } 
     );  
 
-    console.log(`Successfully removed food with foodId ${foodId} for userId ${userId} on date ${date}`);
+    console.log(`Successfully removed food with foodId ${foodId} for ${user.email} on date ${date}`);
 }
 
 async function editUserDailyFood(userId, date, foodId, quantity) {

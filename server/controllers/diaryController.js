@@ -77,6 +77,8 @@ diaryController.delete("/", async (req, res) => {
     const result = await removeUserDailyFoods(userId, date, foodId);
 
     res.status(204).end();
+
+    console.log(`${user.email} has deleted the daily entry for food ${foodId} on ${date}.`)
     
   } catch (error) {
     const message = parseError(error);
@@ -112,7 +114,7 @@ diaryController.put("/", async (req, res) => {
     res.json(editedDailyFood).end();
     
     console.log(
-      `Food with id ${foodId} quantity edited for ${user.email} for ${date}`
+      `${user.email} has edited the quantity of food ${foodId} for ${date}.`
     );
   } catch (error) {
     const message = parseError(error);

@@ -12,7 +12,7 @@ async function register(email, password, firstName, gender, height, weight) {
     const existing = await User.findOne({ email }).collation({ locale: 'en', strength: 2 });
 
     if (existing) {
-        throw new Error('Email already used')
+        throw new Error('Email address is already taken')
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);

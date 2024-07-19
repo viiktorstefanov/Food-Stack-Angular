@@ -5,8 +5,8 @@ const { parseError } = require('../utils/parseError');
 const authController = require('express').Router();
 
 authController.post('/register',
-    body('email').isEmail().withMessage('Invalid email'),
-    body('password').isLength({ min: 8 }).withMessage('Password must be at least 8 characters long'),
+    body('email').isEmail().withMessage('Enter a valid email address.'),
+    body('password').isLength({ min: 8 }).withMessage('Enter a password with a minimum of 8 characters.'),
     async (req, res) => {
         try {
             const { errors } = validationResult(req);
@@ -15,7 +15,7 @@ authController.post('/register',
             }
             const userWithTokens = await register(req.body.email, req.body.password, req.body.firstName, req.body.gender, req.body.height, req.body.weight);
             res.json(userWithTokens).end();
-            console.log(`new User ${req.body.email} registred`);
+            console.log(`User ${req.body.email} successfully registered.`);
         } catch (error) {
             const message = parseError(error);
             console.log(message);
@@ -31,10 +31,15 @@ authController.post('/login', async(req, res) => {
     try {
         const userWithTokens = await login(req.body.email, req.body.password);
         res.json(userWithTokens).end();
-        console.log(`User ${req.body.email} has logged in`);
+        console.log(`${req.body.email} has successfully signed in.`);
     } catch (error) {
         const message = parseError(error);
-        res.status(401).json({ message }).end();
+    console.log(message);
+    if (message.includes("\n")) {
+      const errors = message.split("\n");
+      return res.status(400).json({ message: errors }).end();
+    }
+    res.status(400).json({ message }).end();
     }
 });
 
@@ -43,11 +48,16 @@ authController.get('/logout', async(req, res) => {
         const user = JSON.parse(req.headers.user);
         const accessToken = req.headers.authorization?.split(' ')[1];
         await logout(accessToken);
-        console.log(`${user.email} has logged out`);
+        console.log(`${user.email} has signed out.`);
         res.status(204).end();
     } catch (error) {
-            const message = parseError(error);
-            res.status(401).json({ message }).end();
+        const message = parseError(error);
+        console.log(message);
+        if (message.includes("\n")) {
+          const errors = message.split("\n");
+          return res.status(400).json({ message: errors }).end();
+        }
+        res.status(400).json({ message }).end();
     }
 });
 
@@ -64,7 +74,7 @@ authController.post('/forgot-password',
             
             res.status(200).json({ message: 'Password reset instructions sent to your email' }).end();
             
-            console.log(`Password reset initiated for ${req.body.email}`);
+            console.log(`A password reset has been requested for ${req.body.email}.`);
         } catch (error) {
             const message = parseError(error);
             console.log(message);
