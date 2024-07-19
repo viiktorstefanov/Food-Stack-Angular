@@ -140,6 +140,7 @@
 }
 
 .error {
+  font-family: 'Roboto';
   margin-left: 10%;
   color: #f02849;
   font-size: 14px;

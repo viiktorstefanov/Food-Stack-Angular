@@ -24,7 +24,7 @@ export class LogoutComponent  implements OnInit, OnDestroy {
       next: () => {
         this.authService.clearUser();
         this.router.navigate(['/home']);
-        this.toastr.success('You have successfully signed out.');
+        this.toastr.success('Logout successful.');
       },
       error: (err) => {
         if(err.status === 0) {

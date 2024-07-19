@@ -19,9 +19,9 @@
                   class="error"
                 >
                   <div *ngIf="email.errors?.['required']">
-                    Email is required
+                    Enter your email address.
                   </div>
-                  <div *ngIf="email.errors?.['pattern']">Email is invalid</div>
+                  <div *ngIf="email.errors?.['pattern']">Enter a valid email address.</div>
                 </small>
                 <label for="password">Password</label>
                 <input
@@ -38,10 +38,7 @@
                   class="error"
                 >
                   <div *ngIf="password.errors?.['required']">
-                    Password is required
-                  </div>
-                  <div *ngIf="password.errors?.['minlength']">
-                    Password must be at least 8 symbols
+                    Enter your password.
                   </div>
                 </small>
               </div>
