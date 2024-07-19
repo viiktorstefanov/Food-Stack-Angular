@@ -69,6 +69,10 @@ export class AuthService implements OnDestroy {
     return this.http.post<User>('/api/users/forgot-password', { email });
   }
 
+  changeUserTargetCalories(userId: string, newTargetCalories: number) {
+    return this.http.post<any>(`/api/users/target/${userId}`, { targetCalories: newTargetCalories });
+  }
+
   ngOnDestroy():void {
     this.destroy$.next();
     this.destroy$.complete();
