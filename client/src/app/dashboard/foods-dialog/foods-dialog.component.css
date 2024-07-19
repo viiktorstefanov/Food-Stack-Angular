@@ -5,7 +5,8 @@
     padding: 30px 50px;
     display: flex;
     flex-direction: column;
-    font-family: Lato;
+    font-family: 'Lato';
+    padding-bottom: 5rem;
 }
 
 .dialog-head{

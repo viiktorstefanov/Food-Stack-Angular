@@ -71,25 +71,24 @@ export class AddFoodDialogComponent implements OnInit ,OnDestroy{
     };
 
     if (typeof calories !== 'number') {
-      this.toastr.error('Calories must be a number', 'Error');
+      this.toastr.error('Enter a valid number for Calories.', 'Error');
        return;
     };
 
     if (typeof protein !== 'number') {
-      this.toastr.error('Proteins must be a number', 'Error');
+      this.toastr.error('Enter a valid number for Proteins.', 'Error');
        return;
     };
 
     if (typeof carbs !== 'number') {
-      this.toastr.error('Carbohydrates must be a number', 'Error');
+      this.toastr.error('Enter a valid number for Carbohydrates.', 'Error');
        return;
     };
 
     if (typeof fat !== 'number') {
-      this.toastr.error('Fats must be a number', 'Error');
+      this.toastr.error('Enter a valid number for Fats.', 'Error');
        return;
     };
-
     const customFood = { name , calories, protein, fat, carbohydrates: carbs };
     
     this.foodSubscription = this.dashboardService

@@ -47,27 +47,47 @@ export class FoodsEditDialogComponent implements OnInit,OnDestroy{
     const { name, calories, protein, fat, carbs } = this.form.value;
 
     if (!name) {
-      this.toastr.error('Enter your food name', 'Error');
+      this.toastr.error('Enter the name of your food', 'Error');
+       return;
+    };
+
+    if (!calories) {
+      this.toastr.error('Enter the calorie count for the food.', 'Error');
+       return;
+    };
+
+    if (!protein) {
+      this.toastr.error('Provide the amount of proteins for the food item.', 'Error');
+       return;
+    };
+
+    if (!fat) {
+      this.toastr.error('Provide the amount of fats for the food item.', 'Error');
+       return;
+    };
+
+    if (!carbs) {
+      this.toastr.error('Provide the amount of carbohydrates for the food item.', 'Error');
        return;
     };
 
     if (typeof calories !== 'number') {
-      this.toastr.error('Calories must be a number', 'Error');
+      this.toastr.error('Enter a valid number for Calories.', 'Error');
        return;
     };
 
     if (typeof protein !== 'number') {
-      this.toastr.error('Proteins must be a number', 'Error');
+      this.toastr.error('Enter a valid number for Proteins.', 'Error');
        return;
     };
 
     if (typeof carbs !== 'number') {
-      this.toastr.error('Carbohydrates must be a number', 'Error');
+      this.toastr.error('Enter a valid number for Carbohydrates.', 'Error');
        return;
     };
 
     if (typeof fat !== 'number') {
-      this.toastr.error('Fats must be a number', 'Error');
+      this.toastr.error('Enter a valid number for Fats.', 'Error');
        return;
     };
 

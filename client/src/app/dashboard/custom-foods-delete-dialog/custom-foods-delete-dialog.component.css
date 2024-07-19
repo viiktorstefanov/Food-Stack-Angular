@@ -14,6 +14,7 @@
     min-width: 5rem;
     cursor: pointer;
     outline: none;
+    font-family: "Roboto";
 }
 
 .delete-dialog button:nth-child(1) {
@@ -44,4 +45,9 @@
 .food-name{
     text-transform: uppercase;
     color: #f13c00;
+}
+
+.header {
+    font-family: "Roboto";
+    color: #000;
 }
