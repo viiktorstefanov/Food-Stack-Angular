@@ -15,7 +15,7 @@ authController.post('/register',
             if (errors.length > 0) {
                 throw errors;
             }
-            const userWithTokens = await register(req.body.email, req.body.password, req.body.firstName, req.body.gender, req.body.height, req.body.weight);
+            const userWithTokens = await register(req.body.email, req.body.password, req.body.firstName, req.body.gender, req.body.height, req.body.weight, +req.body.age, +req.body.activity);
             res.json(userWithTokens).end();
             console.log(`User ${req.body.email} successfully registered.`);
         } catch (error) {
