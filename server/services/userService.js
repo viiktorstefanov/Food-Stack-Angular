@@ -68,6 +68,7 @@ function createTokens(user) {
         height: user.height,
         weight: user.weight,
         activity: user.activity,
+        targetCalories: user.targetCalories,
         accessToken,
         refreshToken,
     };
@@ -121,6 +122,20 @@ async function reset(email) {
     
 }
 
+async function changeUserTargetCalories(userId, newTargetCalories) {
+    const user = await User.findById(userId);
+    
+    if (!user) {
+        throw new Error('User not found');
+    }
+
+    user.targetCalories = newTargetCalories;
+
+    const updatedUser = await user.save();
+
+    return updatedUser;
+};
+
 module.exports = {
     register,
     login,
@@ -130,4 +145,5 @@ module.exports = {
     deleteUserById,
     isTokenBlacklisted,
     reset,
+    changeUserTargetCalories
 }

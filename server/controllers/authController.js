@@ -1,4 +1,4 @@
-const { register, login, logout, reset } = require('../services/userService');
+const { register, login, logout, reset, changeUserTargetCalories } = require('../services/userService');
 const { body, validationResult } = require('express-validator');
 const { parseError } = require('../utils/parseError');
 const { isGuest, hasUser } = require('../middlewares/guards');
@@ -88,5 +88,25 @@ authController.post('/forgot-password',
             res.status(400).json({ message }).end();
         }
     });
+
+authController.post('/target/:id',
+        async (req, res) => {
+            try {
+                const userId = req.params.id;
+                const user = JSON.parse(req.headers.user);
+                const newTargetCalories = Number(req.body.targetCalories);
+                await changeUserTargetCalories(userId, newTargetCalories);
+                res.json().end();
+                console.log(`${user.email} successfully set a new target for calories.`);
+            } catch (error) {
+                const message = parseError(error);
+                console.log(message);
+                if(message.includes('\n')) {
+                    const errors = message.split('\n')
+                   return res.status(400).json({ message: errors }).end();
+                }
+                res.status(400).json({ message }).end();
+            }
+});
 
 module.exports = authController;

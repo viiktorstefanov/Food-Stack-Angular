@@ -9,6 +9,10 @@ const userSchema = new Schema({
     height: { type: Number, required: [true, 'Height is missing'], minlength: [3, 'Enter a height that has a minimum of 3 digits'], maxlength: [3, 'Enter a height with no more than 3 digits'] }, 
     weight: { type: Number, required: [true, 'Weight is missing'], maxlength: [3, 'Enter a weight with no more than 3 digits'] },
     activity: { type: Number, required: [true, 'Activity is missing'] },
+    targetCalories: {
+        type: Number,
+        default: 0
+    }
 });
 
 userSchema.index({ email: 1 }, {
