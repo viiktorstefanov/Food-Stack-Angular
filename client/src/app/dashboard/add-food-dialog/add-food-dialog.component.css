@@ -8,6 +8,14 @@
   font-family: Lato;
 }
 
+.serving-warning {
+  display: flex;
+  justify-content: center;
+  font-family: 'Roboto';
+  color: #ff6c3b;
+  margin: 1.5rem 0;
+}
+
 .dialog-head {
   display: flex;
   justify-content: space-between;
@@ -97,6 +105,7 @@
   align-items: center;
   gap: 20px;
   width: 500px;
+  justify-content: space-between;
 }
 
 .add-food-info .info-wrapper label, .add-food-macronutrients .info-wrapper label {

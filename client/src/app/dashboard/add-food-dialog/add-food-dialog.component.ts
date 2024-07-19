@@ -46,7 +46,27 @@ export class AddFoodDialogComponent implements OnInit ,OnDestroy{
     const { name, calories, protein, fat, carbs } = this.form.value;
 
     if (!name) {
-      this.toastr.error('Enter your food name', 'Error');
+      this.toastr.error('Enter the name of your food', 'Error');
+       return;
+    };
+
+    if (!calories) {
+      this.toastr.error('Enter the calorie count for the food.', 'Error');
+       return;
+    };
+
+    if (!protein) {
+      this.toastr.error('Provide the amount of proteins for the food item.', 'Error');
+       return;
+    };
+
+    if (!fat) {
+      this.toastr.error('Provide the amount of fats for the food item.', 'Error');
+       return;
+    };
+
+    if (!carbs) {
+      this.toastr.error('Provide the amount of carbohydrates for the food item.', 'Error');
        return;
     };
 

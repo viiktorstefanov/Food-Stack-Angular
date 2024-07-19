@@ -40,7 +40,7 @@ export class CalculatorComponent {
   submitHandler() {
 
     if (this.form.invalid) {
-      this.toastr.error('All fields are required', 'Error');
+      this.toastr.error('Please complete all fields.', 'Error');
        return;
     };
 
