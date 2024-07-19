@@ -39,11 +39,6 @@ export class CalculatorComponent {
 
   submitHandler() {
 
-    if (this.form.invalid) {
-      this.toastr.error('Please complete all fields.', 'Error');
-       return;
-    };
-
     const { age, gender, height, weight, activity } = this.form.value;
 
     if(age && +age > 100 || age && +age < 0){
@@ -60,6 +55,11 @@ export class CalculatorComponent {
       this.toastr.error('Invalid weight', 'Error');
       return
     }
+
+    if (this.form.invalid) {
+      this.toastr.error('Please complete all fields.', 'Error');
+       return;
+    };
 
     const ageNum = Number(age);
     const heightNum = Number(height);
