@@ -152,7 +152,7 @@ export class DiaryComponent implements OnInit, OnDestroy {
           return;
         }
 
-        if (err.error.message === 'There are no daily food entries added') {
+        if (err.error.message === `There are no food entries for ${this.selectedDate}`) {
           return;
         }
 
