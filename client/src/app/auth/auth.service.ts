@@ -45,8 +45,8 @@ export class AuthService implements OnDestroy {
     return this.http.post<User>('/api/users/login', { email, password });
   };
 
-  register(firstName: string, email: string, password: string, gender: string, height: string, weight: string) : Observable<any>{
-    return this.http.post<User>('/api/users/register', { firstName, email, password, gender, height, weight });
+  register(firstName: string, email: string, password: string, age: number, gender: string, height: string, weight: string, activity: string) : Observable<any>{
+    return this.http.post<User>('/api/users/register', { firstName, email, password, age, gender, height, weight, activity });
   };
 
   logout() {

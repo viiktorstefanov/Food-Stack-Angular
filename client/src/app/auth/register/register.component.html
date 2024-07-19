@@ -2,111 +2,158 @@
   <app-home-nav [hideNav]="true"></app-home-nav>
   <div class="hero">
     <h2>Create Your Free Account</h2>
-    <div class="register-box-form">
-      <form class="register-form" [formGroup]="form" (ngSubmit)="submitHandler()">
-        <div class="center">
-          <div class="container-account-info">
-            <div class="account-info-row">
-                <label class="label">First Name</label>
-                <div class="input">
-                    <input type="text" formControlName="firstName"
-                    name="firstName"
-                    type="text" name="firstName" placeholder="First Name">
-                    
-                </div>          
-            </div>
-            <small
+    <div class="register-content">
+      <div class="register-box-form">
+        <form class="register-form" [formGroup]="form" (ngSubmit)="submitHandler()">
+          <div class="center">
+            <div class="container-account-info">
+              <div class="account-info-row">
+                  <label class="label">First Name</label>
+                  <div class="input">
+                      <input type="text" formControlName="firstName"
+                      name="firstName"
+                      type="text" name="firstName" placeholder="First Name">
+                      
+                  </div>          
+              </div>
+              <small
+                      *ngIf="
+                        firstName.invalid && (firstName.dirty || firstName.touched)
+                      "
+                      class="error"
+                    >
+                      <div *ngIf="firstName.errors?.['required']">
+                        Enter your first name.
+                      </div>
+                      <div *ngIf="firstName.errors?.['minlength']">
+                        Ensure your first name is at least 3 characters.
+                      </div>
+                    </small>
+              <div class="account-info-row">
+                  <label class="label">Email</label>
+                  <div class="input">
+                      <input type="email"
+                        formControlName="email"
+                        name="email"
+                        placeholder="example@email.com"
+                        type="email" >
+                        
+                  </div>
+              </div>
+              <small
+                    *ngIf="email.invalid && (email.dirty || email.touched)"
+                    class="error"
+                  >
+                    <div *ngIf="email.errors?.['required']">
+                      Enter your email address.
+                    </div>
+                    <div *ngIf="email.errors?.['pattern']">Enter a valid email address.</div>
+                  </small>
+              <div class="account-info-row">
+                  <label class="label">New Password</label>
+                  <div class="input">
+                      <input type="password" name="password" placeholder="New Password" formControlName="password"
+                      name="password">
+                  </div>
+              </div>
+              <small
                     *ngIf="
-                      firstName.invalid && (firstName.dirty || firstName.touched)
+                      password.invalid && (password.dirty || password.touched)
                     "
                     class="error"
                   >
-                    <div *ngIf="firstName.errors?.['required']">
-                      Enter your first name.
+                    <div *ngIf="password.errors?.['required']">
+                      Enter your password.
                     </div>
-                    <div *ngIf="firstName.errors?.['minlength']">
-                      Ensure your first name is at least 3 characters.
+                    <div *ngIf="password.errors?.['minlength']">
+                      Ensure your password is at least 8 characters.
                     </div>
+                    <div *ngIf="password.errors?.['strong']">Password must contain uppercase, lowercase, number and a special character.</div>
                   </small>
-            <div class="account-info-row">
-                <label class="label">Email</label>
-                <div class="input">
-                    <input type="email"
-                      formControlName="email"
-                      name="email"
-                      placeholder="example@email.com"
-                      type="email" >
-                      
-                </div>
             </div>
-            <small
-                  *ngIf="email.invalid && (email.dirty || email.touched)"
-                  class="error"
-                >
-                  <div *ngIf="email.errors?.['required']">
-                    Enter your email address.
+            <div class="container-account-info">
+              <h3>Profile Details</h3>
+              <div>
+                <div class="profile-details-row">
+                  <label class="label">Age</label>
+                  <div class="height-box">
+                    <input formControlName="age" type="number" name="age" />
                   </div>
-                  <div *ngIf="email.errors?.['pattern']">Enter a valid email address.</div>
-                </small>
-            <div class="account-info-row">
-                <label class="label">New Password</label>
-                <div class="input">
-                    <input type="password" name="password" placeholder="New Password" formControlName="password"
-                    name="password">
-                </div>
+              </div>
+                  <div class="profile-details-row">
+                      <label class="label">Gender</label>
+                      <div class="radio">
+                          <div class="check">
+                              <input id="male" class="check-input" type="radio" name="gender" value="male" formControlName="gender">
+                              <label for="male">Male</label>
+                          </div>
+                          <div class="check">
+                              <input id="female" class="check-input" type="radio" name="gender" value="female"
+                              formControlName="gender">
+                              <label for="female">Female </label>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="profile-details-row">
+                      <label class="label">Height</label>
+                      <div class="height-box">
+                          <input type="number" name="height" formControlName="height">
+                          <span>cm</span>
+                      </div>
+                  </div>
+                  <div class="profile-details-row">
+                      <label class="label">Weight</label>
+                      <div class="weight-box">
+                          <input type="number" name="weight" formControlName="weight" >
+                          <span>kg</span>
+                      </div>
+                  </div>
+                  <div class="profile-details-row">
+                    <label class="label">Activity</label>
+                    <div class="activity-box">
+                        <select formControlName="activity" name="activity" id="activity">
+                            <option value="1.2">Sedentary</option>
+                            <option value="1.375">Lightly</option>
+                            <option value="1.55">Moderately</option>
+                            <option value="1.725">Very</option>
+                            <option value="1.9">Extra</option>
+                        </select>
+                    </div>
+                  </div>
+              </div>
+  
             </div>
-            <small
-                  *ngIf="
-                    password.invalid && (password.dirty || password.touched)
-                  "
-                  class="error"
-                >
-                  <div *ngIf="password.errors?.['required']">
-                    Enter your password.
-                  </div>
-                  <div *ngIf="password.errors?.['minlength']">
-                    Ensure your password is at least 8 characters.
-                  </div>
-                  <div *ngIf="password.errors?.['strong']">Password must contain uppercase, lowercase, number and a special character.</div>
-                </small>
+            <button  type="submit" class="submit-btn">SIGN UP</button>
           </div>
-          <div class="container-account-info">
-            <h3>Profile Details</h3>
-            <div>
-                <div class="profile-details-row">
-                    <label class="label">Gender</label>
-                    <div class="radio">
-                        <div class="check">
-                            <input id="male" class="check-input" type="radio" name="gender" value="male" formControlName="gender">
-                            <label for="male">Male</label>
-                        </div>
-                        <div class="check">
-                            <input id="female" class="check-input" type="radio" name="gender" value="female"
-                            formControlName="gender">
-                            <label for="female">Female </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="profile-details-row">
-                    <label class="label">Height</label>
-                    <div class="height-box">
-                        <input type="number" name="height" formControlName="height">
-                        <span>cm</span>
-                    </div>
-                </div>
-                <div class="profile-details-row">
-                    <label class="label">Weight</label>
-                    <div class="weight-box">
-                        <input type="number" name="weight" formControlName="weight" >
-                        <span>kg</span>
-                    </div>
-                </div>
-            </div>
-
+        </form>
+      </div>
+      <div>
+        <div class="basics">
+          <div class="basics-info-box">
+              <div class="item">
+                  <p><span class="item-header">bmr:</span> stands for Basal Metabolic Rate. It is the number of calories your body needs to accomplish its most basic (basal) life-sustaining functions. These functions include breathing, circulation, cell production, nutrient processing, protein synthesis, and ion transport. Essentially, BMR is the amount of energy (calories) your body needs to function at rest to maintain the life-sustaining processes for 24 hours.</p>
+              </div>
+              <div class="item">
+                  <p><span class="item-header">tdee:</span> stands for Total Daily Energy Expenditure. It represents the total number of calories you burn in a single day, considering all activities. TDEE includes the energy expended through basic bodily functions (BMR), plus the energy used during physical activity, and the energy used in digesting, absorbing, and metabolizing food (also known as the thermic effect of food).
+  
+                       TDEE is a more comprehensive measure of calorie expenditure than BMR because it accounts for your lifestyle and activity level.</p>
+              </div>
+              <div class="item">
+                  <p><span class="item-header">activity levels:</span></p>
+                  <ul>
+                      <li>sedentary activity - little to no exercise</li>
+                      <li>light activity - light exercise/sports 1-3 days a week.</li>
+                      <li>moderately activity - exercise/sports 3-5 days a week.</li>
+                      <li>very activity - hard exercises/sports 6-7 days a week.</li>
+                      <li>extra activity - extremely active individuals who either have very physically demanding jobs or engage in very hard exercises/sports and possibly additional physical activities.</li>
+                  </ul>
+              </div>
+              <div class="item">
+                <p class="learn-more">How to properly divide your macronutrients: proteins, fats and carbohydrates? <span><a [routerLink]="'/blog/archives/details/6697caa8ec3dfae6d9938bc3'">learn more</a></span></p>
+              </div>
           </div>
-          <button  type="submit" class="submit-btn">SIGN UP</button>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </div>

@@ -17,9 +17,11 @@ export class RegisterComponent implements OnDestroy{
     firstName: ['', [Validators.required, Validators.minLength(3)]],
     email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]],
     password: ['', [Validators.required, Validators.minLength(8), PasswordValidator.strong]],
+    age: ['', [Validators.required]],
     gender: ['', [Validators.required]],
     height: ['', [Validators.required]],
-    weight: ['', [Validators.required]]
+    weight: ['', [Validators.required]],
+    activity: ['', [Validators.required]],
   });
 
   errors: string[] = [];
@@ -32,7 +34,12 @@ export class RegisterComponent implements OnDestroy{
 
   submitHandler() : void {
 
-    const { firstName, email, password, weight, height, gender } = this.form.value;
+    const { firstName, email, password, age, weight, height, gender, activity } = this.form.value;
+
+    if(!age) {
+      this.toastr.error('Please enter your age.', 'Error');
+      return;
+    }
 
     if(!gender) {
       this.toastr.error('Please select your gender.', 'Error');
@@ -49,12 +56,17 @@ export class RegisterComponent implements OnDestroy{
       return;
     }
 
+    if(!activity) {
+      this.toastr.error('Please enter your activity.', 'Error');
+      return;
+    }
+
     if (this.form.invalid) {
       this.toastr.error('All fields are required.', 'Error');
        return;
     };
     
-    this.registerSubscription = this.authService.register(firstName!, email!, password!, gender!, height!, weight!).subscribe({
+    this.registerSubscription = this.authService.register(firstName!, email!, password!, +age!, gender!, height!, weight!, activity!).subscribe({
       next: (user) => {
         this.toastr.success('You are now signed in');
         
