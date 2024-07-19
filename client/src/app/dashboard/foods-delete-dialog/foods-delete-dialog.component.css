@@ -35,6 +35,10 @@
     gap: 40px;
 }
 
+.buttons-wrapper button {
+    font-family: "Roboto";
+}
+
 .mat-mdc-dialog-actions{
     display: flex;      
     align-items: center;   

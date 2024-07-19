@@ -59,8 +59,8 @@ export class FoodsQuantityEditDialogComponent implements OnInit, OnDestroy{
 
     const { quantity } = this.form.value;
 
-    if (typeof quantity !== 'number') {
-      this.toastr.error('Serving must be a number', 'Error');
+    if (!quantity || typeof quantity !== 'number') {
+      this.toastr.error('Enter a valid number for the serving.', 'Error');
       return;
     }
     
