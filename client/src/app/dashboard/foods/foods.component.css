@@ -93,6 +93,7 @@
     border: 1px solid #F5F5F5;
     border-radius: 10px;
     overflow: hidden;
+    font-family: "Roboto";
   }
 
   .table-tr-head {
