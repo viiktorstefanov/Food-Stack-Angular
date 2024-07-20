@@ -90,11 +90,11 @@ function generateRefreshToken(user) {
     };
 
     return jwt.sign(payload, process.env.REFRESH_TOKEN_PRIVATE_KEY);
-}
+};
 
 function isTokenBlacklisted(token) {
     return tokenBlackList.has(token);
-}
+};
 
 function parseToken(token) {
     if (tokenBlackList.has(token)) {
@@ -102,15 +102,15 @@ function parseToken(token) {
     }
 
     return jwt.verify(token, secret);
-}
+};
 
 async function getUserById(id) {
     return User.findById(id);
-}
+};
 
 async function deleteUserById(id) {
     return User.findByIdAndDelete(id);
-}
+};
 
 async function reset(email) {
     const user = await User.findOne({ email });
@@ -118,9 +118,7 @@ async function reset(email) {
     if (!user) {
         throw new Error('User not found');
     }
-
-    
-}
+};
 
 async function changeUserTargetCalories(userId, newTargetCalories) {
     const user = await User.findById(userId);
