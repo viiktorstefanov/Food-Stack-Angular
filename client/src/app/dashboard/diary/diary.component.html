@@ -19,7 +19,7 @@
             </div>
             <div *ngFor="let food of dailyFoods" (click)="onFoodClick(food)" class="table-tr" [ngClass]="{'hovered': selectedFood === food}">
               <span
-                >{{food.name}}
+                ><i class="fas fa-hamburger"></i>{{food.name}}
                 <div class="modify-icons">
                   <i (click)="openEditDialog(food)" class="fas fa-pen"></i>
                   <i (click)="openDeleteDialog(food)" class="far fa-trash-alt"></i></div
@@ -40,7 +40,8 @@
   </div>
   <div class="diary-result-container">
     <div class="charts">
-      <p-chart type="doughnut" [data]="nutritionChartData"></p-chart>
+      <app-chart [targetCalories]="targetCalories" [currentCalories]="consumedCalories"></app-chart>
+      <p-chart type="doughnut" [data]="nutritionChartData" [options]="chartOptions"></p-chart>
     </div>
     <div class="results">
       <div class="result-energy">

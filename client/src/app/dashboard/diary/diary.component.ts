@@ -9,6 +9,7 @@ import { DashboardService } from '../dashboard.service';
 import { Subject, takeUntil } from 'rxjs';
 import { FoodsQuantityEditDialogComponent } from '../foods-quantity-edit-dialog/foods-quantity-edit-dialog.component';
 import { NutritionFacts } from '../types/NutritionFacts';
+import { ChartOptions } from 'chart.js';
 
 @Component({
   selector: 'app-diary',
@@ -26,8 +27,11 @@ export class DiaryComponent implements OnInit, OnDestroy {
   consumedCarbohydrates: number = 0;
   selectedDate: string | undefined;
   selectedFood: DailyFood | null = null;
+  targetCalories: number = 0;
   errors: string[] = [];
   private destroy$ = new Subject<void>();
+
+  chartOptions: ChartOptions;
 
   showNutrinitonFacts: boolean = false;
   nutritionFactValues: NutritionFacts | undefined;
@@ -39,6 +43,19 @@ export class DiaryComponent implements OnInit, OnDestroy {
     private dashboardService: DashboardService
   ) {
     this.sideNavService.showSideNav();
+
+    this.chartOptions = {
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(tooltipItem) {
+
+              return  tooltipItem.raw + 'g';
+            }
+          }
+        }
+      }
+    };
   }
 
   ngOnInit(): void {

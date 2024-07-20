@@ -16,7 +16,7 @@
                     <span></span>
                 </div>
                 <div class="table-tr" *ngFor="let food of customFoods" (click)="onFoodClick(food)" [ngClass]="{'hovered': selectedFood === food}">
-                    <span>{{food.label}} <div class="modify-icons">
+                    <span><i class="fas fa-hamburger"></i>{{food.label}} <div class="modify-icons">
                         <i (click)="openEditDialog(food)" class="fas fa-pen"></i>
                         <i (click)="openDeleteDialog(food)" class="far fa-trash-alt"></i>
                     </div></span>

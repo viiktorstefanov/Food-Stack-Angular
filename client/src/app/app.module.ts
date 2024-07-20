@@ -9,7 +9,9 @@ import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 
+
 import { appInterceptorProvider } from './app.interceptor';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { appInterceptorProvider } from './app.interceptor';
   providers: [
     appInterceptorProvider,
     provideAnimationsAsync(),
+    provideCharts(withDefaultRegisterables())
   ],
   bootstrap: [AppComponent]
 })

@@ -98,6 +98,7 @@
 
 .charts {
   display: flex;
+  gap: 5rem;
   font-family: "Roboto";
 }
 
@@ -293,4 +294,8 @@
   cursor: pointer;
   background: #ff6c3b;
   color: #fff;
+}
+
+.fa-hamburger {
+  margin-right: 10px;
 }
