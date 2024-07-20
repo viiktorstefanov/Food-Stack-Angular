@@ -30,7 +30,7 @@ export class ChartComponent implements OnChanges{
             return tooltipItem[0].label;
           },
           label: (tooltipItem) => {
-            return tooltipItem.raw + ' kcal';
+            return "  " + tooltipItem.raw + ' kcal';
           }
         },
       }

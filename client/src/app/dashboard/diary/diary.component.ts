@@ -27,7 +27,7 @@ export class DiaryComponent implements OnInit, OnDestroy {
   consumedCarbohydrates: number = 0;
   selectedDate: string | undefined;
   selectedFood: DailyFood | null = null;
-  targetCalories: number = 0;
+  targetCalories: number = 3500;
   errors: string[] = [];
   private destroy$ = new Subject<void>();
 

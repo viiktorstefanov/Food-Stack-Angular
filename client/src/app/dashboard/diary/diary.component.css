@@ -299,3 +299,22 @@
 .fa-hamburger {
   margin-right: 10px;
 }
+
+.chart-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.chart-wrapper p {
+  font-weight: bold;
+  border: 2px solid #f0f2fa;
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.chart-wrapper p:hover {
+  cursor: pointer;
+}

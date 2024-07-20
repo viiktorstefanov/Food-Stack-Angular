@@ -40,8 +40,14 @@
   </div>
   <div class="diary-result-container">
     <div class="charts">
-      <app-chart [targetCalories]="targetCalories" [currentCalories]="consumedCalories"></app-chart>
-      <p-chart type="doughnut" [data]="nutritionChartData" [options]="chartOptions"></p-chart>
+      <div class="chart-wrapper">
+        <app-chart [targetCalories]="targetCalories" [currentCalories]="consumedCalories"></app-chart>
+        <p matTooltip="Elevate your health journey with the Foodstack - your personalized nutrition companion. Dive deep into the science and unlock the key to vitality and longevity. Track your nutrition and empower yourself to grow. Your path to a healthier and happier life begins here.">TARGET: {{targetCalories}} kcal</p>
+      </div>
+      <div class="chart-wrapper">
+        <p-chart type="doughnut" [data]="nutritionChartData" [options]="chartOptions"></p-chart>
+        <p>CONSUMED: {{consumedCalories}} kcal</p>        
+      </div>
     </div>
     <div class="results">
       <div class="result-energy">
