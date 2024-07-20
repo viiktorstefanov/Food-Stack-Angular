@@ -20,7 +20,7 @@ const dailyFoodSchema = new Schema({
     ]
 });
 
-dailyFoodSchema.index({ date: 1, userId: 1, 'foods.foodId': 1 });
+dailyFoodSchema.index({ date: 1, userId: 1 });
 
 const DailyFood = model('dailyFood', dailyFoodSchema);
 
