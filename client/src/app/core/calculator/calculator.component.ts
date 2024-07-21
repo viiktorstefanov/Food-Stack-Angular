@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SideNavService } from '../../shared/side-nav/side-nav.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -6,13 +6,17 @@ import { calculateBMR } from './utils/calculateBMR';
 import { calculateTDEE } from './utils/calculateTDEE';
 import { calculateGainCalories } from './utils/calculateGainCalories';
 import { calculateLossCalories } from './utils/calculateLossCalories';
+import { Router } from '@angular/router';
+import { AuthService } from '../../auth/auth.service';
+import { User } from '../../auth/types/User';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-calculator',
   templateUrl: './calculator.component.html',
   styleUrl: './calculator.component.css'
 })
-export class CalculatorComponent {
+export class CalculatorComponent  implements OnInit, OnDestroy{
 
   resultsVisible: boolean = false;
 
@@ -24,10 +28,6 @@ export class CalculatorComponent {
     activity: ['', [Validators.required]]
   });
 
-  constructor(private sideNavService: SideNavService, private fb: FormBuilder, private toastr: ToastrService) {
-    this.sideNavService.hideSideNav();
-  }
-  
   resultBMR: string = '';
   TDEE: string = '';
   gainPerWeek025: string = '';
@@ -36,6 +36,40 @@ export class CalculatorComponent {
   weightExtremeLoss: string = '';
   weightMaintenance: string = '';
   weightMildLoss: string = '';
+  targetCalories: number = 0;
+  user: User | undefined;
+  private formSubscription: Subscription | undefined;
+  private targetSubscription: Subscription | undefined;
+  errors: string[] = [];
+
+  targetForm = this.fb.group({
+    targetCalories: [this.targetCalories, [Validators.required]],
+  });
+
+  constructor(private sideNavService: SideNavService, private authService: AuthService, private router: Router, private fb: FormBuilder, private toastr: ToastrService) {
+    this.sideNavService.hideSideNav();
+  }
+
+  ngOnInit(): void {
+    this.user = this.authService.getUserInfo;
+
+    this.targetSubscription = this.authService.getUserTargetCalories().subscribe({
+      next: (result: number) => {
+        this.targetCalories = result;
+        this.targetForm.get('targetCalories')?.setValue(this.targetCalories);
+      },
+      error: (err) => {   
+        if (err.status === 0) {
+          this.toastr.error('Unable to connect to the server', 'Error');
+          return;
+        }
+
+        this.errors.push(err.error.message);
+        this.errors.forEach((error) => this.toastr.error(error, 'Error'));
+      },
+    });
+    
+  }
 
   submitHandler() {
 
@@ -81,6 +115,48 @@ export class CalculatorComponent {
     this.weightMaintenance = lossCalories.maintain.toFixed(0);
 
     this.resultsVisible = true;
+  }
+
+  onResultCountClick(count: string) {
+    this.targetCalories = +count;
+    this.targetForm.get('targetCalories')?.setValue(this.targetCalories);
+  }
+
+  submitCaloriesTargetHandler() {
+
+    const { targetCalories } = this.targetForm.value;
+
+    if(!targetCalories || typeof targetCalories !== 'number') {
+      this.toastr.error('Enter a valid number.', 'Error');
+       return;
+    }
+
+    this.formSubscription = this.authService
+      .changeUserTargetCalories(this.user!._id, +targetCalories!)
+      .subscribe({
+        next: (result) => {
+          this.authService.updateUser({...this.user!, targetCalories: +targetCalories});   
+          this.router.navigate(['/dashboard/diary']);
+        },
+        error: (err) => {   
+          if (err.status === 0) {
+            this.toastr.error('Unable to connect to the server', 'Error');
+            return;
+          }
+
+          this.errors.push(err.error.message);
+          this.errors.forEach((error) => this.toastr.error(error, 'Error'));
+        },
+      });
+  }
+
+  ngOnDestroy(): void {
+    if (this.formSubscription) {
+      this.formSubscription.unsubscribe();
+    }
+    if (this.targetSubscription) {
+      this.targetSubscription.unsubscribe();
+    }
   }
 
 

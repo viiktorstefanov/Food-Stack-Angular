@@ -6,10 +6,11 @@ import { DailyFood } from '../types/DailyFood';
 import { FoodsDeleteDialogComponent } from '../foods-delete-dialog/foods-delete-dialog.component';
 import { ToastrService } from 'ngx-toastr';
 import { DashboardService } from '../dashboard.service';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, Subscription, takeUntil } from 'rxjs';
 import { FoodsQuantityEditDialogComponent } from '../foods-quantity-edit-dialog/foods-quantity-edit-dialog.component';
 import { NutritionFacts } from '../types/NutritionFacts';
 import { ChartOptions } from 'chart.js';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-diary',
@@ -27,9 +28,10 @@ export class DiaryComponent implements OnInit, OnDestroy {
   consumedCarbohydrates: number = 0;
   selectedDate: string | undefined;
   selectedFood: DailyFood | null = null;
-  targetCalories: number = 3500;
+  targetCalories: number = 0;
   errors: string[] = [];
   private destroy$ = new Subject<void>();
+  private targetSubscription: Subscription | undefined;
 
   chartOptions: ChartOptions;
 
@@ -40,7 +42,8 @@ export class DiaryComponent implements OnInit, OnDestroy {
     private sideNavService: SideNavService,
     private dialog: MatDialog,
     private toastr: ToastrService,
-    private dashboardService: DashboardService
+    private dashboardService: DashboardService,
+    private authService: AuthService
   ) {
     this.sideNavService.showSideNav();
 
@@ -62,6 +65,20 @@ export class DiaryComponent implements OnInit, OnDestroy {
 
     const currentDate = new Date().toLocaleDateString('en-GB');
     this.selectedDate = currentDate;
+    this.targetSubscription = this.authService.getUserTargetCalories().subscribe({
+      next: (result: number) => {
+        this.targetCalories = result;
+      },
+      error: (err) => {   
+        if (err.status === 0) {
+          this.toastr.error('Unable to connect to the server', 'Error');
+          return;
+        }
+
+        this.errors.push(err.error.message);
+        this.errors.forEach((error) => this.toastr.error(error, 'Error'));
+      },
+    });
 
     this.fetchAllDailyFoods();
   }
@@ -218,5 +235,9 @@ export class DiaryComponent implements OnInit, OnDestroy {
     this.destroy$.next();
     this.destroy$.complete();
     this.showNutrinitonFacts = false;
+
+    if (this.targetSubscription) {
+      this.targetSubscription.unsubscribe();
+    }
   }
 }

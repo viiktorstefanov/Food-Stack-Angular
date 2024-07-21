@@ -42,11 +42,11 @@
     <div class="charts">
       <div class="chart-wrapper">
         <app-chart [targetCalories]="targetCalories" [currentCalories]="consumedCalories"></app-chart>
-        <p matTooltip="Elevate your health journey with the Foodstack - your personalized nutrition companion. Dive deep into the science and unlock the key to vitality and longevity. Track your nutrition and empower yourself to grow. Your path to a healthier and happier life begins here.">TARGET: {{targetCalories}} kcal</p>
+        <a routerLink="/calculator"><p matTooltip="Set your daily caloric intake goal based on age, gender, weight, height, activity level, and your body goals (weight loss, maintenance, or muscle gain). Use our calorie calculator to find your ideal intake.">TARGET: {{targetCalories}} kcal</p></a>
       </div>
-      <div class="chart-wrapper">
+      <div class="chart-wrapper" *ngIf="consumedCalories > 0">
         <p-chart type="doughnut" [data]="nutritionChartData" [options]="chartOptions"></p-chart>
-        <p>CONSUMED: {{consumedCalories}} kcal</p>        
+        <p matTooltip="Refers to the total number of calories you took in from all the foods and drinks you consumed in a day.">CONSUMED: {{consumedCalories}} kcal</p>        
       </div>
     </div>
     <div class="results">

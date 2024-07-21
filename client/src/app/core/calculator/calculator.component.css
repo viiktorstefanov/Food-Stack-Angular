@@ -250,7 +250,7 @@
 
 .result {
   display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Three columns */
+    grid-template-columns: repeat(2, 1fr); 
     grid-gap: 10px;
     padding: 20px;
   max-width: 1050px;
@@ -278,13 +278,13 @@
   content: "";
   position: absolute;
   top: 50%;
-  left: 100%; /* Position the arrow to the right of the span */
+  left: 100%; 
   transform: translateY(-50%);
   width: 0;
   height: 0;
-  border-top: 10px solid transparent; /* Change the size of the arrow as needed */
-  border-bottom: 10px solid transparent; /* Change the size of the arrow as needed */
-  border-left: 10px solid #ff6c3b; /* Change the color of the arrow */
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #ff6c3b; 
 }
 
 .result .bmr-result span:nth-child(1) {
@@ -305,8 +305,22 @@
   border-bottom-right-radius: 8px;
 }
 
-.hidden {
-  display: none;
+.bmr-result {
+  cursor: pointer;
+}
+
+.bmr-result:hover {
+  opacity: 0.5;
+}
+
+.bmr-result:nth-of-type(1),
+.bmr-result:nth-of-type(2) {
+  cursor: default;
+}
+
+.bmr-result:nth-of-type(1):hover,
+.bmr-result:nth-of-type(2):hover {
+  opacity: 1;
 }
 
 .learn-more {
@@ -329,4 +343,93 @@
 
 .learn-more span a:hover {
   text-decoration: underline;
+}
+
+.target-calories-header {
+  margin-top: 2rem;
+}
+
+.target-calories-container {
+  display: flex;
+  justify-content: center;
+  padding: 35px;
+  max-width: 1050px;
+  min-width: 1050px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: #7779861a 0 3px 20px;
+  margin-top: 35px;
+}
+
+.target-calories-container form {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.target-calories-result{
+  display: flex;
+}
+
+.target-calories-result input {
+  text-align: center;
+  font-family: 'Roboto';
+  font-size: 1.5rem;
+  border: none;
+  outline: none;
+  background-color: #FFC4B1;
+  width: 50%;
+}
+
+.target-calories-result input[type=number]::-webkit-outer-spin-button,
+.target-calories-result input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.target-calories-result input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.target-calories-result input:focus {
+  outline: none;
+  border-color: none;
+  box-shadow: none;
+}
+
+.target-calories-result span {
+  font-family: Lato;
+  border: none;
+  font-size: 1.3rem;
+}
+
+.target-calories-result span:nth-child(1) {
+  padding: 20px;
+  background-color: #ff6c3b;
+  height: 4.5rem;
+  font-weight: bold;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.submit-btn-target {
+  width: fit-content;
+  text-align: center;
+  background-color: #ff6c3b;
+  color: #462b3c;
+  font-size: 1.25em;
+  cursor: pointer;
+  text-transform: uppercase;
+  padding: 10px 30px;
+    border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border: none;
+}
+
+.submit-btn-target:hover {
+  opacity: 0.8;
 }

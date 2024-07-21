@@ -315,6 +315,10 @@
   border-radius: 6px;
 }
 
+.chart-wrapper a {
+  color: inherit;
+}
+
 .chart-wrapper p:hover {
   cursor: pointer;
 }

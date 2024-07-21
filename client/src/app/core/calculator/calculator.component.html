@@ -104,7 +104,7 @@
         </div>
       </div>
     </div>
-    <div class="result" [ngClass]="{ 'hidden': !resultsVisible }">
+    <div class="result" *ngIf="resultsVisible">
         <div class="bmr-result">
             <span>BMR:</span>
             <span>{{resultBMR}} kcal</span>
@@ -113,30 +113,40 @@
             <span>TDEE:</span>
             <span>{{TDEE}} kcal</span>
         </div>
-        <div class="bmr-result">
+        <div matTooltip="Click to set your daily target calories to your weight maintenance level" (click)="onResultCountClick(weightMaintenance)" class="bmr-result">
             <span>Weight Maintenance:</span>
             <span>{{weightMaintenance}} kcal</span>
         </div>
-        <div class="bmr-result">
+        <div matTooltip="Click to set your daily target calories to your mild weight loss level" (click)="onResultCountClick(weightMildLoss)" class="bmr-result">
             <span>Mild Weight Loss:</span>
             <span>{{weightMildLoss}} kcal</span>
         </div>
-        <div class="bmr-result">
+        <div matTooltip="Click to set your daily target calories to your weight loss level" (click)="onResultCountClick(weightLoss)" class="bmr-result">
             <span>Weight Loss:</span>
             <span>{{weightLoss}} kcal</span>
         </div>
-        <div class="bmr-result">
+        <div matTooltip="Click to set your daily target calories to your extreme weight loss level" (click)="onResultCountClick(weightExtremeLoss)" class="bmr-result">
             <span>Extreme weight Loss:</span>
             <span>{{weightExtremeLoss}} kcal</span>
         </div>
-        <div class="bmr-result">
+        <div matTooltip="Click to set your daily target calories to your muscle gain level" (click)="onResultCountClick(gainPerWeek025)" class="bmr-result">
             <span>Muscle Gain:<br>(0.25kg per week)</span>
             <span>{{gainPerWeek025}} kcal</span>
         </div>
-        <div class="bmr-result">
+        <div matTooltip="Click to set your daily target calories to your muscle gain level" (click)="onResultCountClick(gainPerWeek05)" class="bmr-result">
             <span>Muscle Gain:<br>0.5kg per week</span>
             <span>{{gainPerWeek05}} kcal</span>
         </div>
+    </div>
+    <h2 class="target-calories-header">Set Your Target Calorie Intake</h2>
+    <div class="target-calories-container" >
+      <form [formGroup]="targetForm" (submit)="submitCaloriesTargetHandler()">
+        <div class="target-calories-result">
+          <span>Target Calories:</span>
+          <input type="number" name="targetCalories" formControlName="targetCalories">
+          <button class="submit-btn-target" type="submit">SAVE</button>
+        </div>
+      </form>
     </div>
   </section>
 </div>

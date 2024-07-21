@@ -19,6 +19,10 @@ export class AuthService implements OnDestroy {
     return !!this.user;
   };
 
+  get userTargetCalories(): number {
+    return this.user!.targetCalories;
+  }
+
   isOwner(ownerId: string | undefined) : boolean | undefined {
     return !!(this.user?._id === ownerId);
   };
@@ -72,6 +76,10 @@ export class AuthService implements OnDestroy {
   changeUserTargetCalories(userId: string, newTargetCalories: number) {
     return this.http.post<any>(`/api/users/target/${userId}`, { targetCalories: newTargetCalories });
   }
+
+  getUserTargetCalories() {
+    return this.http.get<number>(`/api/users/target/${this.user!._id}`);
+   };
 
   ngOnDestroy():void {
     this.destroy$.next();
