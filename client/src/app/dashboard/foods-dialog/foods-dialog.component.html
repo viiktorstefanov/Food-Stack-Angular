@@ -12,7 +12,7 @@
   <div class="dialog-search-bar">
         <form [formGroup]="searchForm" (ngSubmit)="onSearchHandler()">
             <input type="text" placeholder="Search all foods" name="searchItem" formControlName="searchItem">
-            <button type="submit">SEARCH</button>
+            <button [disabled]="isSearching" type="submit">SEARCH</button>
         </form>
   </div>
 

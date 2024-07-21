@@ -58,6 +58,7 @@ export class FoodsDialogComponent implements OnInit, OnDestroy{
   searchResults: Food[] = [];
   isFoodSelected: boolean = false;
   selectedFood: Food | undefined;
+  isSearching: boolean = false;
 
   onSearchHandler() {
     this.errors = [];
@@ -70,7 +71,7 @@ export class FoodsDialogComponent implements OnInit, OnDestroy{
     const { searchItem } = this.searchForm.value!;
 
     this.loaderService.show();
-
+    this.isSearching = true;
     this.searchSubscription = this.dashboardService
       .searchFoodsByQuery(searchItem!)
       .subscribe({
@@ -78,6 +79,7 @@ export class FoodsDialogComponent implements OnInit, OnDestroy{
           this.searchResults = [];
           this.searchResults = result; 
           this.loaderService.hide();
+          this.isSearching = false;
           
         },
         error: (err) => {
@@ -89,6 +91,7 @@ export class FoodsDialogComponent implements OnInit, OnDestroy{
           this.errors.push(err.error.message);
           this.errors.forEach((error) => this.toastr.error(error, 'Error'));
           this.loaderService.hide();
+          this.isSearching = false;
         },
       });
   }
