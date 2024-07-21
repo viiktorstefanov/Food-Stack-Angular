@@ -129,6 +129,11 @@ async function changeUserTargetCalories(userId, newTargetCalories) {
 
     user.targetCalories = newTargetCalories;
 
+    if(!user.age && !user.activity) {
+        user.age = 0;
+        user.activity = 0;
+    }
+
     const updatedUser = await user.save();
 
     return updatedUser;
