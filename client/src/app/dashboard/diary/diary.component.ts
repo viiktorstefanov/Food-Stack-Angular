@@ -77,6 +77,7 @@ export class DiaryComponent implements OnInit, OnDestroy {
       error: (err) => {   
         if (err.status === 0) {
           this.toastr.error('Unable to connect to the server', 'Error');
+          this.loaderService.hide(); 
           return;
         }
 
@@ -191,10 +192,12 @@ export class DiaryComponent implements OnInit, OnDestroy {
       error: (err) => {
         if (err.status === 0) {
           this.toastr.error('Unable to connect to the server', 'Error');
+          this.loaderService.hide();
           return;
         }
 
         if (err.error.message === `There are no food entries for ${this.selectedDate}`) {
+          this.loaderService.hide();
           return;
         }
 

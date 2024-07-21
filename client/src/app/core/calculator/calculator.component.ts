@@ -64,6 +64,7 @@ export class CalculatorComponent  implements OnInit, OnDestroy{
       error: (err) => {   
         if (err.status === 0) {
           this.toastr.error('Unable to connect to the server', 'Error');
+          this.loaderService.hide(); 
           return;
         }
 
@@ -148,6 +149,7 @@ export class CalculatorComponent  implements OnInit, OnDestroy{
         error: (err) => {   
           if (err.status === 0) {
             this.toastr.error('Unable to connect to the server', 'Error');
+            this.loaderService.hide(); 
             return;
           }
 
