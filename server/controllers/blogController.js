@@ -21,10 +21,9 @@ blogController.get("/archives", async (req, res) => {
 
 blogController.get("/archives/recent", async (req, res) => {
   try {
-    const user = JSON.parse(req.headers.user);
     const recentBlogs = await getRecentBlogs();
     res.json(recentBlogs);
-    console.log(`The latest blogs were sent to ${user.email}.`);
+    console.log(`The latest blogs were sent.`);
   } catch (error) {
     const message = parseError(error);
     console.log(message);
