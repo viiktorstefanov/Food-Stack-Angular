@@ -1,4 +1,4 @@
-const { register, login, logout, reset, changeUserTargetCalories } = require('../services/userService');
+const { register, login, logout, reset, changeUserTargetCalories, getUserTargetCalories } = require('../services/userService');
 const { body, validationResult } = require('express-validator');
 const { parseError } = require('../utils/parseError');
 const { isGuest, hasUser } = require('../middlewares/guards');
@@ -107,6 +107,25 @@ authController.post('/target/:id',
                 }
                 res.status(400).json({ message }).end();
             }
+});
+
+authController.get('/target/:id', async(req, res) => {
+    try {
+        const userId = req.params.id;
+        const user = JSON.parse(req.headers.user);
+        
+        const result = await getUserTargetCalories(userId);
+        res.json(result).end();
+        console.log(`${user.email}'s target calories were sent.`);
+    } catch (error) {
+        const message = parseError(error);
+        console.log(message);
+        if (message.includes("\n")) {
+          const errors = message.split("\n");
+          return res.status(400).json({ message: errors }).end();
+        }
+        res.status(400).json({ message }).end();
+    }
 });
 
 module.exports = authController;

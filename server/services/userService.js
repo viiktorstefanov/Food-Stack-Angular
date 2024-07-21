@@ -139,6 +139,16 @@ async function changeUserTargetCalories(userId, newTargetCalories) {
     return updatedUser;
 };
 
+async function getUserTargetCalories(userId) {
+    const user = await User.findById(userId);
+
+    if(!user) {
+        throw new Error('User not found');
+    }
+
+    return user.targetCalories;
+}
+
 module.exports = {
     register,
     login,
@@ -148,5 +158,6 @@ module.exports = {
     deleteUserById,
     isTokenBlacklisted,
     reset,
-    changeUserTargetCalories
+    changeUserTargetCalories,
+    getUserTargetCalories
 }
