@@ -63,7 +63,7 @@
                         <select formControlName="activity" name="activity" id="activity">
                             <option value="1.2">Sedentary</option>
                             <option value="1.375">Lightly</option>
-                            <option value="1.55">Moderately</option>
+                            <option value="1.55">Sedentary</option>
                             <option value="1.725">Very</option>
                             <option value="1.9">Extra</option>
                         </select>
@@ -138,8 +138,8 @@
             <span>{{gainPerWeek05}} kcal</span>
         </div>
     </div>
-    <h2 class="target-calories-header">Set Your Target Calorie Intake</h2>
-    <div class="target-calories-container" >
+    <h2 class="target-calories-header" *ngIf="this.user">Set Your Target Calorie Intake</h2>
+    <div class="target-calories-container" *ngIf="this.user">
       <form [formGroup]="targetForm" (submit)="submitCaloriesTargetHandler()">
         <div class="target-calories-result">
           <span>Target Calories:</span>

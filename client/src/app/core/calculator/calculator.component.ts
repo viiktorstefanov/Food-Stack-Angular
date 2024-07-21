@@ -38,7 +38,7 @@ export class CalculatorComponent  implements OnInit, OnDestroy{
   weightMaintenance: string = '';
   weightMildLoss: string = '';
   targetCalories: number = 0;
-  user: User | undefined;
+  user: User | undefined ;
   private formSubscription: Subscription | undefined;
   private targetSubscription: Subscription | undefined;
   errors: string[] = [];
@@ -53,27 +53,41 @@ export class CalculatorComponent  implements OnInit, OnDestroy{
 
   ngOnInit(): void {
     this.loaderService.show();
-    this.user = this.authService.getUserInfo;
+    this.user = this.authService.getUserInfo || undefined;
 
-    this.targetSubscription = this.authService.getUserTargetCalories().subscribe({
-      next: (result: number) => {
-        this.targetCalories = result;
-        this.targetForm.get('targetCalories')?.setValue(this.targetCalories);
-        this.loaderService.hide();
-      },
-      error: (err) => {   
-        if (err.status === 0) {
-          this.toastr.error('Unable to connect to the server', 'Error');
-          this.loaderService.hide(); 
-          return;
-        }
+    if(this.user) {
+      this.form.get('age')?.setValue(this.user.age.toString());
+      this.form.get('gender')?.setValue(this.user.gender.toString());
+      this.form.get('height')?.setValue(this.user.height.toString());
+      this.form.get('weight')?.setValue(this.user.weight.toString());
+      if(this.user.activity.toString() === '0') {
+        this.form.get('activity')?.setValue('1.2');
+      } else {
+        this.form.get('activity')?.setValue(this.user.activity.toString());
+      }
 
-        this.errors.push(err.error.message);
-        this.errors.forEach((error) => this.toastr.error(error, 'Error'));
-        this.loaderService.hide();
-      },
-    });
+      this.targetSubscription = this.authService.getUserTargetCalories().subscribe({
+        next: (result: number) => {
+          this.targetCalories = result;
+          this.targetForm.get('targetCalories')?.setValue(this.targetCalories);
+          this.loaderService.hide();
+        },
+        error: (err) => {   
+          if (err.status === 0) {
+            this.toastr.error('Unable to connect to the server', 'Error');
+            this.loaderService.hide(); 
+            return;
+          }
+  
+          this.errors.push(err.error.message);
+          this.errors.forEach((error) => this.toastr.error(error, 'Error'));
+          this.loaderService.hide();
+        },
+      });
+    }
+
     
+    this.loaderService.hide();
   }
 
   submitHandler() {
