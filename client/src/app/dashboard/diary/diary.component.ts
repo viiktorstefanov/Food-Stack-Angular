@@ -11,6 +11,7 @@ import { FoodsQuantityEditDialogComponent } from '../foods-quantity-edit-dialog/
 import { NutritionFacts } from '../types/NutritionFacts';
 import { ChartOptions } from 'chart.js';
 import { AuthService } from '../../auth/auth.service';
+import { LoaderService } from '../../shared/loader/loader.service';
 
 @Component({
   selector: 'app-diary',
@@ -43,7 +44,8 @@ export class DiaryComponent implements OnInit, OnDestroy {
     private dialog: MatDialog,
     private toastr: ToastrService,
     private dashboardService: DashboardService,
-    private authService: AuthService
+    private authService: AuthService,
+    private loaderService: LoaderService
   ) {
     this.sideNavService.showSideNav();
 
@@ -63,11 +65,14 @@ export class DiaryComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
+    this.loaderService.show();
+
     const currentDate = new Date().toLocaleDateString('en-GB');
     this.selectedDate = currentDate;
     this.targetSubscription = this.authService.getUserTargetCalories().subscribe({
       next: (result: number) => {
         this.targetCalories = result;
+        this.loaderService.hide();
       },
       error: (err) => {   
         if (err.status === 0) {
@@ -77,6 +82,7 @@ export class DiaryComponent implements OnInit, OnDestroy {
 
         this.errors.push(err.error.message);
         this.errors.forEach((error) => this.toastr.error(error, 'Error'));
+        this.loaderService.hide();
       },
     });
 
@@ -170,6 +176,7 @@ export class DiaryComponent implements OnInit, OnDestroy {
   }
 
   fetchAllDailyFoods() {
+    this.loaderService.show();
     this.dashboardService
     .getAllDailyFoods(this.selectedDate!)
     .pipe(takeUntil(this.destroy$))
@@ -178,6 +185,7 @@ export class DiaryComponent implements OnInit, OnDestroy {
         if (dailyFoods) {
           this.dailyFoods = dailyFoods;
           this.calculateConsumedMacros();
+          this.loaderService.hide();
         }
       },
       error: (err) => {
@@ -193,6 +201,7 @@ export class DiaryComponent implements OnInit, OnDestroy {
         this.errors = [];
         this.errors.push(err.error.message);
         this.errors.forEach((error) => this.toastr.error(error, 'Error'));
+        this.loaderService.hide();
       },
     });
   }

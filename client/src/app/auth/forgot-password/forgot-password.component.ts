@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { LoaderService } from '../../shared/loader/loader.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -20,7 +21,7 @@ export class ForgotPasswordComponent implements OnDestroy {
 
   private resetPasswordSubscription: Subscription | undefined;
 
-  constructor(private router: Router, private fb: FormBuilder, private authService: AuthService, private toastr: ToastrService) {
+  constructor(private router: Router, private fb: FormBuilder, private authService: AuthService, private toastr: ToastrService, private loaderService: LoaderService) {
   };
 
   submitHandler(): void {
@@ -34,11 +35,15 @@ export class ForgotPasswordComponent implements OnDestroy {
 
     const { email } = this.form.value;
 
+    this.loaderService.show();
+
     this.resetPasswordSubscription = this.authService.resetUserPassword(email!).subscribe({
       next: () => {
         this.toastr.success('Your password has been reset successfully');
         
         this.router.navigate(['/home']);
+
+        this.loaderService.hide();
       },
       error: (err) => {
         if (err.status === 0) {
@@ -47,7 +52,8 @@ export class ForgotPasswordComponent implements OnDestroy {
         }
         
         this.errors.push(err.error.message);
-        this.errors.forEach(error => this.toastr.error(error, 'Error'));   
+        this.errors.forEach(error => this.toastr.error(error, 'Error')); 
+        this.loaderService.hide();  
       }
     });
     

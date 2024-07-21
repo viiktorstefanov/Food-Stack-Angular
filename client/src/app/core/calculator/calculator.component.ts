@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
 import { User } from '../../auth/types/User';
 import { Subscription } from 'rxjs';
+import { LoaderService } from '../../shared/loader/loader.service';
 
 @Component({
   selector: 'app-calculator',
@@ -46,17 +47,19 @@ export class CalculatorComponent  implements OnInit, OnDestroy{
     targetCalories: [this.targetCalories, [Validators.required]],
   });
 
-  constructor(private sideNavService: SideNavService, private authService: AuthService, private router: Router, private fb: FormBuilder, private toastr: ToastrService) {
+  constructor(private sideNavService: SideNavService, private authService: AuthService, private router: Router, private fb: FormBuilder, private toastr: ToastrService, private loaderService: LoaderService) {
     this.sideNavService.hideSideNav();
   }
 
   ngOnInit(): void {
+    this.loaderService.show();
     this.user = this.authService.getUserInfo;
 
     this.targetSubscription = this.authService.getUserTargetCalories().subscribe({
       next: (result: number) => {
         this.targetCalories = result;
         this.targetForm.get('targetCalories')?.setValue(this.targetCalories);
+        this.loaderService.hide();
       },
       error: (err) => {   
         if (err.status === 0) {
@@ -66,6 +69,7 @@ export class CalculatorComponent  implements OnInit, OnDestroy{
 
         this.errors.push(err.error.message);
         this.errors.forEach((error) => this.toastr.error(error, 'Error'));
+        this.loaderService.hide();
       },
     });
     
@@ -131,12 +135,15 @@ export class CalculatorComponent  implements OnInit, OnDestroy{
        return;
     }
 
+    this.loaderService.show();
+
     this.formSubscription = this.authService
       .changeUserTargetCalories(this.user!._id, +targetCalories!)
       .subscribe({
         next: (result) => {
           this.authService.updateUser({...this.user!, targetCalories: +targetCalories});   
           this.router.navigate(['/dashboard/diary']);
+          this.loaderService.hide();
         },
         error: (err) => {   
           if (err.status === 0) {
@@ -146,6 +153,7 @@ export class CalculatorComponent  implements OnInit, OnDestroy{
 
           this.errors.push(err.error.message);
           this.errors.forEach((error) => this.toastr.error(error, 'Error'));
+          this.loaderService.hide();
         },
       });
   }

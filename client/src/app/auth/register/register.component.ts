@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { PasswordValidator } from './registerValidator';
+import { LoaderService } from '../../shared/loader/loader.service';
 
 @Component({
   selector: 'app-register',
@@ -29,7 +30,7 @@ export class RegisterComponent implements OnDestroy{
   private registerSubscription: Subscription | undefined;
 
 
-  constructor(private router: Router, private fb: FormBuilder, private authService: AuthService, private toastr: ToastrService) {
+  constructor(private router: Router, private fb: FormBuilder, private authService: AuthService, private toastr: ToastrService, private loaderService: LoaderService) {
   }
 
   submitHandler() : void {
@@ -66,11 +67,15 @@ export class RegisterComponent implements OnDestroy{
        return;
     };
     
+    this.loaderService.show();
+
     this.registerSubscription = this.authService.register(firstName!, email!, password!, +age!, gender!, height!, weight!, activity!).subscribe({
       next: (user) => {
         this.toastr.success('You are now signed in');
         
         this.router.navigate(['/home']);
+
+        this.loaderService.hide();
       },
       error: (err) => {
         if (err.status === 0) {
@@ -80,6 +85,7 @@ export class RegisterComponent implements OnDestroy{
         
         this.errors.push(err.error.message);
         this.errors.forEach(error => this.toastr.error(error, 'Error'));   
+        this.loaderService.hide();
       }
     });
     

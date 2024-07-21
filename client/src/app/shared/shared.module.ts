@@ -8,16 +8,19 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import {MatIconModule} from '@angular/material/icon'; 
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { LoaderComponent } from './loader/loader.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
-  declarations: [HomeNavComponent, HomeFooterComponent, PaginatorComponent, SideNavComponent],
+  declarations: [HomeNavComponent, HomeFooterComponent, PaginatorComponent, SideNavComponent, LoaderComponent],
   imports: [
     CommonModule,
     RouterModule,
     MatPaginatorModule,
     MatIconModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatProgressSpinnerModule
   ],
-  exports: [HomeNavComponent, HomeFooterComponent, PaginatorComponent, SideNavComponent]
+  exports: [HomeNavComponent, HomeFooterComponent, PaginatorComponent, SideNavComponent, LoaderComponent]
 })
 export class SharedModule { }

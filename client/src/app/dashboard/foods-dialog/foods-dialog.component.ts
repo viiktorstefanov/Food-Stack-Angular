@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { DashboardService } from '../dashboard.service';
 import { DailyFood, Food } from '../types/DailyFood';
+import { LoaderService } from '../../shared/loader/loader.service';
 
 @Component({
   selector: 'app-foods-dialog',
@@ -44,7 +45,8 @@ export class FoodsDialogComponent implements OnInit, OnDestroy{
     @Inject(MAT_DIALOG_DATA) public data: { date: string },
     private dashboardService: DashboardService,
     private fb: FormBuilder,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private loaderService: LoaderService
   ) {
     this.date = data.date;
   }
@@ -67,12 +69,15 @@ export class FoodsDialogComponent implements OnInit, OnDestroy{
 
     const { searchItem } = this.searchForm.value!;
 
+    this.loaderService.show();
+
     this.searchSubscription = this.dashboardService
       .searchFoodsByQuery(searchItem!)
       .subscribe({
         next: (result) => {
           this.searchResults = [];
           this.searchResults = result; 
+          this.loaderService.hide();
           
         },
         error: (err) => {
@@ -83,6 +88,7 @@ export class FoodsDialogComponent implements OnInit, OnDestroy{
 
           this.errors.push(err.error.message);
           this.errors.forEach((error) => this.toastr.error(error, 'Error'));
+          this.loaderService.hide();
         },
       });
   }
@@ -114,6 +120,7 @@ export class FoodsDialogComponent implements OnInit, OnDestroy{
   }
 
   onSubmitHandler() {
+    this.loaderService.show();
     this.submitErrors = [];
 
     if (this.addForm.invalid || this.addForm.value.quantity === 0) {
@@ -128,6 +135,7 @@ export class FoodsDialogComponent implements OnInit, OnDestroy{
       .subscribe({
         next: (result) => {
           this.ref.close();
+          this.loaderService.hide();
         },
         error: (err) => {
           if (err.status === 0) {
@@ -137,6 +145,7 @@ export class FoodsDialogComponent implements OnInit, OnDestroy{
 
           this.errors.push(err.error.message);
           this.errors.forEach((error) => this.toastr.error(error, 'Error'));
+          this.loaderService.hide();
         },
       });
     

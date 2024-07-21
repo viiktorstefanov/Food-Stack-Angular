@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { LoaderService } from '../../shared/loader/loader.service';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class LoginComponent implements OnDestroy{
   private loginSubscription: Subscription | undefined;
 
 
-  constructor(private router: Router, private fb: FormBuilder, private authService: AuthService, private toastr: ToastrService) {
+  constructor(private router: Router, private fb: FormBuilder, private authService: AuthService, private toastr: ToastrService, private loaderService: LoaderService) {
   };
 
   submitHandler(): void {
@@ -41,12 +42,15 @@ export class LoginComponent implements OnDestroy{
       this.toastr.error('Email and password are required', 'Error');
       return;
     }
-      
+    
+    this.loaderService.show();
+
     this.loginSubscription = this.authService.login(email!, password!).subscribe({
       next: (user) => {
         this.toastr.success('Login successful.');
         
         this.router.navigate(['/home']);
+        this.loaderService.hide();
       },
       error: (err) => {
         if (err.status === 0) {
@@ -55,7 +59,8 @@ export class LoginComponent implements OnDestroy{
         }
         
         this.errors.push(err.error.message);
-        this.errors.forEach(error => this.toastr.error(error, 'Error'));   
+        this.errors.forEach(error => this.toastr.error(error, 'Error'));  
+        this.loaderService.hide(); 
       }
     });
   };

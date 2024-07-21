@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { DailyFood } from '../types/DailyFood';
 import { DashboardService } from '../dashboard.service';
 import { ToastrService } from 'ngx-toastr';
+import { LoaderService } from '../../shared/loader/loader.service';
 
 @Component({
   selector: 'app-foods-delete-dialog',
@@ -18,7 +19,7 @@ export class FoodsDeleteDialogComponent implements OnDestroy{
   errors: string[] = [];
   date: string;
 
-  constructor(private ref: MatDialogRef<FoodsDeleteDialogComponent>, private toastr: ToastrService, private dashboardService: DashboardService, @Inject(MAT_DIALOG_DATA) public data: { food: DailyFood, date: string }) {
+  constructor(private ref: MatDialogRef<FoodsDeleteDialogComponent>, private toastr: ToastrService, private dashboardService: DashboardService, @Inject(MAT_DIALOG_DATA) public data: { food: DailyFood, date: string }, private loaderService: LoaderService) {
     this.food = data.food;
     this.date = data.date;
   }
@@ -30,9 +31,12 @@ export class FoodsDeleteDialogComponent implements OnDestroy{
   onDeleteHandler() {
     this.errors = [];
 
+    this.loaderService.show();
+
     this.foodSubscription = this.dashboardService.deleteDailyFood(this.date, this.food!._id).subscribe({
       next: (response) => {          
           this.ref.close();
+          this.loaderService.hide();
           
           },
           error: (err) => {
@@ -43,6 +47,7 @@ export class FoodsDeleteDialogComponent implements OnDestroy{
             
             this.errors.push(err.error.message);
             this.errors.forEach(error => this.toastr.error(error, 'Error'));   
+            this.loaderService.hide();
           }
     });
   }

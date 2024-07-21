@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { LoaderService } from '../../shared/loader/loader.service';
 
 @Component({
   selector: 'app-logout',
@@ -15,16 +16,18 @@ export class LogoutComponent  implements OnInit, OnDestroy {
   errors: string[] = [];
   logoutSubscription: Subscription | undefined;
 
-  constructor(private sideNavService: SideNavService, private authService: AuthService, private toastr: ToastrService, private router: Router) {
+  constructor(private sideNavService: SideNavService, private authService: AuthService, private toastr: ToastrService, private router: Router, private loaderService: LoaderService) {
     this.sideNavService.hideSideNav();
   }
 
   ngOnInit(): void {
+    this.loaderService.show();
     this.logoutSubscription = this.authService.logout().subscribe({
       next: () => {
         this.authService.clearUser();
         this.router.navigate(['/home']);
         this.toastr.success('Logout successful.');
+        this.loaderService.hide();
       },
       error: (err) => {
         if(err.status === 0) {
@@ -34,7 +37,8 @@ export class LogoutComponent  implements OnInit, OnDestroy {
         this.router.navigate(['/not-found']);
         this.errors = [];
         this.errors.push(err.error.message);
-        this.errors.forEach(error => this.toastr.error(error, 'Error'));   
+        this.errors.forEach(error => this.toastr.error(error, 'Error')); 
+        this.loaderService.hide();  
       }
     });
   };

@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NutritionFacts } from '../types/NutritionFacts';
 import { Subscription } from 'rxjs';
+import { LoaderService } from '../../shared/loader/loader.service';
 
 @Component({
   selector: 'app-add-food-dialog',
@@ -31,7 +32,7 @@ export class AddFoodDialogComponent implements OnInit ,OnDestroy{
   private foodSubscription: Subscription | undefined;
   private formSubscription: Subscription | undefined;
 
-  constructor(private ref: MatDialogRef<AddFoodDialogComponent>, private dashboardService: DashboardService, private toastr: ToastrService, private fb: FormBuilder) {
+  constructor(private ref: MatDialogRef<AddFoodDialogComponent>, private dashboardService: DashboardService, private toastr: ToastrService, private fb: FormBuilder, private loaderService: LoaderService) {
 
   }
   ngOnInit(): void {
@@ -90,12 +91,15 @@ export class AddFoodDialogComponent implements OnInit ,OnDestroy{
        return;
     };
     const customFood = { name , calories, protein, fat, carbohydrates: carbs };
+
+    this.loaderService.show();
     
     this.foodSubscription = this.dashboardService
       .addUserCustomFood(customFood)
       .subscribe({
         next: (result) => {
           this.closeDialog();
+          this.loaderService.hide();
         },
         error: (err) => {
           if (err.status === 0) {
@@ -105,6 +109,7 @@ export class AddFoodDialogComponent implements OnInit ,OnDestroy{
 
           this.errors.push(err.error.message);
           this.errors.forEach((error) => this.toastr.error(error, 'Error'));
+          this.loaderService.hide();
         },
       });
   };

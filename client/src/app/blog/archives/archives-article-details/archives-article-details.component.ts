@@ -4,6 +4,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { Blog } from '../../types/blog';
 import { BlogService } from '../../blog.service';
 import { ToastrService } from 'ngx-toastr';
+import { LoaderService } from '../../../shared/loader/loader.service';
 
 @Component({
   selector: 'app-archives-article-details',
@@ -18,16 +19,18 @@ export class ArchivesArticleDetailsComponent implements OnInit, OnDestroy{
   errors: string[] | undefined;
   destroy$ = new Subject<void>();
 
-  constructor(private route: ActivatedRoute, private blogService: BlogService, private toastr: ToastrService) {
+  constructor(private route: ActivatedRoute, private blogService: BlogService, private toastr: ToastrService,  private loaderService: LoaderService) {
 
   }
 
   ngOnInit(): void {
+    this.loaderService.show();
     this.id = this.route.snapshot.params['blogId'];
     
     this.blogService.getById(this.id).pipe(takeUntil(this.destroy$)).subscribe({
       next: (blog) => {
         this.blog = blog;  
+        this.loaderService.hide();
       },
       error: (err) => {
         if(err.status === 0) {
@@ -37,6 +40,7 @@ export class ArchivesArticleDetailsComponent implements OnInit, OnDestroy{
         this.errors = [];
         this.errors.push(err.error.message);
         this.errors.forEach(error => this.toastr.error(error, 'Error')); 
+        this.loaderService.hide();
       }
     });
   };

@@ -5,6 +5,7 @@ import { BlogService } from '../blog.service';
 import { ToastrService } from 'ngx-toastr';
 import { Subject, takeUntil } from 'rxjs';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { LoaderService } from '../../shared/loader/loader.service';
 
 @Component({
   selector: 'app-archives',
@@ -21,16 +22,18 @@ export class ArchivesComponent implements OnInit, OnDestroy {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private sideNavService: SideNavService, private blogService: BlogService, private toastr: ToastrService) {
+  constructor(private sideNavService: SideNavService, private blogService: BlogService, private toastr: ToastrService, private loaderService: LoaderService) {
     this.sideNavService.hideSideNav();
   }
 
   ngOnInit(): void {
+    this.loaderService.show();
     this.blogService.getAllBlogs().pipe(takeUntil(this.destroy$)).subscribe({
       next: (allBlogs) => {
         this.blogList = allBlogs;
         this.paginator.length = this.blogList.length;
         this.updateDisplayedBlogs();
+        this.loaderService.hide();
       },
       error: (err) => {
         if (err.status === 0) {
@@ -40,6 +43,7 @@ export class ArchivesComponent implements OnInit, OnDestroy {
         this.errors = [];
         this.errors.push(err.error.message);
         this.errors.forEach(error => this.toastr.error(error, 'Error'));
+        this.loaderService.hide();
       }
     });
   };

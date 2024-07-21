@@ -4,6 +4,7 @@ import { BlogService } from '../blog.service';
 import { Blog } from '../types/blog';
 import { Subject, takeUntil } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { LoaderService } from '../../shared/loader/loader.service';
 
 @Component({
   selector: 'app-blog',
@@ -17,14 +18,16 @@ export class BlogComponent implements OnInit, OnDestroy {
   
   private destroy$ = new Subject<void>();
 
-  constructor(private sideNavService: SideNavService, private blogService: BlogService, private toastr: ToastrService) {
+  constructor(private sideNavService: SideNavService, private blogService: BlogService, private loaderService: LoaderService, private toastr: ToastrService) {
     this.sideNavService.hideSideNav();
   }
 
   ngOnInit(): void {
+    this.loaderService.show();
     this.blogService.getRecentBlogs().pipe(takeUntil(this.destroy$)).subscribe({
       next: (recentBlogs) => {
         this.blogList = recentBlogs;  
+        this.loaderService.hide();
       },
       error: (err) => {
         if (err.status === 0) {
@@ -34,6 +37,7 @@ export class BlogComponent implements OnInit, OnDestroy {
         this.errors = [];
         this.errors.push(err.error.message);
         this.errors.forEach(error => this.toastr.error(error, 'Error'));
+        this.loaderService.hide();
       }
     });
   };

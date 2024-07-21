@@ -5,6 +5,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { DashboardService } from '../dashboard.service';
+import { LoaderService } from '../../shared/loader/loader.service';
 
 @Component({
   selector: 'app-foods-quantity-edit-dialog',
@@ -28,7 +29,7 @@ export class FoodsQuantityEditDialogComponent implements OnInit, OnDestroy{
   private foodSubscription: Subscription | undefined;
   private valueChangesSubscription: Subscription | undefined;
 
-  constructor(private fb: FormBuilder, private dashboardService: DashboardService, private toastr: ToastrService, private ref: MatDialogRef<FoodsQuantityEditDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: { food: DailyFood, date: string }) {
+  constructor(private fb: FormBuilder, private dashboardService: DashboardService, private toastr: ToastrService, private ref: MatDialogRef<FoodsQuantityEditDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: { food: DailyFood, date: string }, private loaderService: LoaderService) {
     this.food = data.food;
     this.date = data.date;
   }
@@ -63,10 +64,13 @@ export class FoodsQuantityEditDialogComponent implements OnInit, OnDestroy{
       this.toastr.error('Enter a valid number for the serving.', 'Error');
       return;
     }
+
+    this.loaderService.show();
     
     this.foodSubscription = this.dashboardService.editDailyFoodQuantity(this.date, this.food!._id, Number(quantity)).subscribe({
       next: (response) => {          
           this.ref.close();
+          this.loaderService.hide();
           
           },
           error: (err) => {
@@ -76,7 +80,8 @@ export class FoodsQuantityEditDialogComponent implements OnInit, OnDestroy{
             }
             
             this.errors.push(err.error.message);
-            this.errors.forEach(error => this.toastr.error(error, 'Error'));   
+            this.errors.forEach(error => this.toastr.error(error, 'Error'));
+            this.loaderService.hide();   
           }
     });
 

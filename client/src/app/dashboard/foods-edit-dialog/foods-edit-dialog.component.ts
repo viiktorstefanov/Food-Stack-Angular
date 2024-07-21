@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { NutritionFacts } from '../types/NutritionFacts';
+import { LoaderService } from '../../shared/loader/loader.service';
 
 @Component({
   selector: 'app-foods-edit-dialog',
@@ -32,7 +33,7 @@ export class FoodsEditDialogComponent implements OnInit,OnDestroy{
     protein: this.data.food.nutrients.protein,
   };
 
-  constructor(private ref: MatDialogRef<FoodsEditDialogComponent>, private fb: FormBuilder, private dashboardService: DashboardService, private toastr: ToastrService, @Inject(MAT_DIALOG_DATA) public data: { food: Food }) {
+  constructor(private ref: MatDialogRef<FoodsEditDialogComponent>, private fb: FormBuilder, private dashboardService: DashboardService, private toastr: ToastrService, @Inject(MAT_DIALOG_DATA) public data: { food: Food }, private loaderService: LoaderService) {
   
   }
   ngOnInit(): void {
@@ -93,12 +94,13 @@ export class FoodsEditDialogComponent implements OnInit,OnDestroy{
 
     const customFood = { name , calories, protein, fat, carbohydrates: carbs, foodId: this.data.food._id};
     
- 
+    this.loaderService.show();
     this.foodSubscription = this.dashboardService
       .editUserCustomFood(customFood.foodId!, customFood)
       .subscribe({
         next: (result) => {
           this.closeDialog();
+          this.loaderService.hide();
         },
         error: (err) => {
           if (err.status === 0) {
@@ -108,6 +110,7 @@ export class FoodsEditDialogComponent implements OnInit,OnDestroy{
 
           this.errors.push(err.error.message);
           this.errors.forEach((error) => this.toastr.error(error, 'Error'));
+          this.loaderService.hide();
         },
       });
   };

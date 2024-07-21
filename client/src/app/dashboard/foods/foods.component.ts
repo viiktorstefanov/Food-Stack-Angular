@@ -9,6 +9,7 @@ import { AuthService } from '../../auth/auth.service';
 import { Subject, takeUntil } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { CustomFoodsDeleteDialogComponent } from '../custom-foods-delete-dialog/custom-foods-delete-dialog.component';
+import { LoaderService } from '../../shared/loader/loader.service';
 
 @Component({
   selector: 'app-foods',
@@ -28,7 +29,8 @@ export class FoodsComponent implements OnInit, OnDestroy {
     private dialog: MatDialog,
     private dashboardService: DashboardService,
     private authService: AuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private loaderService: LoaderService
   ) {
     this.sideNavService.showSideNav();
   }
@@ -43,6 +45,7 @@ export class FoodsComponent implements OnInit, OnDestroy {
   }
 
   fetchCustomFoods() {
+    this.loaderService.show();
     this.dashboardService
       .getUserCustomFoods(this.userId!)
       .pipe(takeUntil(this.destroy$))
@@ -51,6 +54,7 @@ export class FoodsComponent implements OnInit, OnDestroy {
           if (result) {
             this.customFoods = result;
           }
+          this.loaderService.hide();
         },
         error: (err) => {
           if (err.status === 0) {
@@ -61,6 +65,7 @@ export class FoodsComponent implements OnInit, OnDestroy {
           this.errors = [];
           this.errors.push(err.error.message);
           this.errors.forEach((error) => this.toastr.error(error, 'Error'));
+          this.loaderService.hide();
         },
       });
   }
