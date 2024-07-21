@@ -97,7 +97,7 @@ authController.post('/target/:id',
                 const newTargetCalories = Number(req.body.targetCalories);
                 const updatedUser = await changeUserTargetCalories(userId, newTargetCalories);
                 res.json().end();
-                console.log(`${user.email} successfully set a new target for calories.`);
+                console.log(`${user.email} successfully set a new target for calories (${req.body.targetCalories}).`);
             } catch (error) {
                 const message = parseError(error);
                 console.log(message);
