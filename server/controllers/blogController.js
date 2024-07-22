@@ -38,7 +38,6 @@ blogController.get("/archives/recent", async (req, res) => {
 
 blogController.post("/archives/add", async (req, res) => {
   try {
-    const user = JSON.parse(req.headers.user);
     const blog = req.body;
 
     if (!req.body || req.body.length <= 0) {
