@@ -42,6 +42,11 @@ export class RegisterComponent implements OnDestroy{
       return;
     }
 
+    if(isNaN(+age) || +age <= 0) {
+      this.toastr.error('Please enter a valid age.', 'Error');
+      return;
+    }
+
     if(!gender) {
       this.toastr.error('Please select your gender.', 'Error');
       return;

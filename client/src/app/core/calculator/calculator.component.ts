@@ -94,7 +94,7 @@ export class CalculatorComponent  implements OnInit, OnDestroy{
 
     const { age, gender, height, weight, activity } = this.form.value;
 
-    if(age && +age > 100 || age && +age < 0){
+    if(age && +age > 100 || age && +age <= 0){
       this.toastr.error('Invalid age', 'Error');
       return
     }
