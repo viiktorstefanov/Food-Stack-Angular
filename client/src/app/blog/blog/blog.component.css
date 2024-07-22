@@ -4,7 +4,7 @@
 }
 
 .background {
-  background-image: url(/assets/images/background-blog.jpg);
+  background-color: #ff6c3b;
   background-size: cover;
   background-position: center;
   opacity: 0.9;

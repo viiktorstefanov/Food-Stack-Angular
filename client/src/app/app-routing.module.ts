@@ -13,8 +13,8 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent, 
-    title: `Foodstack: Eat smarter.
-    Live better.`,
+    title: `Foodstack: Better food.
+    Better you.`,
   },
   {
     path: 'blog',

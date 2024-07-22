@@ -61,10 +61,9 @@
 
 .grid-left .macronutrients {
   position: absolute;
-  right: -93px;
-  bottom: -84px;
-  width: 350px;
-  height: 200px;
+  right: -3px;
+  bottom: -121px;
+  width: 240px;
   object-fit: cover;
   border-radius: 8px;
   border: 2px solid #462b3c;

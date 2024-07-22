@@ -9,6 +9,6 @@ export const authGuard: CanActivateFn = (route, state) => {
   }
   const router = inject(Router);
   const toastr = inject(ToastrService);
-  toastr.error('Please sign in to access this page.', 'Error');
+  toastr.error('Please sign in to access this page.', '');
   return router.navigate(['/home']);
 };
