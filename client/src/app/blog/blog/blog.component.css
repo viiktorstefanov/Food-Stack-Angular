@@ -65,13 +65,14 @@
   font-family: Lato;
   font-size: 1.1rem;
   padding-right: 80px;
+  margin-bottom: 50px;
 }
 
 .middle-container-right {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: end;
 }
 
 .middle-container-right img {
@@ -113,9 +114,6 @@
   margin-top: 50px;
   border: none;
   opacity: 1;
-}
-
-.submit-btn a {
   color: #180f15;
 }
 
