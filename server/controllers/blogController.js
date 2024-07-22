@@ -5,9 +5,8 @@ const { parseError } = require("../utils/parseError");
 
 blogController.get("/archives", async (req, res) => {
   try {
-    const user = JSON.parse(req.headers.user);
     res.json(await getAll());
-    console.log(`Successfully sent all blogs to ${user.email}.`);
+    console.log(`Successfully sent all blogs.`);
   } catch (error) {
     const message = parseError(error);
     console.log(message);
@@ -60,11 +59,10 @@ blogController.post("/archives/add", async (req, res) => {
 
 blogController.get('/archives/:id', async (req, res) => {
     try {
-        const user = JSON.parse(req.headers.user);
         const id = req.params.id;
         const blog = await getById(id);   
         res.json(blog).end();
-            console.log(`Blog with ${id} has been successfully sent to ${user.email}.`)
+            console.log(`Blog with ${id} has been successfully sent.`)
     } catch (error) {
       const message = parseError(error);
     console.log(message);
@@ -78,10 +76,9 @@ blogController.get('/archives/:id', async (req, res) => {
 
 blogController.delete("/archives/:id", async (req, res) => {
   try {
-    const user = JSON.parse(req.headers.user);
     const id = req.params.id;
     await deleteById(id);
-    console.log(`Blog with ${id} has been successfully removed from ${user.email}.`);
+    console.log(`Blog with ${id} has been successfully removed.`);
     res.status(204).end();
   } catch (error) {
     const message = parseError(error);
@@ -96,7 +93,6 @@ blogController.delete("/archives/:id", async (req, res) => {
 
 blogController.put('/archives/:id', async (req, res) => {
     try {
-      const user = JSON.parse(req.headers.user);
         const blogId = req.params.id;
         if(!req.body || req.body.length <= 0) {
             throw new Error(`Blog details are missing from the request.`);
@@ -104,7 +100,7 @@ blogController.put('/archives/:id', async (req, res) => {
         const editedBlog = req.body;
         const updatedBlog = await editBlog(blogId, editedBlog);
         res.status(204).end();
-        console.log(`${user.email} edited the blog with ${blogId}.`);
+        console.log(`Blog with ${blogId} has been edited.`);
     } catch (error) {
       const message = parseError(error);
       console.log(message);
