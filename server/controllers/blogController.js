@@ -46,7 +46,7 @@ blogController.post("/archives/add", async (req, res) => {
     }
 
     const newBlog = await addBlog(blog);
-    console.log(`A new blog has been successfully added for ${user.email}.`);
+    console.log(`A new blog has been successfully added.`);
     res.status(204).end();
   } catch (error) {
     const message = parseError(error);
