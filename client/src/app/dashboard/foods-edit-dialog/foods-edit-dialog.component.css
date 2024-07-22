@@ -154,6 +154,14 @@
   .info-btn button:hover, .info-btn button:focus{
       box-shadow: 0 2px 8px 0 rgba(119, 121, 133, 0.76);
   }
+
+  .serving-warning {
+    display: flex;
+    justify-content: center;
+    font-family: 'Roboto';
+    color: #ff6c3b;
+    margin: 1.5rem 0;
+  }
   
   /* ticket calories */
   

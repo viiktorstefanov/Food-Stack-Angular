@@ -9,6 +9,7 @@
       </div>
     </div>
 
+    <h3 class="serving-warning">Ensure the values correspond to a 100g serving.</h3>
     <div class="dialog-form">
         <form class="add-food-form" [formGroup]="form" (submit)="submitHandler()">
             <div class="add-food-info">
@@ -41,7 +42,7 @@
         </form>
         <div class="dialog-add">
             <div class="nutrition-facts">
-                <h1>Nutrition Facts</h1>
+                <h1>Nutrition Facts for 100g</h1>
                 <div class="section">
                   <div class="label"><span>Total Fats</span> <span>{{nutritionFactValues.fats}}g</span></div>
                 </div>
