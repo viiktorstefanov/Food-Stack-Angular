@@ -14,7 +14,7 @@
   </a>
 </p>
 
-[![Watch the video](https://img.youtube.com/vi/InMo2uwrvgg/0.jpg)](https://www.youtube.com/watch?v=InMo2uwrvgg)
+[![Watch the video](https://img.youtube.com/vi/XlWjy4EO1ag/0.jpg)](https://www.youtube.com/watch?v=XlWjy4EO1ag)
 
 ## Table of Contents
 
