@@ -1,0 +1,22 @@
+<div class="responsive-nav">
+  <div class="menu-container">
+    <div (click)="toggleMenu()" class="menu-button"><i class="fas fa-bars"></i></div>
+    <div [ngClass]="{'show': isMenuOpen}" class="menu-content">
+        <ul>
+            <li ><a class="home nav-item" [routerLink]="'/home'"><i class="fas fa-home nav-icon"></i>Home</a></li>
+                <li ><a class="blog nav-item" [routerLink]="'/blog'"><i class="far fa-newspaper nav-icon"></i>Blog</a></li>
+                <li ><a class="dashboard nav-item" [routerLink]="'/dashboard'"><i class="fas fa-book nav-icon"></i>Diary</a></li>
+                <li *ngIf="isDiary"><a class="foods nav-item" [routerLink]="'/dashboard/foods'"><i class="fas fa-pizza-slice nav-icon"></i>Foods</a></li>
+                <li ><a class="about nav-item" [routerLink]="'/calculator'"><i class="fas fa-calculator nav-icon"></i>Calculator</a></li>
+                <li ><a class="contact nav-item" [routerLink]="'/contacts'"><i class="fas fa-envelope nav-icon"></i>Contacts</a></li>
+
+                <li *ngIf="!isAuthenticated" ><a class="login-btn nav-item" [routerLink]="'/auth/login'"><i class="fas fa-sign-in-alt nav-icon"></i>Login</a></li>
+                <li *ngIf="!isAuthenticated" ><a class="reg-btn nav-item" [routerLink]="'/auth/register'"><i class="far fa-edit nav-icon"></i>Register</a></li>
+                <li *ngIf="isAuthenticated" ><a class="logout-btn nav-item" [routerLink]="'/auth/logout'"><i class="fas fa-share-square nav-icon"></i>Logout</a></li>
+        </ul>
+    </div>
+  </div>
+  <a [routerLink]="'/home'" class="logo">
+    <img class="logo-img" src="assets/icon/foodstack-logo1.png" alt="logo" />
+  </a>
+</div>

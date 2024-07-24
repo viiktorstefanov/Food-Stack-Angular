@@ -10,9 +10,10 @@ import {MatIconModule} from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { LoaderComponent } from './loader/loader.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MobileNavBarComponent } from './mobile-nav-bar/mobile-nav-bar.component';
 
 @NgModule({
-  declarations: [HomeNavComponent, HomeFooterComponent, PaginatorComponent, SideNavComponent, LoaderComponent],
+  declarations: [HomeNavComponent, HomeFooterComponent, PaginatorComponent, SideNavComponent, LoaderComponent, MobileNavBarComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -21,6 +22,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatTooltipModule,
     MatProgressSpinnerModule
   ],
-  exports: [HomeNavComponent, HomeFooterComponent, PaginatorComponent, SideNavComponent, LoaderComponent]
+  exports: [HomeNavComponent, HomeFooterComponent, PaginatorComponent, SideNavComponent, LoaderComponent, MobileNavBarComponent]
 })
 export class SharedModule { }

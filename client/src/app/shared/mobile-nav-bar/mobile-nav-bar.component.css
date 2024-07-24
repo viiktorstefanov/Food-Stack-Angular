@@ -1,0 +1,88 @@
+.responsive-nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu-container {
+  position: relative;
+  align-content: center;
+}
+
+.menu-button {
+  padding: 10px 20px;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.menu-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100dvw;
+  background-color: #fb8057;
+  /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); */
+  z-index: 1;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+.menu-content.show {
+  max-height: 500px;
+  opacity: 1;
+}
+
+.menu-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-content li {
+  padding: 10px;
+}
+
+.menu-content li a:hover {
+  color: #462b3c;
+}
+
+.menu-content li a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.diary {
+  display: none;
+}
+
+.logo {
+  padding: 10px;
+}
+
+.logo-img {
+  width: 160px;
+}
+
+.nav-icon {
+  font-size: 20px;
+  width: 2rem;
+  min-width: 2rem;
+  margin: 0 0.5rem;
+  text-align: center;
+}
+
+.login-btn, .logout-btn {
+  margin-top: 20px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  /* text-transform: uppercase; */
+}
+
+.login-btn i {
+  padding-right: 4px;
+}

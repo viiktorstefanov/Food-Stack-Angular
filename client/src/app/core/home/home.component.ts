@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { SideNavService } from '../../shared/side-nav/side-nav.service';
 
 @Component({
@@ -6,9 +6,26 @@ import { SideNavService } from '../../shared/side-nav/side-nav.service';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit{
+
+  isMobileView: boolean = false;
+
+  ngOnInit(): void {
+    this.checkWindowSize();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.checkWindowSize();
+  }
+
+  checkWindowSize(): void {
+    const width = window.innerWidth;
+    this.isMobileView = width >= 360 && width <= 414;
+  }
 
   constructor(private sideNavService: SideNavService) {
     this.sideNavService.hideSideNav();
   }
+  
 }

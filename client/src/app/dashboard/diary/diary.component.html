@@ -40,7 +40,7 @@
   </div>
   <div class="diary-result-container">
     <div class="charts">
-      <div class="chart-wrapper">
+      <div class="chart-wrapper" *ngIf="consumedCalories > 0">
         <app-chart [targetCalories]="targetCalories" [currentCalories]="consumedCalories"></app-chart>
         <a routerLink="/calculator"><p matTooltip="Set your daily caloric intake goal based on age, gender, weight, height, activity level, and your body goals (weight loss, maintenance, or muscle gain). Use our calorie calculator to find your ideal intake.">TARGET: {{targetCalories}} kcal</p></a>
       </div>
