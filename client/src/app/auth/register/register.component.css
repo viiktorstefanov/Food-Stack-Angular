@@ -197,7 +197,7 @@
 .basics-info-box {
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 46px;
   gap: 27px;
   align-items: center;
   text-align: center;
@@ -255,4 +255,46 @@
   display: flex;
   justify-content: center;
   margin-top: 2rem;
+}
+
+@media (min-device-width: 360px) and (max-device-width: 414px) and (orientation: portrait) {
+
+  .register-view {
+    background-image: unset;
+    height: unset;
+  }
+
+  .register-content {
+    flex-direction: column;
+  }
+
+  .error {
+    margin-left: 83px;
+    font-size: 12px;
+  }
+
+  .profile-details-row {
+    justify-content: space-between;
+  }
+
+  .profile-details-row .radio {
+    width: unset;
+  }
+
+  .label {
+    font-size: 16px;
+  }
+
+  .basics-info-box {
+    min-width: unset;
+    padding: 25px;
+  }
+
+  .item p {
+    line-height: 1.5;
+  }
+
+  .item li {
+    line-height: 1.5;
+  }
 }
