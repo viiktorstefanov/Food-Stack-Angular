@@ -76,3 +76,34 @@
     border-radius: 1rem;
     border: 2px solid #462b3c;
   }
+
+  @media (min-device-width: 360px) and (max-device-width: 414px) and (orientation: portrait) {
+    .w-layout-flex {
+      flex-direction: column;
+    }
+
+    .w-layout-flex h1 {
+      display: none;
+      margin-top: 2rem;
+    }
+
+    .w-layout-flex h5 {
+     text-align: center;
+    }
+
+    .w-layout-flex-left .sign-up-btn a {
+      padding: 1rem 1.5rem;
+      font-size: 1rem;
+    }
+
+    .w-layout-flex-left {
+      align-items: center;
+    }
+
+    .w-layout-flex-right iframe {
+      margin-top: 3.125rem;
+      margin-bottom: 3.125rem;
+      max-width: 300px;
+      max-height: 250px;
+    }
+  }

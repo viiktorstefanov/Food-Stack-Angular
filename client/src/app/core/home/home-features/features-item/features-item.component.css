@@ -42,3 +42,14 @@
   font-size: 1.1rem;
   line-height: 1.5em;
 }
+
+@media (min-device-width: 360px) and (max-device-width: 414px) and (orientation: portrait) {
+  .features-item-subhero-text p {
+    font-family: 'Roboto';
+    width: 300px;
+  }
+
+  .features-item-subhero-text {
+    margin-bottom: 3rem;
+  }
+}
