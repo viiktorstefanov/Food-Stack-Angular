@@ -79,4 +79,15 @@
   .nav-container {
     flex-direction: column;
   }
+
+  .logo-img {
+    width: 300px;
+    height: unset;
+    margin-top: 3rem;
+  }
+
+  .nav-left-container {
+    justify-content: center;
+    width: unset;
+  }
 }

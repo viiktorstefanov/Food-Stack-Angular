@@ -147,3 +147,14 @@
   letter-spacing: 0.5px;
 }
 
+@media (min-device-width: 360px) and (max-device-width: 414px) and (orientation: portrait) {
+  .login-form {
+    padding: 1.8rem;
+    margin-top: 0;
+  }
+
+  .login-view {
+    height: unset;
+    background-image: unset;
+  }
+}

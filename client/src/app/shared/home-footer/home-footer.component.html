@@ -1,4 +1,4 @@
-<section class="footer">
+<section class="footer" *ngIf="showFooter">
     <div class="container-footer w-container">
         <div class="layout-grid">
             <div class="layout-grid-logo">
@@ -7,11 +7,13 @@
             <div class="layout-grid-column-1">
                 <p class="layout-grid-colum-1-title">Features</p>
                 <p class="layout-grid-colum-1-list">
+                    <a [routerLink]="'/home'">Home</a>
+                    <br>
                     <a [routerLink]="'/dashboard/diary'">Diary</a>
                     <br>
                     <a [routerLink]="'/blog'">Blog</a>
                     <br>
-                    <a [routerLink]="'/dashboard/foods'">Custom Foods</a>
+                    <a [routerLink]="'/dashboard/foods'">Foods</a>
                     <br>
                     <a></a>
                     <br>
@@ -24,9 +26,9 @@
                     <br>
                     <a [routerLink]="'/auth/login'">Sign In</a>
                     <br>
-                    <a [routerLink]="'/contacts'">Contacts</a>
+                    <a [routerLink]="'/calculator'">Calculator</a>
                     <br>
-                    <a [routerLink]="'/calculator'">Calories Calculator</a>
+                    <a [routerLink]="'/contacts'">Contacts</a>
                     <br>
                 </p>
             </div>
