@@ -91,3 +91,28 @@
   width: 100%;
 }
 
+@media (min-device-width: 360px) and (max-device-width: 414px) and (orientation: portrait) {
+  .hero {
+    margin-top: 3rem;
+  }
+
+  .contact-view {
+    background-image: unset;
+    height: unset;
+  }
+
+  .contact-box {
+    min-width: unset;
+    min-height: unset;
+    padding: 25px;
+  }
+
+  .googleplay-icon img,
+  .apple-icon a img {
+    height: unset;
+  }
+
+  .contact-icons {
+    font-size: 3rem;
+  }
+}

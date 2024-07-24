@@ -1,5 +1,7 @@
 <div class="contact-view">
-    <app-home-nav [hideNav]="false"></app-home-nav>
+    <app-home-nav *ngIf="!isMobileView" [hideNav]="false"></app-home-nav>
+
+    <app-mobile-nav-bar *ngIf="isMobileView" [isDiary]="false"></app-mobile-nav-bar>
     <div class="hero">
         <div class="container-contact w-container">
           <div class="contact-box">
@@ -29,3 +31,4 @@
         </div>
       </div>
 </div>
+<app-home-footer [showFooter]="true"></app-home-footer>
