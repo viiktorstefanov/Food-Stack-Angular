@@ -30,7 +30,9 @@ export class CalculatorComponent  implements OnInit, OnDestroy, AfterViewInit{
   }
 
   scrollToTarget() {
+    if(this.targetElement) {
       this.targetElement.nativeElement.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 
   resultsVisible: boolean = false;
@@ -157,7 +159,9 @@ export class CalculatorComponent  implements OnInit, OnDestroy, AfterViewInit{
 
     this.resultsVisible = true;
     setTimeout(() => {
-      this.scrollToTarget();
+      if(this.targetElement) {
+        this.scrollToTarget();
+      }
     }, 100);
   }
 
