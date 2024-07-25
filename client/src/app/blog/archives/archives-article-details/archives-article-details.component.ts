@@ -24,7 +24,7 @@ export class ArchivesArticleDetailsComponent implements OnInit, OnDestroy, After
   }
 
   scrollToTarget() {
-    if(this.targetElement) {
+    if(this.targetElement && this.isMobileView) {
       this.targetElement.nativeElement.scrollIntoView({ behavior: 'smooth' });
     }
 }
@@ -47,7 +47,7 @@ export class ArchivesArticleDetailsComponent implements OnInit, OnDestroy, After
 
   ngOnInit(): void {
     setTimeout(() => {
-      if(this.targetElement) {
+      if(this.targetElement && this.isMobileView) {
         this.scrollToTarget();
       }
     }, 100);
