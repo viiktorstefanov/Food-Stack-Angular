@@ -120,3 +120,78 @@
 .submit-btn:hover {
   box-shadow: 0 2px 8px #777986;
 }
+
+@media (min-device-width: 360px) and (max-device-width: 414px) and (orientation: portrait) {
+  .background {
+    height: 150px;
+    font-size: 1rem;
+    margin-bottom: 200px;
+
+    p {
+      font-size: 0.9rem;
+      padding-top: 0;
+      font-family: 'Roboto';
+    }
+  }
+
+  .background .middle-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+    padding: 40px 0px 40px 0px;
+
+    h2 {
+      display: none;
+    }
+
+    .middle-container-left {
+      width: unset;
+      order: 2;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      padding-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: 'Roboto';
+    }
+
+    .middle-container-right {
+      align-items: center;
+    }
+
+    .submit-btn {
+      margin-top: 40px;
+      padding: 15px 30px;
+      font-size: 1rem;
+      font-family: 'Lato';
+    }
+
+    .middle-container-left p {
+      padding-right: 0;
+      margin-bottom: 0;
+      margin-top: 20px;
+      font-weight: 500;
+    }
+
+    .middle-container-right img{
+      width: 200px;
+    }
+  }
+
+  .recent-post-container {
+    width: 90%;
+
+    h2 {
+      padding-left: 0;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+  }
+
+  .blog-view .box {
+    display: flex;
+    flex-direction: column;
+  }
+}

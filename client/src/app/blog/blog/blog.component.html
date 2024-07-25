@@ -1,5 +1,6 @@
+<app-home-nav *ngIf="!isMobileView" [hideNav]="false"></app-home-nav>
+<app-mobile-nav-bar *ngIf="isMobileView" [isDiary]="false"></app-mobile-nav-bar>
 <div class="blog-view">
-    <app-home-nav [hideNav]="false"></app-home-nav>
     <div class="background">
         <h2>Blog</h2>
         <p>Guides, Nutrition tips, Workouts and Lifestyle</p>
@@ -23,6 +24,6 @@
     </div>
     
 </div>
-<app-home-footer></app-home-footer>
+<app-home-footer [showFooter]="true"></app-home-footer>
 
 

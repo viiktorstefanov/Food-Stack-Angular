@@ -52,3 +52,9 @@
   font-size: 22px;
   font-weight: 800;
 }
+
+@media (min-device-width: 360px) and (max-device-width: 414px) and (orientation: portrait) {
+  .post {
+    height: unset;
+  }
+}

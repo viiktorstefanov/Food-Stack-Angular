@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { SideNavService } from '../../shared/side-nav/side-nav.service';
 import { BlogService } from '../blog.service';
 import { Blog } from '../types/blog';
@@ -13,8 +13,14 @@ import { LoaderService } from '../../shared/loader/loader.service';
 })
 export class BlogComponent implements OnInit, OnDestroy {
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.checkWindowSize();
+  }
+
   blogList: Blog[] = [];
   errors: string[] = [];
+  isMobileView: boolean = false;
   
   private destroy$ = new Subject<void>();
 
@@ -22,8 +28,14 @@ export class BlogComponent implements OnInit, OnDestroy {
     this.sideNavService.hideSideNav();
   }
 
+  checkWindowSize(): void {
+    const width = window.innerWidth;
+    this.isMobileView = width >= 360 && width <= 414;
+  }
+
   ngOnInit(): void {
     this.loaderService.show();
+    this.checkWindowSize();
     this.blogService.getRecentBlogs().pipe(takeUntil(this.destroy$)).subscribe({
       next: (recentBlogs) => {
         this.blogList = recentBlogs;  

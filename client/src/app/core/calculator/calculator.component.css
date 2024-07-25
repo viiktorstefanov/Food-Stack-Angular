@@ -473,6 +473,7 @@
   .target-calories-container {
     min-width: unset;
     padding: 20px;
+    margin-bottom: 3rem;
   }
 
   .profile-details-row .radio {
