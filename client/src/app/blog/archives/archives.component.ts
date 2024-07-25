@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Blog } from '../types/blog';
 import { SideNavService } from '../../shared/side-nav/side-nav.service';
 import { BlogService } from '../blog.service';
@@ -12,13 +12,22 @@ import { LoaderService } from '../../shared/loader/loader.service';
   templateUrl: './archives.component.html',
   styleUrl: './archives.component.css'
 })
-export class ArchivesComponent implements OnInit, OnDestroy {
+export class ArchivesComponent implements OnInit, OnDestroy, AfterViewInit {
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.checkWindowSize();
+  }
+
+  ngAfterViewInit(): void {
+  }
 
   blogList: Blog[] = [];
   displayedBlogs: Blog[] | undefined;
   errors: string[] = [];
 
   private destroy$ = new Subject<void>();
+  isMobileView: boolean = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -28,6 +37,7 @@ export class ArchivesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loaderService.show();
+    this.checkWindowSize();
     this.blogService.getAllBlogs().pipe(takeUntil(this.destroy$)).subscribe({
       next: (allBlogs) => {
         this.blogList = allBlogs;
@@ -52,6 +62,11 @@ export class ArchivesComponent implements OnInit, OnDestroy {
   onPageChange(event: PageEvent) {
     this.updateDisplayedBlogs();
   };
+
+  checkWindowSize(): void {
+    const width = window.innerWidth;
+    this.isMobileView = width >= 360 && width <= 414;
+  }
 
   private updateDisplayedBlogs() {
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;

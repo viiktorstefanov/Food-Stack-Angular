@@ -52,3 +52,10 @@ border-radius: 10px;
 .archives-article h3 a {
   color: #000;
 }
+
+@media (min-device-width: 360px) and (max-device-width: 414px) and (orientation: portrait) {
+  .archives-article {
+    width: 330px;
+    height: 280px;
+  }
+}

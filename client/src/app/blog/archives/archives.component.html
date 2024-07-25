@@ -1,5 +1,6 @@
+<app-home-nav *ngIf="!isMobileView" [hideNav]="false"></app-home-nav>
+<app-mobile-nav-bar *ngIf="isMobileView" [isDiary]="false"></app-mobile-nav-bar>
 <div class="blog-archives-view">
-    <app-home-nav [hideNav]="false"></app-home-nav>
     <div class="archives-container">
         <section class="archives-header">
             <h2>Archives</h2>   
@@ -15,4 +16,4 @@
         </section>
     </div>
 </div>
-<app-home-footer></app-home-footer>
+<app-home-footer [showFooter]="true"></app-home-footer>
