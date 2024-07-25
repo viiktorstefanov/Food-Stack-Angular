@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { ToastrService } from 'ngx-toastr';
@@ -12,7 +12,12 @@ import { LoaderService } from '../../shared/loader/loader.service';
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
-export class RegisterComponent implements OnDestroy{
+export class RegisterComponent implements OnDestroy, OnInit{
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.checkWindowSize();
+  }
 
   form = this.fb.group({
     firstName: ['', [Validators.required, Validators.minLength(3)]],
@@ -25,13 +30,24 @@ export class RegisterComponent implements OnDestroy{
     activity: ['', [Validators.required]],
   });
 
+  ngOnInit(): void {
+    this.checkWindowSize();
+  }
+
+  checkWindowSize(): void {
+    const width = window.innerWidth;
+    this.isMobileView = width >= 360 && width <= 414;
+  }
+
   errors: string[] = [];
+  isMobileView: boolean = false;
 
   private registerSubscription: Subscription | undefined;
 
 
   constructor(private router: Router, private fb: FormBuilder, private authService: AuthService, private toastr: ToastrService, private loaderService: LoaderService) {
   }
+  
 
   submitHandler() : void {
 

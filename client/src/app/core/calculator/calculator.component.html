@@ -1,5 +1,7 @@
+<app-home-nav *ngIf="!isMobileView" [hideNav]="false"></app-home-nav>
+
+  <app-mobile-nav-bar *ngIf="isMobileView" [isDiary]="false"></app-mobile-nav-bar>
 <div class="calculator-view">
-  <app-home-nav [hideNav]="false"></app-home-nav>
   <section class="hero">
     <div class="container-calculator w-container">
       <div class="container-calculate">
@@ -150,3 +152,4 @@
     </div>
   </section>
 </div>
+<app-home-footer [showFooter]="true"></app-home-footer>

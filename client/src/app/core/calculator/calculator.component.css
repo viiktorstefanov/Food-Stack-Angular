@@ -433,3 +433,85 @@
 .submit-btn-target:hover {
   opacity: 0.8;
 }
+
+@media (min-device-width: 360px) and (max-device-width: 414px) and (orientation: portrait) {
+  .calculator-view {
+    background-image: unset;
+    align-items: center;
+  }
+
+  .hero {
+    margin-top: 3rem;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .w-layout-flex {
+    min-width: unset;
+    min-height: unset;
+    padding: 25px;
+    margin-top: 2rem;
+  }
+
+  .container-calculator {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container-account-info {
+    margin: 0;
+    padding: 0;
+    border: unset;
+    box-shadow: unset;
+  }
+
+  .basics-info-box {
+    min-width: unset;
+    min-height: unset;
+  }
+
+  .target-calories-container {
+    min-width: unset;
+    padding: 20px;
+  }
+
+  .profile-details-row .radio {
+    width: unset;
+  }
+
+  .profile-details-row {
+    justify-content: space-between;
+  }
+
+  .basics {
+    padding: 10px;
+  }
+
+  .result {
+    min-width: unset;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .label {
+    font-size: 16px;
+    width: fit-content;
+  }
+
+  .target-calories-header {
+    font-size: 1.2rem;
+  }
+
+  .target-calories-result span,  .target-calories-result button, .target-calories-result input{
+    font-size: 1.2rem;
+    line-height: 1.5;
+  }
+
+  .learn-more span {
+    margin-top: 2rem;
+  }
+
+  .item {
+    line-height: 1.5;
+  }
+}

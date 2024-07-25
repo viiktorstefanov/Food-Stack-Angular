@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
@@ -12,7 +12,12 @@ import { LoaderService } from '../../shared/loader/loader.service';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent implements OnDestroy{
+export class LoginComponent implements OnInit, OnDestroy{
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.checkWindowSize();
+  }
 
   form = this.fb.group({
     email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]],
@@ -20,12 +25,22 @@ export class LoginComponent implements OnDestroy{
   });
 
   errors: string[] = [];
+  isMobileView: boolean = false;
 
   private loginSubscription: Subscription | undefined;
+
+  ngOnInit(): void {
+    this.checkWindowSize();
+  }
 
 
   constructor(private router: Router, private fb: FormBuilder, private authService: AuthService, private toastr: ToastrService, private loaderService: LoaderService) {
   };
+
+  checkWindowSize(): void {
+    const width = window.innerWidth;
+    this.isMobileView = width >= 360 && width <= 414;
+  }
 
   submitHandler(): void {
 

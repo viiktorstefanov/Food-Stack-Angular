@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { SideNavService } from '../../shared/side-nav/side-nav.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -19,6 +19,11 @@ import { LoaderService } from '../../shared/loader/loader.service';
 })
 export class CalculatorComponent  implements OnInit, OnDestroy{
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.checkWindowSize();
+  }
+
   resultsVisible: boolean = false;
 
   form = this.fb.group({
@@ -29,6 +34,7 @@ export class CalculatorComponent  implements OnInit, OnDestroy{
     activity: ['', [Validators.required]]
   });
 
+  isMobileView: boolean = false;
   resultBMR: string = '';
   TDEE: string = '';
   gainPerWeek025: string = '';
@@ -53,6 +59,7 @@ export class CalculatorComponent  implements OnInit, OnDestroy{
 
   ngOnInit(): void {
     this.loaderService.show();
+    this.checkWindowSize();
     this.user = this.authService.getUserInfo || undefined;
 
     if(this.user) {
@@ -88,6 +95,11 @@ export class CalculatorComponent  implements OnInit, OnDestroy{
 
     
     this.loaderService.hide();
+  }
+
+  checkWindowSize(): void {
+    const width = window.innerWidth;
+    this.isMobileView = width >= 360 && width <= 414;
   }
 
   submitHandler() {
