@@ -1,4 +1,4 @@
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { SideNavService } from '../../shared/side-nav/side-nav.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -17,11 +17,20 @@ import { LoaderService } from '../../shared/loader/loader.service';
   templateUrl: './calculator.component.html',
   styleUrl: './calculator.component.css'
 })
-export class CalculatorComponent  implements OnInit, OnDestroy{
+export class CalculatorComponent  implements OnInit, OnDestroy, AfterViewInit{
+
+  @ViewChild('targetElement') targetElement!: ElementRef;
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event): void {
     this.checkWindowSize();
+  }
+
+  ngAfterViewInit(): void {
+  }
+
+  scrollToTarget() {
+      this.targetElement.nativeElement.scrollIntoView({ behavior: 'smooth' });
   }
 
   resultsVisible: boolean = false;
@@ -56,6 +65,7 @@ export class CalculatorComponent  implements OnInit, OnDestroy{
   constructor(private sideNavService: SideNavService, private authService: AuthService, private router: Router, private fb: FormBuilder, private toastr: ToastrService, private loaderService: LoaderService) {
     this.sideNavService.hideSideNav();
   }
+
 
   ngOnInit(): void {
     this.loaderService.show();
@@ -146,6 +156,9 @@ export class CalculatorComponent  implements OnInit, OnDestroy{
     this.weightMaintenance = lossCalories.maintain.toFixed(0);
 
     this.resultsVisible = true;
+    setTimeout(() => {
+      this.scrollToTarget();
+    }, 100);
   }
 
   onResultCountClick(count: string) {
