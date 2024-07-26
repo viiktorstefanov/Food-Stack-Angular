@@ -19,6 +19,10 @@ import { ChartModule } from 'primeng/chart';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ChartComponent } from './diary/chart/chart.component';
 import { SharedModule } from '../shared/shared.module';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -36,13 +40,17 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     DashboardRoutingModule,
     MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatCardModule,
     MatDialogModule,
     ReactiveFormsModule,
     ChartModule,
     MatTooltipModule,
     ChartComponent,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    MatNativeDateModule,
   ],
   providers: [
     provideNativeDateAdapter(),

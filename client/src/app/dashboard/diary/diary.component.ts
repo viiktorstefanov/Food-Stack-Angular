@@ -177,6 +177,7 @@ export class DiaryComponent implements OnInit, OnDestroy {
   
 
   dateChanged(event: any): void {
+    
     this.dailyFoods = [];
 
     this.consumedCalories = 0;
@@ -192,11 +193,18 @@ export class DiaryComponent implements OnInit, OnDestroy {
         }
       ]
     };
+
+    const date = event instanceof Date ? event : event.value;
+    if (date) {
+      this.selectedDate = date.toLocaleDateString('en-GB');
+      this.fetchAllDailyFoods();
+      this.showNutrinitonFacts = false;
+    }
     
-    this.selectedDate = event?.toLocaleDateString('en-GB');
+    // this.selectedDate = event?.toLocaleDateString('en-GB');
     
-    this.fetchAllDailyFoods();
-    this.showNutrinitonFacts = false;
+    // this.fetchAllDailyFoods();
+    // this.showNutrinitonFacts = false;
   }
 
   fetchAllDailyFoods() {
@@ -233,6 +241,19 @@ export class DiaryComponent implements OnInit, OnDestroy {
   }
 
   openFoodsDialog() {
+  if(this.isMobileView) {
+    const dialogRef = this.dialog.open(FoodsDialogComponent, {
+      data: { date: this.selectedDate },
+      width: '100dvw',
+      height: '100vh',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.fetchAllDailyFoods();
+    });
+  } else {
     const dialogRef = this.dialog.open(FoodsDialogComponent, {
       data: { date: this.selectedDate },
     });
@@ -241,29 +262,60 @@ export class DiaryComponent implements OnInit, OnDestroy {
       this.fetchAllDailyFoods();
     });
   }
+  }
 
   openEditDialog(food: DailyFood) {
-    const dialogRef = this.dialog.open(FoodsQuantityEditDialogComponent, {
-      data: { food: food, date: this.selectedDate },
-    });
-
-    dialogRef.afterClosed().subscribe(() => {
-      this.showNutrinitonFacts = false;
-      this.selectedFood = null;
-      this.fetchAllDailyFoods();
-    });
+    if(this.isMobileView) {
+      const dialogRef = this.dialog.open(FoodsQuantityEditDialogComponent, {
+        data: { food: food, date: this.selectedDate },
+        width: '100dvw',
+        height: '100vh',
+        maxWidth: '100vw',
+        maxHeight: '100vh',
+      });
+  
+      dialogRef.afterClosed().subscribe(() => {
+        this.showNutrinitonFacts = false;
+        this.selectedFood = null;
+        this.fetchAllDailyFoods();
+      });
+    } else {
+      const dialogRef = this.dialog.open(FoodsQuantityEditDialogComponent, {
+        data: { food: food, date: this.selectedDate },
+      });
+  
+      dialogRef.afterClosed().subscribe(() => {
+        this.showNutrinitonFacts = false;
+        this.selectedFood = null;
+        this.fetchAllDailyFoods();
+      });
+    }
   }
 
   openDeleteDialog(food: DailyFood) {
-    const dialogRef = this.dialog.open(FoodsDeleteDialogComponent, {
-      data: { food: food, date: this.selectedDate },
-    });
-
-    dialogRef.afterClosed().subscribe(() => {
-      this.showNutrinitonFacts = false;
-      this.selectedFood = null;
-      this.fetchAllDailyFoods();
-    });
+    if(this.isMobileView) {
+      const dialogRef = this.dialog.open(FoodsDeleteDialogComponent, {
+        data: { food: food, date: this.selectedDate },
+        width: '80dvw',
+        maxWidth: '80vw',
+      });
+  
+      dialogRef.afterClosed().subscribe(() => {
+        this.showNutrinitonFacts = false;
+        this.selectedFood = null;
+        this.fetchAllDailyFoods();
+      });
+    } else {
+      const dialogRef = this.dialog.open(FoodsDeleteDialogComponent, {
+        data: { food: food, date: this.selectedDate },
+      });
+  
+      dialogRef.afterClosed().subscribe(() => {
+        this.showNutrinitonFacts = false;
+        this.selectedFood = null;
+        this.fetchAllDailyFoods();
+      });
+    }
   }
 
   ngOnDestroy(): void {

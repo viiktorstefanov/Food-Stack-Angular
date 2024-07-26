@@ -32,7 +32,7 @@
     </div>
     
   </div>
-  <div class="diary-calendar-container">
+  <div class="diary-calendar-container" *ngIf="true">
     <mat-card class="demo-inline-calendar-card">
       <mat-calendar
         [(selected)]="selected"
@@ -40,6 +40,14 @@
       ></mat-calendar>
     </mat-card>
   </div>
+  <!-- <div class="diary-calendar-container" *ngIf="isMobileView">
+    <mat-form-field>
+      <mat-label>Choose a date</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="selected" (dateChange)="dateChanged($event)">
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div> -->
   <div class="diary-result-container">
     <div class="charts">
       <div class="chart-wrapper" *ngIf="consumedCalories > 0">

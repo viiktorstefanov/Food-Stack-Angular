@@ -117,11 +117,9 @@ export class FoodsDialogComponent implements OnInit, OnDestroy{
   }
 
   onFoodClick(food: Food) {
- 
     this.selectedFood = food;
     this.isFoodSelected = true;
     this.calculateNutritionValues();
-  
   }
 
   onSubmitHandler() {

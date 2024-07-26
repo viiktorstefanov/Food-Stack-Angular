@@ -102,6 +102,7 @@
   
   .add-food-info .info-wrapper label, .add-food-macronutrients .info-wrapper label {
       width: 100px;
+      font-size: 1.3rem;
   }
   
   .add-food-macronutrients{
@@ -200,4 +201,73 @@
   
   .nutrition-facts .label span:first-child {
     font-weight: bold;
+  }
+
+  @media (min-device-width: 360px) and (max-device-width: 414px) and (orientation: portrait) {
+    .foods-container {
+      width: unset;
+      max-width: unset;
+      padding: 30px 1.5rem;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .dialog-form {
+      flex-direction: column;
+    }
+
+    .dialog-add {
+      justify-content: center;
+      align-items: center;
+      margin-top: 3rem;
+    }
+
+    .dialog-head {
+      justify-content: center;
+      align-self: end;
+    }
+
+    .dialog-form {
+      justify-content: center;
+    }
+
+    .add-food-form {
+      width: unset;
+    }
+
+    .add-food-info {
+      margin-bottom: 0;
+    }
+
+    .add-food-info .info-wrapper {
+      width: unset;
+    }
+
+    .add-food-info .info-wrapper label {
+      width: unset;
+      font-size: 1.1rem;
+    }
+
+    .dialog-form .info-wrapper input {
+      padding: unset;
+      padding-left: 1rem;
+      width: 260px;
+      font-size: 1.1rem;
+    }
+
+    .dialog-form .info-wrapper:nth-child(2) input {
+      width: 245px;
+    }
+
+    .info-btn {
+      margin-top: 2.5rem;
+    }
+
+    .info-btn button {
+      min-width: unset;
+    }
+
+    .info-wrapper {
+      justify-content: center;
+    }
   }

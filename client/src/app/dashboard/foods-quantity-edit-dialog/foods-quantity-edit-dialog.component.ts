@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import {  Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DailyFood } from '../types/DailyFood';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -12,7 +12,7 @@ import { LoaderService } from '../../shared/loader/loader.service';
   templateUrl: './foods-quantity-edit-dialog.component.html',
   styleUrl: './foods-quantity-edit-dialog.component.css'
 })
-export class FoodsQuantityEditDialogComponent implements OnInit, OnDestroy{
+export class FoodsQuantityEditDialogComponent implements OnInit, OnDestroy {
 
   form = this.fb.group({
     quantity: [ 0, [Validators.required]],
