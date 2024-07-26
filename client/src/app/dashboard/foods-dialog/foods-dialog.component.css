@@ -103,7 +103,7 @@
     border-radius: 10px;
     overflow: hidden;
     overflow-y: auto;
-    max-height: 400px;
+    max-height: 300px;
   }
 
   .table-tr-head {
@@ -294,6 +294,10 @@
     font-family: 'Roboto';
   }
 
+  .content-table {
+    max-height: 200px;
+  }
+
   .dialog-search-bar input {
     width: 210px;
   }
@@ -307,6 +311,7 @@
   .food-add-form {
     flex-direction: column;
     gap: 2rem;
+    margin-bottom: 2rem;
   }
 
 }
