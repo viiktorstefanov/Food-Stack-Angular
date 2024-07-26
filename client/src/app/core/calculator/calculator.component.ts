@@ -166,8 +166,10 @@ export class CalculatorComponent  implements OnInit, OnDestroy, AfterViewInit{
   }
 
   onResultCountClick(count: string) {
-    this.targetCalories = +count;
-    this.targetForm.get('targetCalories')?.setValue(this.targetCalories);
+    if(this.user) {
+      this.targetCalories = +count;
+      this.targetForm.get('targetCalories')?.setValue(this.targetCalories);
+    }
   }
 
   submitCaloriesTargetHandler() {

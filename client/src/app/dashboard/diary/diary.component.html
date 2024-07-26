@@ -1,3 +1,5 @@
+
+<app-mobile-nav-bar *ngIf="isMobileView" [isDiary]="true"></app-mobile-nav-bar>
 <div class="diary">
   <div class="diary-day-container border">
     <div class="row">
@@ -20,7 +22,7 @@
             <div *ngFor="let food of dailyFoods" (click)="onFoodClick(food)" class="table-tr" [ngClass]="{'hovered': selectedFood === food}">
               <span
                 ><i class="fas fa-hamburger"></i>{{food.name}}
-                <div class="modify-icons">
+                <div *ngIf="selectedFood === food" class="modify-icons">
                   <i (click)="openEditDialog(food)" class="fas fa-pen"></i>
                   <i (click)="openDeleteDialog(food)" class="far fa-trash-alt"></i></div
               ></span>
@@ -41,7 +43,7 @@
   <div class="diary-result-container">
     <div class="charts">
       <div class="chart-wrapper" *ngIf="consumedCalories > 0">
-        <app-chart [targetCalories]="targetCalories" [currentCalories]="consumedCalories"></app-chart>
+        <app-chart [chartWidth]="chartWidth" [targetCalories]="targetCalories" [currentCalories]="consumedCalories"></app-chart>
         <a routerLink="/calculator"><p matTooltip="Set your daily caloric intake goal based on age, gender, weight, height, activity level, and your body goals (weight loss, maintenance, or muscle gain). Use our calorie calculator to find your ideal intake.">TARGET: {{targetCalories}} kcal</p></a>
       </div>
       <div class="chart-wrapper" *ngIf="consumedCalories > 0">
@@ -106,3 +108,4 @@
     </div>
   </div>
 </div>
+<app-home-footer [showFooter]="isMobileView"></app-home-footer>

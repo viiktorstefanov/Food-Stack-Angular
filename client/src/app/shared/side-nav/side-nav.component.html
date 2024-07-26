@@ -2,6 +2,7 @@
   #sideNav
   class="side-nav"
   [ngClass]="collapsed ? 'side-nav-collapsed' : ''"
+  *ngIf="!isMobileView"
 >
   <div>
     <div class="logo-container">

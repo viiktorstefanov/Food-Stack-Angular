@@ -215,7 +215,9 @@
 }
 
 .modify-icons {
- display: none;
+ margin-left: 25px;
+ display: flex;
+ gap: 15px;
 }
 
 .table-tr:nth-child(odd) {
@@ -226,12 +228,6 @@
   cursor: pointer;
   background-color: #ff6c3b;
   color: #FFF;
-
-  .modify-icons {
-    margin-left: 50px;
-  display: flex;
-  gap: 15px;
-  }
 
   .modify-icons i:hover {
     opacity: 0.8;
@@ -321,4 +317,75 @@
 
 .chart-wrapper p:hover {
   cursor: pointer;
+}
+
+@media (min-device-width: 360px) and (max-device-width: 414px) and (orientation: portrait) {
+  .diary{
+    margin-left: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .demo-inline-calendar-card {
+    min-width: 320px;
+  }
+
+  .diary-day-container {
+    order: 1;
+    max-width: 330px;
+    min-width: 330px;
+    min-height: unset;
+    height: unset;
+    padding: 1.5rem 0.5rem;
+
+    .calories {
+      min-height: unset;
+      padding: unset;
+      margin-top: 0;
+    }
+
+    .dialog-content {
+      margin-top: 0.5rem;
+    }
+
+    .table-tr span:nth-child(1) {
+      max-width: 150px;
+    }
+  }
+
+  .dialog-add {
+    order: 2;
+  }
+
+  .diary-calendar-container {
+    margin-left: 0;
+    margin-bottom: 3rem;
+  }
+
+  .diary-result-container {
+    order: 3;
+    display: flex;
+    flex-direction: column;
+    /* padding: 1.5rem 1rem; */
+  }
+
+  .results {
+    width: unset;
+  }
+
+  .charts {
+    flex-direction: column;
+    /* order: 1; */
+    margin-bottom: 5rem;
+  }
+
+  .decoration {
+    width: 170px;
+  }
+
+  .chart-wrapper:nth-child(2) {
+    display: none;
+  }
 }

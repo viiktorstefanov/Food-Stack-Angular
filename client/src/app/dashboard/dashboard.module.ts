@@ -18,6 +18,7 @@ import { CustomFoodsDeleteDialogComponent } from './custom-foods-delete-dialog/c
 import { ChartModule } from 'primeng/chart';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ChartComponent } from './diary/chart/chart.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ChartComponent } from './diary/chart/chart.component';
     ReactiveFormsModule,
     ChartModule,
     MatTooltipModule,
-    ChartComponent
+    ChartComponent,
+    SharedModule
   ],
   providers: [
     provideNativeDateAdapter(),

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import { footerData, navBarData } from './navBarData';
+import { SideNavService } from './side-nav.service';
 
 @Component({
   selector: 'app-side-nav',
@@ -14,6 +15,11 @@ export class SideNavComponent implements OnInit{
   navData = navBarData;
   footerData = footerData;
   currentYear: number = new Date().getFullYear();
+  isMobileView: boolean = false;
+
+  constructor (private sideNavService: SideNavService) {
+    
+  }
 
   @HostListener('window:resize', ['$event'])
   onResize(event : Event) {
@@ -23,10 +29,13 @@ export class SideNavComponent implements OnInit{
       this.collapsed = false;
       this.onToggleSideNav.emit({ collapsed: this.collapsed, screenWidth: this.screenWidth});
     }
+
+    this.isMobileView = this.screenWidth >= 360 && this.screenWidth <= 414;
   } 
 
   ngOnInit(): void {
     this.screenWidth = window.innerWidth;
+    this.isMobileView = window.innerWidth >= 360 && window.innerWidth <= 414;
   }
 
 

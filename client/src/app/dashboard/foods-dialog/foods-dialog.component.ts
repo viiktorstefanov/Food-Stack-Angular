@@ -18,7 +18,7 @@ export class FoodsDialogComponent implements OnInit, OnDestroy{
   });
 
   addForm = this.fb.group({
-    quantity: [0, [Validators.required]]
+    quantity: [100, [Validators.required]]
   });
 
   ngOnInit() {

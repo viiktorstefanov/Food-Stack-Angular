@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { SideNavService } from '../../shared/side-nav/side-nav.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FoodsDialogComponent } from '../foods-dialog/foods-dialog.component';
@@ -19,6 +19,13 @@ import { LoaderService } from '../../shared/loader/loader.service';
   styleUrl: './diary.component.css',
 })
 export class DiaryComponent implements OnInit, OnDestroy {
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.checkWindowSize();
+  }
+
+  isMobileView: boolean = false;
   nutritionChartData: any;
   dailyFoods: DailyFood[] = [];
   selected: string | null = null;
@@ -33,6 +40,7 @@ export class DiaryComponent implements OnInit, OnDestroy {
   errors: string[] = [];
   private destroy$ = new Subject<void>();
   private targetSubscription: Subscription | undefined;
+  chartWidth = '';
 
   chartOptions: ChartOptions;
 
@@ -47,7 +55,9 @@ export class DiaryComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private loaderService: LoaderService
   ) {
-    this.sideNavService.showSideNav();
+
+      this.sideNavService.showSideNav();
+
 
     this.chartOptions = {
       plugins: {
@@ -66,6 +76,7 @@ export class DiaryComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     this.loaderService.show();
+    this.checkWindowSize();
 
     const currentDate = new Date().toLocaleDateString('en-GB');
     this.selectedDate = currentDate;
@@ -88,6 +99,12 @@ export class DiaryComponent implements OnInit, OnDestroy {
     });
 
     this.fetchAllDailyFoods();
+  }
+
+  checkWindowSize(): void {
+    const width = window.innerWidth;
+    this.isMobileView = width >= 360 && width <= 414;
+    this.chartWidth = this.isMobileView ? '250' : '300'
   }
 
   calculateConsumedMacros() {
@@ -128,31 +145,36 @@ export class DiaryComponent implements OnInit, OnDestroy {
   }
 
   onFoodClick(food: DailyFood) {
-    this.nutritionFactValues = {
-      calories: 0,
-      fats: 0,
-      carbohydrates: 0,
-      protein: 0,
-    };
-
-    const servingFactor = Number(food.quantity) / 100;
-
-    this.nutritionFactValues!.calories = Math.round(
-      Number(food.calories) * servingFactor
-    );
-    this.nutritionFactValues!.fats = Math.round(
-      Number(food.macronutrients.fat) * servingFactor
-    );
-    this.nutritionFactValues!.carbohydrates = Math.round(
-      Number(food.macronutrients.carbohydrates) * servingFactor
-    );
-    this.nutritionFactValues!.protein = Math.round(
-      Number(food.macronutrients.protein) * servingFactor
-    );
-
-    this.showNutrinitonFacts = true;
-    this.selectedFood = food;
+    if (this.selectedFood && this.selectedFood._id === food._id) {
+      this.showNutrinitonFacts = !this.showNutrinitonFacts; 
+    } else {
+      this.nutritionFactValues = {
+        calories: 0,
+        fats: 0,
+        carbohydrates: 0,
+        protein: 0,
+      };
+  
+      const servingFactor = Number(food.quantity) / 100;
+  
+      this.nutritionFactValues.calories = Math.round(
+        Number(food.calories) * servingFactor
+      );
+      this.nutritionFactValues.fats = Math.round(
+        Number(food.macronutrients.fat) * servingFactor
+      );
+      this.nutritionFactValues.carbohydrates = Math.round(
+        Number(food.macronutrients.carbohydrates) * servingFactor
+      );
+      this.nutritionFactValues.protein = Math.round(
+        Number(food.macronutrients.protein) * servingFactor
+      );
+  
+      this.showNutrinitonFacts = true; 
+      this.selectedFood = food; 
+    }
   }
+  
 
   dateChanged(event: any): void {
     this.dailyFoods = [];
@@ -174,6 +196,7 @@ export class DiaryComponent implements OnInit, OnDestroy {
     this.selectedDate = event?.toLocaleDateString('en-GB');
     
     this.fetchAllDailyFoods();
+    this.showNutrinitonFacts = false;
   }
 
   fetchAllDailyFoods() {

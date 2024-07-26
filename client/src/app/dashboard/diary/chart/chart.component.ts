@@ -12,6 +12,7 @@ import { BaseChartDirective } from 'ng2-charts';
 export class ChartComponent implements OnChanges{
   @Input() targetCalories: number = 0;
   @Input() currentCalories: number = 0;
+  @Input() chartWidth: string = '';
 
   public doughnutChartLabels: string[] = ['Consumed', 'Remaining'];
   public doughnutChartData: ChartData<'doughnut'> = {
