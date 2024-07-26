@@ -314,5 +314,11 @@
     margin-bottom: 2rem;
   }
 
+  .btn-modal-close {
+    position: relative;
+    top: -20px;
+    left: 0;
+  }
+
 }
 

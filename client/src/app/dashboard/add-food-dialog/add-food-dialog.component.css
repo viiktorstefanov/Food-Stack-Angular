@@ -210,3 +210,50 @@
 .nutrition-facts .label span:first-child {
   font-weight: bold;
 }
+
+@media (min-device-width: 360px) and (max-device-width: 414px) and (orientation: portrait) {
+  .foods-container {
+    max-height: unset;
+    width: unset;
+    max-width: unset;
+    padding: 30px 1rem;
+  }
+
+  .dialog-add {
+    margin-top: 1.5rem;
+  }
+
+  .dialog-search-bar button {
+    min-width: unset;
+    padding: 0.8rem;
+    text-align: center;
+    font-size: 1rem;
+    font-family: 'Roboto';
+  }
+
+  .content-table {
+    max-height: 200px;
+  }
+
+  .dialog-search-bar input {
+    width: 210px;
+  }
+
+  .charts {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .food-add-form {
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .btn-modal-close {
+    position: relative;
+    top: -20px;
+    left: 0;
+  }
+}

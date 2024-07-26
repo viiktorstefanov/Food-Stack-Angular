@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { SideNavService } from '../../shared/side-nav/side-nav.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddFoodDialogComponent } from '../add-food-dialog/add-food-dialog.component';
@@ -17,6 +17,13 @@ import { LoaderService } from '../../shared/loader/loader.service';
   styleUrl: './foods.component.css',
 })
 export class FoodsComponent implements OnInit, OnDestroy {
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.checkWindowSize();
+  }
+
+  isMobileView: boolean = false;
   selected: Date | null = null;
   customFoods: Food[] = [];
   selectedFood: Food | null = null;
@@ -37,6 +44,7 @@ export class FoodsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.userId = this.authService.getUserId;
+    this.checkWindowSize();
     this.fetchCustomFoods();
   }
 
@@ -71,34 +79,81 @@ export class FoodsComponent implements OnInit, OnDestroy {
       });
   }
 
+  checkWindowSize(): void {
+    const width = window.innerWidth;
+    this.isMobileView = width >= 360 && width <= 414;
+  }
+
   openAddDialog() {
+   if(this.isMobileView) {
+    const dialogRef = this.dialog.open(AddFoodDialogComponent, {
+      width: '100dvw',
+      height: '100vh',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.fetchCustomFoods();
+    });
+   } else {
     const dialogRef = this.dialog.open(AddFoodDialogComponent);
 
     dialogRef.afterClosed().subscribe(() => {
       this.fetchCustomFoods();
     });
+   }
   }
 
   openEditDialog(food: Food) {
-    const dialogRef = this.dialog.open(FoodsEditDialogComponent, {
-      data: { food: food },
-    });
-
-    dialogRef.afterClosed().subscribe(() => {
-      this.selectedFood = null;
-      this.fetchCustomFoods();
-    });
+    if(this.isMobileView) {
+      const dialogRef = this.dialog.open(FoodsEditDialogComponent, {
+        data: { food: food },
+        width: '100dvw',
+        height: '100vh',
+        maxWidth: '100vw',
+        maxHeight: '100vh',
+      });
+  
+      dialogRef.afterClosed().subscribe(() => {
+        this.selectedFood = null;
+        this.fetchCustomFoods();
+      });
+    } else {
+      const dialogRef = this.dialog.open(FoodsEditDialogComponent, {
+        data: { food: food },
+      });
+  
+      dialogRef.afterClosed().subscribe(() => {
+        this.selectedFood = null;
+        this.fetchCustomFoods();
+      });
+    }
   }
 
   openDeleteDialog(food: Food) {
-    const dialogRef = this.dialog.open(CustomFoodsDeleteDialogComponent, {
-      data: { food: food },
-    });
-
-    dialogRef.afterClosed().subscribe(() => {
-      this.selectedFood = null;
-      this.fetchCustomFoods();
-    });
+    if(this.isMobileView) {
+      const dialogRef = this.dialog.open(CustomFoodsDeleteDialogComponent, {
+        data: { food: food },
+        width: '80dvw',
+        maxWidth: '80vw',
+      });
+  
+      dialogRef.afterClosed().subscribe(() => {
+        this.selectedFood = null;
+        this.fetchCustomFoods();
+      });
+    } else {
+      const dialogRef = this.dialog.open(CustomFoodsDeleteDialogComponent, {
+        data: { food: food },
+      });
+  
+      dialogRef.afterClosed().subscribe(() => {
+        this.selectedFood = null;
+        this.fetchCustomFoods();
+      });
+    }
+   
   };
 
   ngOnDestroy(): void {

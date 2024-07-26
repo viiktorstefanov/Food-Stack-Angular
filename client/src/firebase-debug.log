@@ -1,0 +1,25 @@
+[debug] [2024-07-26T11:18:06.228Z] ----------------------------------------------------------------------
+[debug] [2024-07-26T11:18:06.230Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Admin\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-07-26T11:18:06.230Z] CLI Version:   13.14.1
+[debug] [2024-07-26T11:18:06.230Z] Platform:      win32
+[debug] [2024-07-26T11:18:06.230Z] Node Version:  v20.12.2
+[debug] [2024-07-26T11:18:06.230Z] Time:          Fri Jul 26 2024 14:18:06 GMT+0300 (Източноевропейско лятно часово време)
+[debug] [2024-07-26T11:18:06.231Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-07-26T11:18:06.282Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-07-26T11:18:06.282Z] > authorizing via signed-in user (victorystefanov@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\Github\Food-Stack-Angular\client
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+

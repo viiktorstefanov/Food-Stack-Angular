@@ -1,4 +1,4 @@
-# <a align="center" href="https://foodstack-8524b.web.app/home">Foodstack</a>
+# <a align="center" href="https://foodstack-eu.web.app/home">Foodstack</a>
 
 #### Front-end:
 <p align="left">
@@ -132,5 +132,5 @@ Ensure to update the MongoDB URL and configure all necessary routes to local set
 - Front-End deployed on Firebase.
 - Back-End: deployed on Render.
 
-You can see it here: <a href="https://foodstack-8524b.web.app/home">Foodstack</a>
+You can see it here: <a href="https://foodstack-eu.web.app/home">Foodstack</a>
 

@@ -6,7 +6,7 @@
             <li ><a class="home nav-item" [routerLink]="'/home'"><i class="fas fa-home nav-icon"></i>Home</a></li>
                 <li ><a class="blog nav-item" [routerLink]="'/blog'"><i class="far fa-newspaper nav-icon"></i>Blog</a></li>
                 <li ><a class="dashboard nav-item" [routerLink]="'/dashboard'"><i class="fas fa-book nav-icon"></i>Diary</a></li>
-                <li *ngIf="isDiary"><a class="foods nav-item" [routerLink]="'/dashboard/foods'"><i class="fas fa-pizza-slice nav-icon"></i>Foods</a></li>
+                <li *ngIf="isAuthenticated"><a class="foods nav-item" [routerLink]="'/dashboard/foods'"><i class="fas fa-pizza-slice nav-icon"></i>Foods</a></li>
                 <li ><a class="about nav-item" [routerLink]="'/calculator'"><i class="fas fa-calculator nav-icon"></i>Calculator</a></li>
                 <li ><a class="contact nav-item" [routerLink]="'/contacts'"><i class="fas fa-envelope nav-icon"></i>Contacts</a></li>
 
