@@ -291,4 +291,8 @@
   .add-food-macronutrients, .add-food-info {
     width: 330px;
   }
+
+  .nutrition-facts {
+    display: none;
+  }
 }
