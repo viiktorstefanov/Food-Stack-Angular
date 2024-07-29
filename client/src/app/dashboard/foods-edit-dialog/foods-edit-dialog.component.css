@@ -297,6 +297,10 @@
       font-family: Roboto;
     }
 
+    .add-food-macronutrients {
+      width: 330px;
+    }
+
     .add-food-macronutrients .info-wrapper {
       justify-content: unset;
       width: unset;
@@ -321,5 +325,9 @@
 
     .dialog-form .info-wrapper:nth-child(2) input {
       width: 260px;
+    }
+
+    .add-food-info .info-wrapper label {
+      font-size: 1rem;
     }
   }
