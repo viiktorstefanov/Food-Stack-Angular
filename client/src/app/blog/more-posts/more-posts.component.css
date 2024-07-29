@@ -25,7 +25,7 @@
     padding-left: 10px;
 }
 
-@media (min-device-width: 360px) and (max-device-width: 414px) and (orientation: portrait) {
+@media (min-device-width: 360px) and (max-device-width: 428px) and (orientation: portrait) {
     .more-posts a {
         margin-top: 40px;
         padding: 15px 30px;

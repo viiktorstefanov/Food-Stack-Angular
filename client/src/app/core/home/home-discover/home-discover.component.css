@@ -114,7 +114,7 @@
   font-family: Roboto;
 }
 
-@media (min-device-width: 360px) and (max-device-width: 414px) and (orientation: portrait) {
+@media (min-device-width: 360px) and (max-device-width: 428px) and (orientation: portrait) {
   .container-discover h2{
     font-size: 2em;
     margin-top: 2rem;

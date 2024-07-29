@@ -257,7 +257,7 @@
   margin-top: 2rem;
 }
 
-@media (min-device-width: 360px) and (max-device-width: 414px) and (orientation: portrait) {
+@media (min-device-width: 360px) and (max-device-width: 428px) and (orientation: portrait) {
 
   .register-view {
     background-image: unset;

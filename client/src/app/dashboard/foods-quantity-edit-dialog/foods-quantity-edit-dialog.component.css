@@ -203,7 +203,7 @@
     font-weight: bold;
   }
 
-  @media (min-device-width: 360px) and (max-device-width: 414px) and (orientation: portrait) {
+  @media (min-device-width: 360px) and (max-device-width: 428px) and (orientation: portrait) {
     .foods-container {
       width: unset;
       max-width: unset;
@@ -253,6 +253,7 @@
       padding-left: 1rem;
       width: 260px;
       font-size: 1.1rem;
+      font-family: Roboto;
     }
 
     .dialog-form .info-wrapper:nth-child(2) input {

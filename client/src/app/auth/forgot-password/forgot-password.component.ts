@@ -36,7 +36,7 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
 
   checkWindowSize(): void {
     const width = window.innerWidth;
-    this.isMobileView = width >= 360 && width <= 414;
+    this.isMobileView = width >= 360 && width <= 418;
   }
 
   submitHandler(): void {

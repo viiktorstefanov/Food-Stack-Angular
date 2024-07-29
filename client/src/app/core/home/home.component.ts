@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit{
 
   checkWindowSize(): void {
     const width = window.innerWidth;
-    this.isMobileView = width >= 360 && width <= 414;
+    this.isMobileView = width >= 360 && width <= 428;
   }
 
   constructor(private sideNavService: SideNavService) {

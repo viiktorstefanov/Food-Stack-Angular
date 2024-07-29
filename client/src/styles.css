@@ -244,7 +244,7 @@ button.toast-close-button {
   }
 }
 
-@media (min-device-width: 360px) and (max-device-width: 414px) and (orientation: portrait) {
+@media (min-device-width: 360px) and (max-device-width: 428px) and (orientation: portrait) {
   .toast-top-right {
     top: -6px;
     right: 30px;

@@ -274,7 +274,7 @@
   color: #fff;
 }
 
-@media (min-device-width: 360px) and (max-device-width: 414px) and (orientation: portrait) {
+@media (min-device-width: 360px) and (max-device-width: 428px) and (orientation: portrait) {
   .foods-container {
     max-height: unset;
     width: unset;

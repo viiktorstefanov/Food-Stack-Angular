@@ -42,7 +42,7 @@
   padding-bottom: 50px;
 }
 
-@media (min-device-width: 360px) and (max-device-width: 414px) and (orientation: portrait) {
+@media (min-device-width: 360px) and (max-device-width: 428px) and (orientation: portrait) {
   .archives-container .archives-header{
     padding: 3rem 0px 4rem 0px;
   }

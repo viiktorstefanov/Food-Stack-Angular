@@ -30,12 +30,12 @@ export class SideNavComponent implements OnInit{
       this.onToggleSideNav.emit({ collapsed: this.collapsed, screenWidth: this.screenWidth});
     }
 
-    this.isMobileView = this.screenWidth >= 360 && this.screenWidth <= 414;
+    this.isMobileView = this.screenWidth >= 360 && this.screenWidth <= 428;
   } 
 
   ngOnInit(): void {
     this.screenWidth = window.innerWidth;
-    this.isMobileView = window.innerWidth >= 360 && window.innerWidth <= 414;
+    this.isMobileView = window.innerWidth >= 360 && window.innerWidth <= 428;
   }
 
 

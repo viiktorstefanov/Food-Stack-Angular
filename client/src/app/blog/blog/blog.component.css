@@ -121,7 +121,7 @@
   box-shadow: 0 2px 8px #777986;
 }
 
-@media (min-device-width: 360px) and (max-device-width: 414px) and (orientation: portrait) {
+@media (min-device-width: 360px) and (max-device-width: 428px) and (orientation: portrait) {
   .background {
     height: 150px;
     font-size: 1rem;

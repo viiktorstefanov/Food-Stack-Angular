@@ -77,7 +77,7 @@
     border: 2px solid #462b3c;
   }
 
-  @media (min-device-width: 360px) and (max-device-width: 414px) and (orientation: portrait) {
+  @media (min-device-width: 360px) and (max-device-width: 428px) and (orientation: portrait) {
     .w-layout-flex {
       flex-direction: column;
     }

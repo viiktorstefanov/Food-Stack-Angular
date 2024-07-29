@@ -91,7 +91,7 @@
   width: 100%;
 }
 
-@media (min-device-width: 360px) and (max-device-width: 414px) and (orientation: portrait) {
+@media (min-device-width: 360px) and (max-device-width: 428px) and (orientation: portrait) {
   .hero {
     margin-top: 3rem;
   }

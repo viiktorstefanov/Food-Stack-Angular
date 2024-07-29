@@ -53,7 +53,7 @@ border-radius: 10px;
   color: #000;
 }
 
-@media (min-device-width: 360px) and (max-device-width: 414px) and (orientation: portrait) {
+@media (min-device-width: 360px) and (max-device-width: 428px) and (orientation: portrait) {
   .archives-article {
     width: 330px;
     height: 280px;

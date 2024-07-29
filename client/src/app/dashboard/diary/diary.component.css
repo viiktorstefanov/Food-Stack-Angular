@@ -319,7 +319,7 @@
   cursor: pointer;
 }
 
-@media (min-device-width: 360px) and (max-device-width: 414px) and (orientation: portrait) {
+@media (min-device-width: 360px) and (max-device-width: 428px) and (orientation: portrait) {
   .diary{
     margin-left: 2.5rem;
     display: flex;

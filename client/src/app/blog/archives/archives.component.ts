@@ -65,7 +65,7 @@ export class ArchivesComponent implements OnInit, OnDestroy, AfterViewInit {
 
   checkWindowSize(): void {
     const width = window.innerWidth;
-    this.isMobileView = width >= 360 && width <= 414;
+    this.isMobileView = width >= 360 && width <= 418;
   }
 
   private updateDisplayedBlogs() {

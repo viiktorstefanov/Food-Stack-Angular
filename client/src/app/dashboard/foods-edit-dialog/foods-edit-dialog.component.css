@@ -210,13 +210,17 @@
     font-weight: bold;
   }
 
-  @media (min-device-width: 360px) and (max-device-width: 414px) and (orientation: portrait) {
+  @media (min-device-width: 360px) and (max-device-width: 428px) and (orientation: portrait) {
     .foods-container {
       width: unset;
       max-width: unset;
       padding: 30px 1.5rem;
       justify-content: center;
       align-items: center;
+    }
+
+    .foods-container h2 {
+      font-size: 1.8rem;
     }
 
     .dialog-form {
@@ -230,8 +234,8 @@
     }
 
     .dialog-head {
-      justify-content: center;
-      align-self: end;
+      width: 100%;
+      justify-content: space-between;
     }
 
     .dialog-form {
@@ -276,5 +280,46 @@
 
     .info-wrapper {
       justify-content: center;
+    }
+
+    .serving-warning {
+      font-size: 1rem;
+      margin: 5rem 0 0rem 0;
+    }
+
+    .dialog-form input {
+      font-family: Roboto;
+    }
+
+    .add-food-info .info-wrapper{
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      font-family: Roboto;
+    }
+
+    .add-food-macronutrients .info-wrapper {
+      justify-content: unset;
+      width: unset;
+      font-family: Roboto;
+    }
+
+    .add-food-macronutrients .info-wrapper {
+      justify-content: space-between;
+    }
+
+    .nutrition-facts {
+      background-color: #fff;
+      border: 2px solid #462b3c;
+      padding: 30px 20px 0 20px;
+      max-width: 300px;
+      min-width: 250px;
+      font-size: 14px;
+      font-family: Lato;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dialog-form .info-wrapper:nth-child(2) input {
+      width: 260px;
     }
   }
